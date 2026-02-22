@@ -270,11 +270,10 @@ h1{
 .contact{
   margin-top: 18px;
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 14px;
   align-items: start;
 }
-.contact__box{ }
 
 .footer{
   margin-top: 34px;
@@ -306,8 +305,39 @@ h1{
   display:flex;
   gap:16px;
   font-size:22px;
+  justify-content: space-between;
+  align-items: center;
 }
+.contact__box h2{ margin: 0; font-size: 20px; }
+.contact__icons{ display:flex; gap:16px; }
 .contact__box a{
   color: inherit;
 }
 .contact__box a:hover{opacity:.75}
+
+.proj {
+  position: relative;
+  padding: 2rem;
+  border-radius: 12px;
+  color: white;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.proj::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65); /* oscurece la imagen */
+  z-index: 0;
+}
+
+.proj > * {
+  position: relative;
+  z-index: 1;
+}
+
+.proj a {
+  color: #64CCC5;
+}
