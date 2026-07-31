@@ -1083,20 +1083,51 @@ img {
   inset: 0;
   z-index: 1000;
   display: none;
-  place-items: center;
   padding:
-    max(24px, env(safe-area-inset-top))
-    24px
-    max(24px, env(safe-area-inset-bottom));
-  background: #0b1020;
+    max(20px, env(safe-area-inset-top))
+    20px
+    max(20px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(100, 204, 197, .15), transparent 24%),
+    radial-gradient(circle at 50% 48%, rgba(23, 107, 135, .16), transparent 48%),
+    #0b1020;
   color: rgba(255, 255, 255, .96);
   opacity: 1;
   visibility: visible;
-  transition: opacity .35s ease, visibility .35s ease;
+  transition: opacity .32s ease, visibility .32s ease;
+  isolation: isolate;
+}
+
+.app-splash::before,
+.app-splash::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.app-splash::before {
+  width: min(80vw, 460px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(100, 204, 197, .09);
+  box-shadow:
+    0 0 0 28px rgba(100, 204, 197, .025),
+    0 0 0 64px rgba(100, 204, 197, .018);
+}
+
+.app-splash::after {
+  right: -110px;
+  bottom: -150px;
+  width: 320px;
+  aspect-ratio: 1;
+  background: rgba(100, 204, 197, .035);
+  filter: blur(2px);
 }
 
 .app-standalone .app-splash {
   display: grid;
+  place-items: center;
 }
 
 .app-splash--hidden {
@@ -1106,46 +1137,125 @@ img {
 }
 
 .app-splash__content {
-  display: flex;
-  width: min(100%, 420px);
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  z-index: 1;
+  width: min(100%, 390px);
+  min-height: 330px;
+  display: grid;
+  grid-template-rows: 170px auto;
+  justify-items: center;
+  align-content: center;
   text-align: center;
 }
 
 .app-splash__avatar {
-  width: clamp(210px, 58vw, 320px);
+  width: 156px;
+  height: 156px;
   aspect-ratio: 1;
   display: block;
-  border: 1px solid rgba(255, 255, 255, .12);
+  align-self: center;
+  border: 3px solid rgba(255, 255, 255, .08);
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, .34);
+  object-position: center;
+  background: #070a12;
+  box-shadow:
+    0 0 0 8px rgba(100, 204, 197, .08),
+    0 22px 55px rgba(0, 0, 0, .38);
+  animation: splash-avatar-in .55s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.app-splash__identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: splash-identity-in .42s ease .2s forwards;
+}
+
+.app-splash__eyebrow {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, .5);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
 }
 
 .app-splash__name {
-  margin: 28px 0 4px;
-  font-size: clamp(25px, 7vw, 34px);
-  line-height: 1.15;
-  letter-spacing: -.035em;
+  margin: 7px 0 2px;
+  font-size: clamp(26px, 7vw, 32px);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -.04em;
 }
 
 .app-splash__role {
   margin: 0;
-  color: #64ccc5;
-  font-size: clamp(14px, 4vw, 17px);
+  color: #78d8d1;
+  font-size: clamp(13px, 3.7vw, 15px);
   font-weight: 600;
-  letter-spacing: .035em;
+  letter-spacing: .025em;
 }
 
-@media (min-width: 760px) {
+.app-splash__role::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  margin: 15px auto 0;
+  border-radius: 999px;
+  background: #64ccc5;
+  opacity: .7;
+}
+
+@keyframes splash-avatar-in {
+  from {
+    opacity: .9;
+    transform: scale(.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splash-identity-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-height: 650px) {
+  .app-splash__content {
+    min-height: 280px;
+    grid-template-rows: 142px auto;
+  }
+
   .app-splash__avatar {
-    width: 280px;
+    width: 132px;
+    height: 132px;
+  }
+
+  .app-splash__eyebrow {
+    margin-top: 12px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .app-splash {
     transition: none;
+  }
+
+  .app-splash__avatar,
+  .app-splash__identity {
+    animation: none;
+  }
+
+  .app-splash__identity {
+    opacity: 1;
+    transform: none;
   }
 }
