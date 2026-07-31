@@ -346,6 +346,23 @@ h1{
   color: rgba(255, 255, 255, .82);
 }
 
+.proj--colorines {
+  border-color: rgba(236, 134, 169, .58);
+  background-color: #f8dbe8;
+  background-repeat: no-repeat;
+  background-size: min(52%, 260px);
+  background-position: right 22px center;
+}
+
+.proj--colorines::before {
+  background: linear-gradient(90deg, rgba(17, 18, 25, .97) 0%, rgba(17, 18, 25, .93) 54%, rgba(17, 18, 25, .3) 100%);
+}
+
+.proj--colorines p,
+.proj--colorines .chips {
+  max-width: 72%;
+}
+
 .proj--kebab {
   border-color: rgba(232, 181, 47, .5);
   background-position: center 34%;
@@ -357,6 +374,19 @@ h1{
 
 .proj--kebab a {
   color: #f7d66e;
+}
+
+.proj--stilton {
+  border-color: rgba(183, 142, 97, .5);
+  background-position: center 48%;
+}
+
+.proj--stilton::before {
+  background: linear-gradient(135deg, rgba(39, 24, 18, .9), rgba(9, 15, 20, .7));
+}
+
+.proj--stilton a {
+  color: #e7c58d;
 }
 
 /* CV layout refinement 2026 */
@@ -772,6 +802,11 @@ img {
     min-height: 270px;
   }
 
+  .proj--colorines {
+    background-size: min(52%, 230px);
+    background-position: right 14px center;
+  }
+
   .section__head {
     align-items: flex-start;
     flex-direction: column;
@@ -848,6 +883,20 @@ img {
 
   .proj {
     min-height: 250px;
+  }
+
+  .proj--colorines {
+    background-size: 190px;
+    background-position: right 8px center;
+  }
+
+  .proj--colorines::before {
+    background: linear-gradient(90deg, rgba(17, 18, 25, .98) 0%, rgba(17, 18, 25, .94) 62%, rgba(17, 18, 25, .48) 100%);
+  }
+
+  .proj--colorines p,
+  .proj--colorines .chips {
+    max-width: 82%;
   }
 
   .contact__box {
