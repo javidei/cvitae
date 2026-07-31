@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=pizzarica-3">
+  <link rel="stylesheet" href="styles.css?v=pizzarica-4">
   <script src="menu.js?v=pizzarica-1" defer></script>
 </head>
 <body>
@@ -66,19 +66,30 @@
 
         <aside class="hero__order-card" aria-labelledby="pedido-rapido-title">
           <div class="order-card__top">
-            <span>Pedido directo</span>
+            <span>Posible pedido</span>
             <span class="order-card__badge">A domicilio</span>
           </div>
 
           <div class="order-card__copy">
-            <p>¿Qué te apetece hoy?</p>
-            <h2 id="pedido-rapido-title">Tu favorita, recién hecha.</h2>
-            <span>Elige en la carta y llama para preparar tu pedido.</span>
+            <p>Tu pedido habitual</p>
+            <h2 id="pedido-rapido-title">Lo de siempre.</h2>
+            <span>
+              Una pizza nº 9 sin champiñones, un flamenquín de pollo,
+              un pepito de pollo y otro pepito de lomo.
+            </span>
           </div>
 
-          <div class="order-card__facts">
-            <p>Pedido mínimo<strong>5 €</strong></p>
-            <p>Reparto desde<strong>1,50 €</strong></p>
+          <ul class="order-card__items" aria-label="Desglose del posible pedido">
+            <li><span>Pizza nº 9 <small>sin champiñones</small></span><strong>9,60 €</strong></li>
+            <li><span>Flamenquín de pollo</span><strong>9,90 €</strong></li>
+            <li><span>Pepito de pollo</span><strong>3,90 €</strong></li>
+            <li><span>Pepito de lomo</span><strong>3,80 €</strong></li>
+          </ul>
+
+          <div class="order-card__summary">
+            <p><span>Productos</span><strong>27,20 €</strong></p>
+            <p><span>Gastos de envío</span><strong>1,50 €</strong></p>
+            <p class="order-card__total"><span>Total</span><strong>28,70 €</strong></p>
           </div>
 
           <a class="button order-card__button" href="tel:+34957644062">
