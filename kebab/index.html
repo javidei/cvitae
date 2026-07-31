@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700;800&family=Lobster&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=alsalimi-1">
-  <script src="script.js?v=alsalimi-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=alsalimi-2">
+  <script src="script.js?v=alsalimi-2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -26,8 +26,8 @@
       </a>
 
       <nav class="nav" aria-label="Navegación principal">
+        <a href="#menus">Menús</a>
         <a href="#carta">Carta</a>
-        <a href="#especialidades">Especialidades</a>
         <a href="#galeria">Galería</a>
         <a href="#local">Dónde estamos</a>
       </nav>
@@ -50,8 +50,8 @@
         </p>
 
         <div class="hero-actions">
-          <a class="button button--yellow" href="#carta">Ver la carta</a>
-          <a class="button button--ghost" href="tel:+34640307359">Llamar para pedir</a>
+          <a class="button button--yellow" href="#menus">Ver los menús</a>
+          <a class="button button--ghost" href="#carta">Carta individual</a>
         </div>
 
         <ul class="hero-facts">
@@ -75,16 +75,193 @@
 
     <section class="quick-strip" aria-label="Servicios">
       <p><span>01</span><strong>Preparado al momento</strong></p>
-      <p><span>02</span><strong>Carne, mixto o con queso</strong></p>
-      <p><span>03</span><strong>Salsas para elegir</strong></p>
-      <p><span>04</span><strong>También opción vegetal</strong></p>
+      <p><span>02</span><strong>14 menús para elegir</strong></p>
+      <p><span>03</span><strong>Carne, mixto o con queso</strong></p>
+      <p><span>04</span><strong>Salsas para elegir</strong></p>
+    </section>
+
+    <section class="combo-section" id="menus" aria-labelledby="menus-title">
+      <div class="combo-heading">
+        <div>
+          <p class="section-kicker">Combina y disfruta</p>
+          <h2 id="menus-title">Menús Al Salimi</h2>
+        </div>
+        <div class="combo-heading__note">
+          <strong>¡Elige tu menú completo!</strong>
+          <p>Kebab, dürüm, pizza turca, arroz y mucho más con bebida y acompañamiento.</p>
+          <span>Pídelos con mozzarella por +0,50 €</span>
+        </div>
+      </div>
+
+      <div class="combo-grid">
+        <article class="combo-card combo-card--featured">
+          <header><span>Menú nº 1</span><strong>5,90 €</strong></header>
+          <h3>Kebab</h3>
+          <ul>
+            <li>Kebab de carne</li>
+            <li>Patatas fritas</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card">
+          <header><span>Menú nº 2</span><strong>8,90 €</strong></header>
+          <h3>Kebab + patata asada</h3>
+          <ul>
+            <li>Kebab de carne</li>
+            <li>Patata asada con carne</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card combo-card--featured">
+          <header><span>Menú nº 3</span><strong>6,90 €</strong></header>
+          <h3>Dürüm</h3>
+          <ul>
+            <li>Dürüm de carne</li>
+            <li>Patatas fritas</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card">
+          <header><span>Menú nº 4</span><strong>9,90 €</strong></header>
+          <h3>Dürüm + patata asada</h3>
+          <ul>
+            <li>Dürüm de carne</li>
+            <li>Patata asada con carne</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card combo-card--featured">
+          <header><span>Menú nº 5</span><strong>7,90 €</strong></header>
+          <h3>Pizza turca</h3>
+          <ul>
+            <li>Pizza turca de carne</li>
+            <li>Patatas fritas</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card">
+          <header><span>Menú nº 6</span><strong>10,90 €</strong></header>
+          <h3>Pizza + patata asada</h3>
+          <ul>
+            <li>Pizza turca de carne</li>
+            <li>Patata asada con carne</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card combo-card--rice">
+          <header><span>Menú nº 7</span><strong>7,90 €</strong></header>
+          <h3>Arroz pakistaní</h3>
+          <ul>
+            <li>Arroz pakistaní con carne</li>
+            <li>Patatas fritas</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card combo-card--rice">
+          <header><span>Menú nº 8</span><strong>10,90 €</strong></header>
+          <h3>Arroz + patata asada</h3>
+          <ul>
+            <li>Arroz pakistaní basmati</li>
+            <li>Patata asada con carne</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card">
+          <header><span>Menú nº 9</span><strong>5,90 €</strong></header>
+          <h3>Hamburguesa</h3>
+          <ul>
+            <li>Hamburguesa</li>
+            <li>Patatas fritas</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card">
+          <header><span>Menú nº 10</span><strong>7,90 €</strong></header>
+          <h3>Plato de carne</h3>
+          <ul>
+            <li>Pollo, ternera o cordero</li>
+            <li>Patatas fritas</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card combo-card--special">
+          <header><span>Menú nº 11</span><strong>6,90 €</strong></header>
+          <h3>Chicken Tikka Masala</h3>
+          <ul>
+            <li>Chicken Tikka Masala</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card combo-card--special">
+          <header><span>Menú nº 12</span><strong>6,90 €</strong></header>
+          <h3>Chicken Korma</h3>
+          <ul>
+            <li>Chicken Korma</li>
+            <li>Refresco</li>
+            <li>Helado</li>
+          </ul>
+        </article>
+
+        <article class="combo-card combo-card--special">
+          <header><span>Menú nº 13</span><strong>6,90 €</strong></header>
+          <h3>Calentito campero</h3>
+          <ul>
+            <li>Pollo, ternera, cordero o atún</li>
+            <li>Lechuga, cebolla y salsa</li>
+            <li>Patatas fritas</li>
+            <li>Refresco</li>
+          </ul>
+          <p class="combo-card__extra">Con queso +0,50 €</p>
+        </article>
+
+        <article class="combo-card combo-card--kids">
+          <header><span>Menú infantil</span><strong>5,50 €</strong></header>
+          <h3>Para los peques</h3>
+          <ul>
+            <li>Alitas, nuggets o hamburguesa</li>
+            <li>Patatas fritas</li>
+            <li>Refresco</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="combo-order">
+        <div>
+          <span>Servicio a domicilio</span>
+          <strong>Elige el número de menú y llama para pedir</strong>
+          <small>Precios y condiciones tomados del folleto de referencia. Confírmalos al realizar el pedido.</small>
+        </div>
+        <a class="button button--yellow" href="tel:+34640307359"><span aria-hidden="true">☎</span> 640 30 73 59</a>
+      </div>
     </section>
 
     <section class="menu-section" id="carta" aria-labelledby="carta-title">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">La carta</p>
-          <h2 id="carta-title">¿Qué te apetece hoy?</h2>
+          <p class="section-kicker">Carta individual</p>
+          <h2 id="carta-title">¿Prefieres pedir por separado?</h2>
         </div>
         <p>
           Busca un plato o filtra por categoría. Los precios corresponden a la carta
