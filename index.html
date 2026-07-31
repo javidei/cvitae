@@ -22,15 +22,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css?v=splash-2" />
+  <link rel="stylesheet" href="styles.css?v=splash-3" />
 </head>
 
 <body class="is-splashing">
   <div class="app-splash" id="app-splash" role="status" aria-label="Abriendo el portfolio de Javier Díaz">
     <div class="app-splash__content">
-      <img class="app-splash__avatar" src="assets/icons/icon-512.png" alt="" width="512" height="512" />
-      <p class="app-splash__name">Javier Díaz</p>
-      <p class="app-splash__role">Senior Software Engineer</p>
+      <img class="app-splash__avatar" src="assets/icons/icon-512.png" alt="" width="160" height="160" />
+      <div class="app-splash__identity">
+        <span class="app-splash__eyebrow">Portfolio personal</span>
+        <p class="app-splash__name">Javier Díaz</p>
+        <p class="app-splash__role">Senior Software Engineer</p>
+      </div>
     </div>
   </div>
   <noscript>
@@ -390,11 +393,15 @@
         return;
       }
 
+      const fadeDuration = 320;
+      const totalLaunchTime = 2000;
+      const remainingTime = Math.max(120, totalLaunchTime - performance.now() - fadeDuration);
+
       window.setTimeout(() => {
         splash.classList.add('app-splash--hidden');
         document.body.classList.remove('is-splashing');
-        window.setTimeout(() => splash.remove(), 400);
-      }, 2000);
+        window.setTimeout(() => splash.remove(), fadeDuration);
+      }, remainingTime);
     })();
   </script>
 </body>
