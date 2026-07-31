@@ -923,3 +923,58 @@ img {
     flex-direction: column;
   }
 }
+
+
+/* Proyecto comparador de PC */
+.proj--pc {
+  grid-column: 1 / -1;
+  min-height: 360px;
+  border-color: rgba(132, 148, 126, .58);
+  background-position: right 52%;
+}
+
+.proj--pc::before {
+  background: linear-gradient(90deg, rgba(10, 13, 11, .98) 0%, rgba(10, 13, 11, .92) 43%, rgba(10, 13, 11, .34) 74%, rgba(10, 13, 11, .2) 100%);
+}
+
+.proj--pc h3 {
+  font-size: 28px;
+}
+
+.proj--pc p,
+.proj--pc .chips,
+.proj--pc .links {
+  max-width: 58%;
+}
+
+.proj--pc a {
+  color: #b9c9b2;
+}
+
+@media (max-width: 760px) {
+  .proj--pc {
+    grid-column: auto;
+    min-height: 310px;
+    background-position: 62% center;
+  }
+
+  .proj--pc::before {
+    background: linear-gradient(90deg, rgba(10, 13, 11, .98) 0%, rgba(10, 13, 11, .94) 58%, rgba(10, 13, 11, .5) 100%);
+  }
+
+  .proj--pc p,
+  .proj--pc .chips,
+  .proj--pc .links {
+    max-width: 88%;
+  }
+}
+
+@media (max-width: 480px) {
+  .proj--pc {
+    min-height: 285px;
+  }
+
+  .proj--pc h3 {
+    font-size: 22px;
+  }
+}
