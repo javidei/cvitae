@@ -24,7 +24,7 @@
   <div class="app-splash" id="app-splash" role="status" aria-label="Abriendo el portfolio de Javier Díaz">
     <div class="app-splash__content">
       <img class="app-splash__avatar" src="assets/icons/icon-512.png" alt="" width="512" height="512" />
-      <h1 class="app-splash__name">Javier Díaz</h1>
+      <p class="app-splash__name">Javier Díaz</p>
       <p class="app-splash__role">Senior Software Engineer</p>
     </div>
   </div>
@@ -378,25 +378,11 @@
 
       if (!splash) return;
 
-      const minimumVisibleTime = 2000;
-      const startedAt = performance.now();
-
-      const hideSplash = () => {
-        const elapsed = performance.now() - startedAt;
-        const remaining = Math.max(0, minimumVisibleTime - elapsed);
-
-        window.setTimeout(() => {
-          splash.classList.add('app-splash--hidden');
-          document.body.classList.remove('is-splashing');
-          window.setTimeout(() => splash.remove(), 400);
-        }, remaining);
-      };
-
-      if (document.readyState === 'complete') {
-        hideSplash();
-      } else {
-        window.addEventListener('load', hideSplash, { once: true });
-      }
+      window.setTimeout(() => {
+        splash.classList.add('app-splash--hidden');
+        document.body.classList.remove('is-splashing');
+        window.setTimeout(() => splash.remove(), 400);
+      }, 2000);
     })();
   </script>
 </body>
