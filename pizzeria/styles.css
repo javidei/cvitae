@@ -219,13 +219,23 @@ input {
 }
 
 .hero__brand-banner {
-  width: min(610px, 100%);
-  height: auto;
-  margin-bottom: 30px;
-  display: block;
+  width: 100%;
+  height: clamp(96px, 10vw, 132px);
+  margin-bottom: 38px;
+  overflow: hidden;
+  background: #f31f2a;
   border: 1px solid rgba(255, 240, 148, .24);
   border-radius: 16px;
   box-shadow: var(--shadow);
+}
+
+.hero__brand-banner img {
+  width: auto;
+  max-width: none;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .eyebrow,
@@ -1109,7 +1119,8 @@ footer p:nth-of-type(1) {
   }
 
   .hero__brand-banner {
-    margin-bottom: 24px;
+    height: clamp(62px, 18vw, 92px);
+    margin-bottom: 28px;
     border-radius: 10px;
   }
 
