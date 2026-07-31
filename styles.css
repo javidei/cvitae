@@ -247,7 +247,7 @@ h1{
 .cards{
   margin-top: 18px;
   display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 .proj{ }
@@ -290,7 +290,6 @@ h1{
 
 @media (max-width: 920px){
   .hero__grid{ grid-template-columns: 1fr; }
-  .cards{ grid-template-columns: 1fr; }
   .grid{ grid-template-columns: 1fr; }
   .contact{ grid-template-columns: 1fr; }
 }
@@ -340,6 +339,19 @@ h1{
 
 .proj a {
   color: #64CCC5;
+}
+
+.proj--kebab {
+  border-color: rgba(232, 181, 47, .5);
+  background-position: center 34%;
+}
+
+.proj--kebab::before {
+  background: linear-gradient(135deg, rgba(117, 20, 22, .9), rgba(24, 12, 9, .72));
+}
+
+.proj--kebab a {
+  color: #f7d66e;
 }
 
 /* CV layout refinement 2026 */
