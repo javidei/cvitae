@@ -9,6 +9,11 @@
     content="Perfil profesional de Javier Díaz, Senior Software Engineer en NTT DATA Europe & Latam, con experiencia en backend Java, liderazgo técnico y coordinación de equipos." />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#0b1020" />
+  <script>
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+      document.documentElement.classList.add('app-standalone');
+    }
+  </script>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png" />
@@ -17,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css?v=splash-1" />
+  <link rel="stylesheet" href="styles.css?v=splash-2" />
 </head>
 
 <body class="is-splashing">
@@ -375,8 +380,15 @@
 
     (() => {
       const splash = document.getElementById('app-splash');
+      const isStandalone = document.documentElement.classList.contains('app-standalone');
 
       if (!splash) return;
+
+      if (!isStandalone) {
+        document.body.classList.remove('is-splashing');
+        splash.remove();
+        return;
+      }
 
       window.setTimeout(() => {
         splash.classList.add('app-splash--hidden');
