@@ -17,10 +17,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css?v=mobile-nav-1" />
+  <link rel="stylesheet" href="styles.css?v=splash-1" />
 </head>
 
-<body>
+<body class="is-splashing">
+  <div class="app-splash" id="app-splash" role="status" aria-label="Abriendo el portfolio de Javier Díaz">
+    <div class="app-splash__content">
+      <img class="app-splash__avatar" src="assets/icons/icon-512.png" alt="" width="512" height="512" />
+      <h1 class="app-splash__name">Javier Díaz</h1>
+      <p class="app-splash__role">Senior Software Engineer</p>
+    </div>
+  </div>
+  <noscript>
+    <style>
+      .app-splash { display: none; }
+      body.is-splashing { overflow: auto; }
+    </style>
+  </noscript>
+
   <a class="skip" href="#contenido">Saltar al contenido</a>
 
   <header class="header">
@@ -358,6 +372,32 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    (() => {
+      const splash = document.getElementById('app-splash');
+
+      if (!splash) return;
+
+      const minimumVisibleTime = 2000;
+      const startedAt = performance.now();
+
+      const hideSplash = () => {
+        const elapsed = performance.now() - startedAt;
+        const remaining = Math.max(0, minimumVisibleTime - elapsed);
+
+        window.setTimeout(() => {
+          splash.classList.add('app-splash--hidden');
+          document.body.classList.remove('is-splashing');
+          window.setTimeout(() => splash.remove(), 400);
+        }, remaining);
+      };
+
+      if (document.readyState === 'complete') {
+        hideSplash();
+      } else {
+        window.addEventListener('load', hideSplash, { once: true });
+      }
+    })();
   </script>
 </body>
 
