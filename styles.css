@@ -389,6 +389,35 @@ h1{
   color: #e7c58d;
 }
 
+.proj--amigos {
+  min-height: 245px;
+  border-color: rgba(154, 125, 255, .58);
+  background:
+    radial-gradient(circle at 88% 20%, rgba(255, 187, 92, .95) 0 7%, transparent 7.5%),
+    radial-gradient(circle at 78% 43%, rgba(100, 204, 197, .9) 0 10%, transparent 10.5%),
+    radial-gradient(circle at 94% 67%, rgba(239, 112, 155, .85) 0 13%, transparent 13.5%),
+    linear-gradient(135deg, #19152e, #312660 60%, #222b55);
+}
+
+.proj--amigos::before {
+  background: linear-gradient(90deg, rgba(13, 12, 25, .98) 0%, rgba(20, 18, 38, .84) 58%, rgba(20, 18, 38, .18) 100%);
+}
+
+.proj--amigos p,
+.proj--amigos .chips {
+  max-width: 78%;
+}
+
+.proj__eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #d9ceff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
 /* CV layout refinement 2026 */
 :root{
   --accent-soft: color-mix(in srgb, var(--accent) 13%, transparent);
