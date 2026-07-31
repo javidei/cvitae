@@ -984,3 +984,39 @@ img {
     transform: none;
   }
 }
+
+/* Retrato principal circular */
+.hero__card{
+  justify-items: center;
+}
+
+.avatar{
+  width: min(100%, 360px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #000;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+}
+
+.avatar img{
+  object-fit: cover;
+  object-position: center;
+  filter: none;
+}
+
+@media (max-width: 920px){
+  .hero__card{
+    order: -1;
+  }
+
+  .avatar{
+    width: min(72vw, 340px);
+  }
+}
+
+@media (max-width: 640px){
+  .avatar{
+    width: min(78vw, 300px);
+  }
+}
+
