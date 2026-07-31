@@ -21,9 +21,97 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </noscript>
   <link rel="stylesheet" href="styles.css?v=splash-3" />
+  <style>
+    /* Empalme visual entre la pantalla nativa de Android y la bienvenida web. */
+    html.app-standalone,
+    html.app-standalone body {
+      background-color: #0b1020;
+    }
+
+    .app-standalone .app-splash {
+      display: block;
+      background: #0b1020;
+    }
+
+    .app-standalone .app-splash__content {
+      position: absolute;
+      inset: 0;
+      width: auto;
+      min-height: 0;
+      display: block;
+    }
+
+    .app-standalone .app-splash__avatar {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(136px, 38vw, 156px);
+      height: clamp(136px, 38vw, 156px);
+      margin: 0;
+      transform: translate(-50%, -50%);
+      animation: none;
+    }
+
+    .app-standalone .app-splash__identity {
+      position: absolute;
+      top: calc(50% + 96px);
+      left: 50%;
+      width: min(calc(100% - 40px), 390px);
+      opacity: 0;
+      transform: translate(-50%, 7px);
+      animation: none;
+      transition: opacity .42s ease, transform .42s ease;
+    }
+
+    .app-standalone .app-splash--ready .app-splash__identity {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .app-standalone .app-splash::before {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity .7s ease;
+    }
+
+    .app-standalone .app-splash::after {
+      opacity: 0;
+      transition: opacity .7s ease;
+    }
+
+    .app-standalone .app-splash--ready::before,
+    .app-standalone .app-splash--ready::after {
+      opacity: 1;
+    }
+
+    @media (max-height: 650px) {
+      .app-standalone .app-splash__avatar {
+        width: 132px;
+        height: 132px;
+      }
+
+      .app-standalone .app-splash__identity {
+        top: calc(50% + 80px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .app-standalone .app-splash__identity,
+      .app-standalone .app-splash::before,
+      .app-standalone .app-splash::after {
+        transition: none;
+      }
+    }
+  </style>
 </head>
 
 <body class="is-splashing">
@@ -408,13 +496,19 @@
       }
 
       const fadeDuration = 320;
-      const splashDuration = 4000;
+      const totalSplashDuration = 4000;
+      const elapsedSinceLaunch = Math.max(0, performance.now());
+      const remainingDuration = Math.max(900, totalSplashDuration - elapsedSinceLaunch);
+
+      window.requestAnimationFrame(() => {
+        splash.classList.add('app-splash--ready');
+      });
 
       window.setTimeout(() => {
         splash.classList.add('app-splash--hidden');
         document.body.classList.remove('is-splashing');
         window.setTimeout(() => splash.remove(), fadeDuration);
-      }, splashDuration);
+      }, remainingDuration);
     })();
 
     if ('serviceWorker' in navigator) {
