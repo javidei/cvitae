@@ -26,7 +26,7 @@ function updateCatalog() {
     if (isVisible) visible += 1;
   });
 
-  result.textContent = `${visible} ${visible === 1 ? "colección" : "colecciones"}`;
+  result.textContent = `${visible} ${visible === 1 ? "categoría" : "categorías"}`;
   empty.hidden = visible !== 0;
 }
 
