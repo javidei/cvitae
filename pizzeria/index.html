@@ -3,97 +3,271 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pizzería Palma — Pizza artesanal en Palma del Río</title>
-  <meta name="description" content="Pizzería Palma, una propuesta de pizza artesanal en Palma del Río.">
-  <meta name="theme-color" content="#1b100a">
+  <title>Pizza Rica — Pizzería en Palma del Río</title>
+  <meta name="description" content="Pizza Rica: pizzas artesanas, carta variada y reparto a domicilio en Palma del Río.">
+  <meta name="theme-color" content="#151515">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=45f3250c">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=pizzarica-1">
+  <script src="menu.js?v=pizzarica-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
   <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Pizzería Palma, inicio">
-      <span class="brand__mark" aria-hidden="true">P</span>
+    <a class="brand" href="#inicio" aria-label="Pizza Rica, inicio">
+      <img src="https://pizzarica.net/imagenes/logo_menu2.png" alt="" width="58" height="52">
       <span>
-        <strong>Pizzería Palma</strong>
-        <small>Pizza artesanal</small>
+        <strong>Pizza Rica</strong>
+        <small>Palma del Río</small>
       </span>
     </a>
 
     <nav class="nav" aria-label="Navegación principal">
-      <a class="is-active" href="#inicio">Inicio</a>
+      <a href="#inicio">Inicio</a>
       <a href="#carta">Carta</a>
-      <a href="#nosotros">Nosotros</a>
+      <a href="#galeria">Galería</a>
+      <a href="#localizacion">Cómo llegar</a>
       <a href="#contacto">Contacto</a>
     </nav>
 
-    <a class="header-cta" href="#contacto">Reservar mesa</a>
+    <a class="header-cta" href="tel:+34957644062">
+      <span aria-hidden="true">☎</span>
+      957 644 062
+    </a>
   </header>
 
   <main id="contenido">
     <section class="hero" id="inicio">
       <div class="hero__content">
+        <img
+          class="hero__brand-banner"
+          src="https://pizzarica.net/css/imagenes/cabecera.jpg"
+          alt="Pizza Rica"
+          width="980"
+          height="170"
+        >
         <p class="eyebrow">Palma del Río · Córdoba</p>
-        <h1>El sabor de una pizza <em>hecha sin prisas.</em></h1>
+        <h1>Pizza artesana, <em>hecha a mano.</em></h1>
         <p class="hero__lead">
-          Masa preparada cada día, ingredientes sencillos y mucho horno.
-          Una pizzería cercana para compartir sin mirar el reloj.
+          Más de una década preparando pizzas con ingredientes seleccionados,
+          una carta para todos los gustos y servicio a domicilio.
         </p>
 
         <div class="hero__actions">
           <a class="button button--primary" href="#carta">Ver la carta</a>
-          <a class="button button--ghost" href="#contacto">Cómo llegar</a>
+          <a class="button button--ghost" href="tel:+34957644062">Hacer un pedido</a>
         </div>
       </div>
 
-      <div class="hero__details" aria-label="Características">
-        <div>
-          <span>01</span>
-          <p><strong>Masa diaria</strong>Fermentación lenta y textura ligera.</p>
-        </div>
-        <div>
-          <span>02</span>
-          <p><strong>Producto cercano</strong>Ingredientes escogidos con cuidado.</p>
-        </div>
-        <div>
-          <span>03</span>
-          <p><strong>Buen ambiente</strong>Un espacio pensado para compartir.</p>
-        </div>
+      <div class="hero__details" aria-label="Datos destacados">
+        <article>
+          <span>+10</span>
+          <p><strong>Años contigo</strong>Una pizzería con historia en Palma del Río.</p>
+        </article>
+        <article>
+          <span>+30</span>
+          <p><strong>Pizzas diferentes</strong>Clásicas, especiales, calzone y mucho más.</p>
+        </article>
+        <article>
+          <span>→</span>
+          <p><strong>Servicio a domicilio</strong>Palma del Río y urbanizaciones cercanas.</p>
+        </article>
       </div>
     </section>
 
-    <section class="intro-section" id="carta">
-      <p class="section-label">Nuestra carta</p>
-      <h2>Clásicas, especiales y hechas a tu gusto.</h2>
-      <p>La selección de pizzas, entrantes y bebidas se añadirá en la siguiente fase.</p>
+    <section class="service-section" aria-labelledby="servicio-title">
+      <div class="section-heading section-heading--compact">
+        <div>
+          <p class="section-label">Tu pedido, fácil</p>
+          <h2 id="servicio-title">También te lo llevamos a casa.</h2>
+        </div>
+        <a class="button button--primary" href="tel:+34957644062">Llamar ahora</a>
+      </div>
+
+      <div class="service-grid">
+        <article>
+          <span class="service-grid__icon" aria-hidden="true">€</span>
+          <h3>Pedido mínimo</h3>
+          <p>El pedido mínimo a domicilio es de <strong>5 €</strong>.</p>
+        </article>
+        <article>
+          <span class="service-grid__icon" aria-hidden="true">⌂</span>
+          <h3>Reparto</h3>
+          <p><strong>1,50 €</strong> en Palma del Río y <strong>3 €</strong> en urbanizaciones.</p>
+        </article>
+        <article>
+          <span class="service-grid__icon" aria-hidden="true">▣</span>
+          <h3>Pago cómodo</h3>
+          <p>Se admite el pago con tarjeta en los pedidos a domicilio.</p>
+        </article>
+      </div>
     </section>
 
-    <section class="split-section" id="nosotros">
-      <div>
-        <p class="section-label">La casa</p>
-        <h2>Una pizzería con sabor local.</h2>
+    <section class="menu-section" id="carta" aria-labelledby="carta-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">La carta de Pizza Rica</p>
+          <h2 id="carta-title">Elige, combina y disfruta.</h2>
+        </div>
+        <p>
+          Pizzas, camperos, kebab, carnes, tapas y mucho más.
+          Busca un plato o abre una categoría para consultar sus opciones.
+        </p>
       </div>
-      <p>
-        Esta base está preparada para incorporar la historia del negocio,
-        fotografías del local y toda la información de la carta.
-      </p>
+
+      <div class="menu-toolbar">
+        <label class="menu-search">
+          <span class="sr-only">Buscar en la carta</span>
+          <span aria-hidden="true">⌕</span>
+          <input id="menu-search" type="search" placeholder="Buscar pizza, pollo, kebab…" autocomplete="off">
+        </label>
+        <div class="category-links" id="category-links" aria-label="Filtrar la carta"></div>
+      </div>
+
+      <p class="menu-result" id="menu-result" aria-live="polite"></p>
+      <div class="menu-root" id="menu-root"></div>
+      <noscript>
+        <p class="notice">Activa JavaScript para consultar la carta completa.</p>
+      </noscript>
+
+      <div class="allergen-card">
+        <div>
+          <p class="section-label">Información alimentaria</p>
+          <h3>Consulta la carta de alérgenos</h3>
+          <p>Revisa la información antes de realizar tu pedido y pregunta al establecimiento si tienes alguna duda.</p>
+        </div>
+        <a
+          class="button button--dark"
+          href="https://www.pizzarica.net/pizzarica-carta_de_al%C3%A9rgenos.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Abrir alérgenos <span aria-hidden="true">↗</span></a>
+      </div>
     </section>
 
-    <section class="contact-section" id="contacto">
-      <div>
-        <p class="section-label">Contacto</p>
-        <h2>Nos vemos en Palma del Río.</h2>
+    <section class="gallery-section" id="galeria" aria-labelledby="galeria-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Galería</p>
+          <h2 id="galeria-title">Un vistazo a Pizza Rica.</h2>
+        </div>
+        <p>Algunas imágenes del establecimiento, sus propuestas y su historia local.</p>
       </div>
-      <span class="button button--primary" aria-label="Datos de contacto pendientes">Datos próximamente</span>
+
+      <div class="gallery-grid">
+        <figure class="gallery-grid__wide">
+          <img src="https://pizzarica.net/imagenes/image5.jpg" alt="Una propuesta de Pizza Rica" loading="lazy">
+        </figure>
+        <figure>
+          <img src="https://pizzarica.net/imagenes/image6.jpg" alt="Producto de la carta de Pizza Rica" loading="lazy">
+        </figure>
+        <figure>
+          <img src="https://pizzarica.net/imagenes/image7.jpg" alt="Plato preparado en Pizza Rica" loading="lazy">
+        </figure>
+        <figure>
+          <img src="https://pizzarica.net/imagenes/hotdog.jpg" alt="Hot dog de Pizza Rica" loading="lazy">
+        </figure>
+        <figure class="gallery-grid__wide">
+          <img
+            src="https://pizzarica.net/almacen/galeria/thumb-800-1374621349-img-20130723-wa0003.jpg"
+            alt="Parapente de Pizza Rica"
+            loading="lazy"
+          >
+          <figcaption>Pizza Rica, muy presente en Palma del Río.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="location-section" id="localizacion" aria-labelledby="localizacion-title">
+      <div class="location-copy">
+        <p class="section-label">Localización</p>
+        <h2 id="localizacion-title">Ven a vernos.</h2>
+        <p>
+          Estamos en Avenida de Andalucía 13-D, en Palma del Río.
+          Abre la ruta en tu móvil para llegar directamente.
+        </p>
+
+        <address>
+          <span>Pizza Rica</span>
+          Avenida de Andalucía 13-D<br>
+          14700 Palma del Río, Córdoba
+        </address>
+
+        <div class="location-actions">
+          <a
+            class="button button--primary"
+            href="https://www.google.com/maps/search/?api=1&query=Avenida+de+Andaluc%C3%ADa+13-D%2C+14700+Palma+del+R%C3%ADo%2C+C%C3%B3rdoba"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Abrir ruta <span aria-hidden="true">↗</span></a>
+          <a class="button button--ghost" href="tel:+34957644062">957 644 062</a>
+        </div>
+      </div>
+
+      <div class="map-frame">
+        <iframe
+          title="Mapa de Pizza Rica en Palma del Río"
+          src="https://www.google.com/maps?q=Avenida%20de%20Andaluc%C3%ADa%2013-D%2C%2014700%20Palma%20del%20R%C3%ADo%2C%20C%C3%B3rdoba&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contacto" aria-labelledby="contacto-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Contacto</p>
+          <h2 id="contacto-title">¿Hablamos?</h2>
+        </div>
+        <p>Haz tu pedido por teléfono o escríbenos para cualquier consulta.</p>
+      </div>
+
+      <div class="contact-grid">
+        <a href="tel:+34957644062">
+          <span>Pedidos y consultas</span>
+          <strong>957 644 062</strong>
+          <small>Llamar ahora <span aria-hidden="true">→</span></small>
+        </a>
+        <a href="mailto:pizzarica@pizzarica.net">
+          <span>Correo electrónico</span>
+          <strong>pizzarica@pizzarica.net</strong>
+          <small>Enviar un email <span aria-hidden="true">→</span></small>
+        </a>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Avenida+de+Andaluc%C3%ADa+13-D%2C+14700+Palma+del+R%C3%ADo%2C+C%C3%B3rdoba"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>Dirección</span>
+          <strong>Av. de Andalucía 13-D</strong>
+          <small>Ver en el mapa <span aria-hidden="true">↗</span></small>
+        </a>
+      </div>
+
+      <div class="extras-card">
+        <div>
+          <p class="section-label">Para compartir</p>
+          <h3>Convierte cualquier reunión en una celebración.</h3>
+        </div>
+        <ul>
+          <li>Fuente de chocolate para un mínimo de cuatro personas.</li>
+          <li>Barriles de refresco o cerveza de tres y cuatro litros para cumpleaños.</li>
+          <li>Mojitos caseros y propuestas especiales disponibles.</li>
+        </ul>
+      </div>
     </section>
   </main>
 
   <footer>
-    <span>Pizzería Palma</span>
-    <span>Palma del Río · Córdoba</span>
+    <a class="footer-brand" href="#inicio">
+      <img src="https://pizzarica.net/imagenes/logo_menu2.png" alt="" width="48" height="43">
+      <strong>Pizza Rica</strong>
+    </a>
+    <p>Avenida de Andalucía 13-D · Palma del Río · <a href="tel:+34957644062">957 644 062</a></p>
+    <p>Datos y precios según la carta publicada por Pizza Rica.</p>
   </footer>
 </body>
 </html>
