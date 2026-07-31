@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d0b">
+  <meta name="description" content="Comparativa de los PC de Javier Díaz y su evolución de componentes entre 2015 y 2026.">
+  <title>Mis PC · evolución 2015–2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="inicio">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
+      <span class="brand__mark" aria-hidden="true">J</span>
+      <span>Mis PC <i>· evolución</i></span>
+    </a>
+    <span class="header-period">2015 → 2026</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="eyebrow">MI HISTORIAL DE HARDWARE</p>
+        <h1>Dos equipos.<br><em>Una década</em> de mejoras.</h1>
+        <p class="hero__lead">Compara cada componente y recorre la evolución desde el veterano i7-6700K hasta el equipo actual con RTX 5070 Ti.</p>
+
+        <dl class="hero__facts">
+          <div><dt>GENERACIONES</dt><dd>2 PC</dd></div>
+          <div><dt>PERIODO</dt><dd>2015–2026</dd></div>
+          <div><dt>SALTO GRÁFICO</dt><dd>8 → 16 GB</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero__visual">
+        <img src="assets/hero-pc.jpg" alt="Torre del equipo actual iluminada en un escritorio">
+        <div class="visual-badge"><span>CONFIGURACIÓN ACTUAL</span><b>RTX 5070 Ti</b></div>
+        <span class="year-ghost" aria-hidden="true">2026</span>
+      </div>
+    </section>
+
+    <nav class="pc-nav" aria-label="Equipos y comparativa">
+      <div class="tabs" role="tablist" aria-label="Seleccionar vista">
+        <button id="tab-pc2015" type="button" role="tab" aria-selected="false" aria-controls="contenido" data-view="pc2015"><span>01</span>PC 2015</button>
+        <button id="tab-pc2026" type="button" role="tab" aria-selected="false" aria-controls="contenido" data-view="pc2026"><span>02</span>PC 2026</button>
+        <button id="tab-comparativa" type="button" role="tab" aria-selected="true" aria-controls="contenido" data-view="comparativa"><span>03</span>Comparativa</button>
+      </div>
+    </nav>
+
+    <div id="contenido" class="content" role="tabpanel" aria-live="polite" aria-labelledby="tab-comparativa"></div>
+
+    <section class="closing">
+      <p>EL CAMBIO NO ES SOLO UNA GRÁFICA NUEVA</p>
+      <h2>Es el salto de toda la <em>plataforma.</em></h2>
+      <button type="button" id="closing-action">Ver PC 2015 <span>→</span></button>
+    </section>
+  </main>
+
+  <footer>
+    <b>Mis PC · Javier Díaz</b>
+    <span>Juegos · Programación · Evolución</span>
+    <a href="#inicio">Volver arriba ↑</a>
+  </footer>
+</body>
+</html>
