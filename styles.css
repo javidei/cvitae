@@ -1071,3 +1071,77 @@ img {
     padding-inline: 2px;
   }
 }
+
+
+/* Pantalla de bienvenida de la PWA */
+body.is-splashing {
+  overflow: hidden;
+}
+
+.app-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    24px
+    max(24px, env(safe-area-inset-bottom));
+  background: #0b1020;
+  color: rgba(255, 255, 255, .96);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+
+.app-splash--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.app-splash__content {
+  display: flex;
+  width: min(100%, 420px);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.app-splash__avatar {
+  width: clamp(210px, 58vw, 320px);
+  aspect-ratio: 1;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .34);
+}
+
+.app-splash__name {
+  margin: 28px 0 4px;
+  font-size: clamp(25px, 7vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -.035em;
+}
+
+.app-splash__role {
+  margin: 0;
+  color: #64ccc5;
+  font-size: clamp(14px, 4vw, 17px);
+  font-weight: 600;
+  letter-spacing: .035em;
+}
+
+@media (min-width: 760px) {
+  .app-splash__avatar {
+    width: 280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-splash {
+    transition: none;
+  }
+}
