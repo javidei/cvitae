@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=pizzarica-1">
+  <link rel="stylesheet" href="styles.css?v=pizzarica-2">
   <script src="menu.js?v=pizzarica-1" defer></script>
 </head>
 <body>
@@ -40,25 +40,50 @@
 
   <main id="contenido">
     <section class="hero" id="inicio">
-      <div class="hero__content">
-        <img
-          class="hero__brand-banner"
-          src="https://pizzarica.net/css/imagenes/cabecera.jpg"
-          alt="Pizza Rica"
-          width="980"
-          height="170"
-        >
-        <p class="eyebrow">Palma del Río · Córdoba</p>
-        <h1>Pizza artesana, <em>hecha a mano.</em></h1>
-        <p class="hero__lead">
-          Más de una década preparando pizzas con ingredientes seleccionados,
-          una carta para todos los gustos y servicio a domicilio.
-        </p>
+      <div class="hero__stage">
+        <div class="hero__content">
+          <img
+            class="hero__brand-banner"
+            src="https://pizzarica.net/css/imagenes/cabecera.jpg"
+            alt="Pizza Rica"
+            width="980"
+            height="170"
+          >
+          <p class="eyebrow">Palma del Río · Córdoba</p>
+          <h1>Pizza artesana, <em>hecha a mano.</em></h1>
+          <p class="hero__lead">
+            Más de una década preparando pizzas con ingredientes seleccionados,
+            una carta para todos los gustos y servicio a domicilio.
+          </p>
 
-        <div class="hero__actions">
-          <a class="button button--primary" href="#carta">Ver la carta</a>
-          <a class="button button--ghost" href="tel:+34957644062">Hacer un pedido</a>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#carta">Ver la carta</a>
+            <a class="button button--ghost" href="tel:+34957644062">Hacer un pedido</a>
+          </div>
         </div>
+
+        <aside class="hero__order-card" aria-labelledby="pedido-rapido-title">
+          <div class="order-card__top">
+            <span>Pedido directo</span>
+            <span class="order-card__badge">A domicilio</span>
+          </div>
+
+          <div class="order-card__copy">
+            <p>¿Qué te apetece hoy?</p>
+            <h2 id="pedido-rapido-title">Tu favorita, recién hecha.</h2>
+            <span>Elige en la carta y llama para preparar tu pedido.</span>
+          </div>
+
+          <div class="order-card__facts">
+            <p>Pedido mínimo<strong>5 €</strong></p>
+            <p>Reparto desde<strong>1,50 €</strong></p>
+          </div>
+
+          <a class="button order-card__button" href="tel:+34957644062">
+            <span aria-hidden="true">☎</span>
+            957 644 062
+          </a>
+        </aside>
       </div>
 
       <div class="hero__details" aria-label="Datos destacados">
