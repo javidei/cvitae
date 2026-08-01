@@ -363,6 +363,29 @@ h1{
   max-width: 72%;
 }
 
+.proj--sam {
+  border-color: rgba(232, 51, 124, .62);
+  background-color: #f8c93f;
+  background-position: center center;
+}
+
+.proj--sam::before {
+  background: linear-gradient(100deg, rgba(26, 22, 28, .97) 0%, rgba(26, 22, 28, .9) 55%, rgba(26, 22, 28, .34) 100%);
+}
+
+.proj--sam a {
+  color: #ffd34e;
+}
+
+.proj--sam .proj__eyebrow {
+  color: #ff91bc;
+}
+
+.proj--sam p,
+.proj--sam .chips {
+  max-width: 82%;
+}
+
 .proj--kebab {
   border-color: rgba(232, 181, 47, .5);
   background-position: center 34%;
@@ -836,6 +859,10 @@ img {
     background-position: right 14px center;
   }
 
+  .proj--sam {
+    background-position: 64% center;
+  }
+
   .section__head {
     align-items: flex-start;
     flex-direction: column;
@@ -926,6 +953,15 @@ img {
   .proj--colorines p,
   .proj--colorines .chips {
     max-width: 82%;
+  }
+
+  .proj--sam::before {
+    background: linear-gradient(100deg, rgba(26, 22, 28, .98) 0%, rgba(26, 22, 28, .92) 66%, rgba(26, 22, 28, .52) 100%);
+  }
+
+  .proj--sam p,
+  .proj--sam .chips {
+    max-width: 92%;
   }
 
   .contact__box {
