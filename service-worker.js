@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v5-sam-project`;
+const CACHE_NAME = `${CACHE_PREFIX}v6-sam-github-pages`;
 const APP_SHELL = [
   "./",
   "./index.html",
