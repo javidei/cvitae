@@ -1,12 +1,15 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v3-isolated`;
+const CACHE_NAME = `${CACHE_PREFIX}v4-projects-external`;
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css?v=splash-3",
   "./manifest.webmanifest",
   "./assets/icons/icon-192.png",
-  "./assets/icons/icon-512.png"
+  "./assets/icons/icon-512.png",
+  "./assets/projects/colorines.svg",
+  "./assets/projects/entre-amigos.svg",
+  "./assets/projects/mis-pcs.jpg"
 ];
 
 const PORTFOLIO_URL = new URL("./", self.registration.scope);
@@ -46,8 +49,8 @@ self.addEventListener("fetch", event => {
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
 
   if (request.mode === "navigate") {
-    // Cada proyecto vive bajo su propia ruta. Nunca debemos responder a esas
-    // navegaciones con el HTML del portfolio guardado en caché.
+    // La caché de la app solo responde a la portada del portfolio.
+    // Los proyectos viven ahora en repositorios y sitios independientes.
     if (!isPortfolioNavigation(url)) return;
 
     event.respondWith(
@@ -64,8 +67,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // No almacenar ni servir recursos de Colorines, Pizza Rica, Al Salimi,
-  // PC o Entre Amigos desde la caché de cvitae.
+  // No almacenar ningún recurso que no pertenezca al shell de cvitae.
   if (!APP_SHELL_URLS.has(url.href)) return;
 
   event.respondWith(
