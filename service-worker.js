@@ -1,13 +1,14 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v4-projects-external`;
+const CACHE_NAME = `${CACHE_PREFIX}v5-sam-project`;
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles.css?v=splash-3",
+  "./styles.css?v=sam-1",
   "./manifest.webmanifest",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/projects/colorines.svg",
+  "./assets/projects/sam.svg",
   "./assets/projects/entre-amigos.svg",
   "./assets/projects/mis-pcs.jpg"
 ];
