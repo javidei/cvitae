@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </noscript>
-  <link rel="stylesheet" href="styles.css?v=splash-3" />
+  <link rel="stylesheet" href="styles.css?v=sam-1" />
   <style>
     /* Empalme visual entre la pantalla nativa de Android y la bienvenida web. */
     html.app-standalone,
@@ -355,6 +355,23 @@
 
         <div class="cards">
 
+          <article class="proj proj--sam"
+            style="background-image: url('assets/projects/sam.svg');">
+            <a class="proj__card-link" href="https://sam-tienda.javidei.chatgpt.site" aria-label="Abrir la web de SAM"></a>
+            <span class="proj__eyebrow">Impresión · Personalizados · Digital</span>
+            <h3>SAM</h3>
+            <p>
+              Web comercial y catálogo para transformar ideas en productos y servicios.
+              <span class="muted">Encargos de impresión, artículos personalizados y soluciones digitales, con administración preparada para Supabase.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">Responsive</span><span class="chip">Catálogo</span><span class="chip">Supabase</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/javidei/Sam">GitHub</a>
+            </div>
+          </article>
+
           <article class="proj proj--colorines"
             style="background-image: url('assets/projects/colorines.svg');">
             <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir la web de Colorines"></a>
@@ -517,7 +534,7 @@
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js?v=projects-isolated-1', {
+      navigator.serviceWorker.register('./service-worker.js?v=sam-1', {
           scope: './',
           updateViaCache: 'none'
         }).then(registration => registration.update()).catch(() => {});
