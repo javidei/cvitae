@@ -1,0 +1,76 @@
+name: Publicar Thirty en cvitae
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-portfolio:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Añadir tarjeta y recurso de Thirty
+        shell: python
+        run: |
+          from pathlib import Path
+
+          index = Path('index.html')
+          text = index.read_text(encoding='utf-8')
+          marker = '''          <article class="proj proj--kebab"'''
+          card = '''          <article class="proj proj--thirty"
+            style="background-image: url('assets/projects/thirty.svg'); background-size: cover; background-position: center;">
+            <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty"></a>
+            <span class="proj__eyebrow">Red social privada · Nostalgia 2000</span>
+            <h3>Thirty</h3>
+            <p>
+              Una pequeña red social nostálgica para los amigos de siempre.
+              <span class="muted">Perfil, tablón, fotos, mensajes, gente, eventos y chat en una demo local sin conexiones externas.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">JavaScript</span><span class="chip">LocalStorage</span><span class="chip">Responsive</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/javidei/colorines">GitHub</a>
+            </div>
+          </article>
+
+'''
+          if '<h3>Thirty</h3>' not in text:
+              if marker not in text:
+                  raise SystemExit('No se encontró el punto de inserción en index.html')
+              text = text.replace(marker, card + marker, 1)
+              index.write_text(text, encoding='utf-8')
+
+          svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+          <title id="title">Thirty</title><desc id="desc">Tarjeta del proyecto Thirty</desc>
+          <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1d405c"/><stop offset=".55" stop-color="#477da6"/><stop offset="1" stop-color="#8cb8cf"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-opacity=".24"/></filter></defs>
+          <rect width="1200" height="720" fill="url(#bg)"/><circle cx="1010" cy="120" r="240" fill="#fff" opacity=".08"/><circle cx="130" cy="650" r="300" fill="#fff" opacity=".05"/>
+          <g transform="translate(120 150)" filter="url(#shadow)"><path d="M30 0h250c17 0 30 13 30 30v142c0 17-13 30-30 30H145l-66 54 15-54H30c-17 0-30-13-30-30V30C0 13 13 0 30 0Z" fill="#fff"/><text x="155" y="147" text-anchor="middle" fill="#477da6" font-family="Arial,sans-serif" font-size="132" font-weight="800">30</text></g>
+          <text x="470" y="325" fill="#fff" font-family="Arial,sans-serif" font-size="142" font-weight="700" letter-spacing="-5">thirty</text><text x="476" y="385" fill="#dcecf5" font-family="Arial,sans-serif" font-size="28" letter-spacing="6">LOS DE SIEMPRE · OTRA VEZ</text>
+          <g fill="#fff" opacity=".88" font-family="Arial,sans-serif" font-size="24"><rect x="475" y="455" width="470" height="74" rx="7" fill="#fff" opacity=".12"/><text x="510" y="500">Tablón · Fotos · Mensajes · Eventos · Chat</text></g>
+          </svg>'''
+          target = Path('assets/projects/thirty.svg')
+          target.parent.mkdir(parents=True, exist_ok=True)
+          target.write_text(svg, encoding='utf-8')
+
+          sw = Path('service-worker.js')
+          sw_text = sw.read_text(encoding='utf-8')
+          sw_text = sw_text.replace('v7-book-affinity', 'v8-thirty')
+          if 'assets/projects/thirty.svg' not in sw_text:
+              sw_text = sw_text.replace('  "./assets/projects/book-affinity.svg",', '  "./assets/projects/book-affinity.svg",\n  "./assets/projects/thirty.svg",')
+          sw.write_text(sw_text, encoding='utf-8')
+
+          Path('.github/workflows/add-thirty.yml').unlink(missing_ok=True)
+
+      - name: Publicar cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html service-worker.js assets/projects/thirty.svg .github/workflows/add-thirty.yml
+          git commit -m "Añade Thirty al portfolio 06-08-2026"
+          git push
