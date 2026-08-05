@@ -2,26 +2,26 @@ name: Publicar Thirty en cvitae
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   update-portfolio:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Añadir tarjeta y recurso de Thirty
-        shell: python
         run: |
+          python - <<'PY'
           from pathlib import Path
 
           index = Path('index.html')
           text = index.read_text(encoding='utf-8')
-          marker = '''          <article class="proj proj--kebab"'''
+          marker = '          <article class="proj proj--kebab"'
           card = '''          <article class="proj proj--thirty"
             style="background-image: url('assets/projects/thirty.svg'); background-size: cover; background-position: center;">
             <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty"></a>
@@ -66,11 +66,12 @@ jobs:
           sw.write_text(sw_text, encoding='utf-8')
 
           Path('.github/workflows/add-thirty.yml').unlink(missing_ok=True)
+          PY
 
       - name: Publicar cambios
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html service-worker.js assets/projects/thirty.svg .github/workflows/add-thirty.yml
+          git add -A
           git commit -m "Añade Thirty al portfolio 06-08-2026"
           git push
