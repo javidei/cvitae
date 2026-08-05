@@ -1,13 +1,13 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v6-sam-github-pages`;
+const CACHE_NAME = `${CACHE_PREFIX}v7-book-affinity`;
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles.css?v=sam-1",
+  "./styles.css?v=book-affinity-1",
   "./manifest.webmanifest",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
-  "./assets/projects/colorines.svg",
+  "./assets/projects/book-affinity.svg",
   "./assets/projects/sam.svg",
   "./assets/projects/entre-amigos.svg",
   "./assets/projects/mis-pcs.jpg"
