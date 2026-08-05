@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </noscript>
-  <link rel="stylesheet" href="styles.css?v=sam-1" />
+  <link rel="stylesheet" href="styles.css?v=book-affinity-1" />
   <style>
     /* Empalme visual entre la pantalla nativa de Android y la bienvenida web. */
     html.app-standalone,
@@ -373,19 +373,20 @@
             </div>
           </article>
 
-          <article class="proj proj--colorines"
-            style="background-image: url('assets/projects/colorines.svg');">
-            <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir la web de Colorines"></a>
-            <h3>Colorines</h3>
+          <article class="proj proj--book-affinity"
+            style="background-image: url('assets/projects/book-affinity.svg'); background-size: cover; background-position: center;">
+            <a class="proj__card-link" href="https://javidei.github.io/book-affinity/" aria-label="Abrir Book Affinity"></a>
+            <span class="proj__eyebrow">Biblioteca personal · Seguimiento de lectura</span>
+            <h3>Book Affinity</h3>
             <p>
-              Catálogo web para una tienda local de Palma del Río.
-              <span class="muted">Buscador, categorías, stock y futura atención por WhatsApp.</span>
+              Aplicación para organizar libros por estado y controlar el avance de cada lectura.
+              <span class="muted">Buscador conectado con Google Books, fichas detalladas, progreso por páginas y biblioteca privada mediante Supabase.</span>
             </p>
             <div class="chips">
-              <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
+              <span class="chip">JavaScript</span><span class="chip">Supabase</span><span class="chip">Google Books</span>
             </div>
             <div class="links">
-              <a href="https://github.com/javidei/colorines">GitHub</a>
+              <a href="https://github.com/javidei/book-affinity">GitHub</a>
             </div>
           </article>
 
@@ -535,7 +536,7 @@
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js?v=sam-1', {
+      navigator.serviceWorker.register('./service-worker.js?v=book-affinity-1', {
           scope: './',
           updateViaCache: 'none'
         }).then(registration => registration.update()).catch(() => {});
