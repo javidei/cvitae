@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Panel personal para organizar proyectos, versiones, enlaces y tareas." />
+  <meta name="application-version" content="0.1.0" />
+  <title>Project Hub · Panel de proyectos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=0.1.0" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img"><path d="M5 4.5h6.2v6.2H5zM12.8 4.5H19v6.2h-6.2zM5 12.3h6.2v7.2H5zM12.8 12.3H19v7.2h-6.2z"/></svg>
+        </span>
+        <div><strong>Project Hub</strong><small>Panel personal</small></div>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Secciones">
+        <button class="nav-item is-active" type="button" data-view="overview"><span aria-hidden="true">⌂</span><span>Resumen</span></button>
+        <button class="nav-item" type="button" data-view="projects"><span aria-hidden="true">▦</span><span>Proyectos</span></button>
+        <button class="nav-item" type="button" data-view="tasks"><span aria-hidden="true">✓</span><span>Tareas</span></button>
+        <button class="nav-item" type="button" data-view="settings"><span aria-hidden="true">⚙</span><span>Ajustes</span></button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <a href="../" class="back-link">← Volver a cvitae</a>
+        <span>v0.1.0 · 07/08/2026</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú">☰</button>
+        <div><p class="eyebrow">Centro de control</p><h1 id="viewTitle">Resumen</h1></div>
+        <div class="topbar__actions">
+          <button class="btn btn--secondary" id="exportBtn" type="button">Exportar</button>
+          <button class="btn" id="newProjectBtn" type="button">+ Nuevo proyecto</button>
+        </div>
+      </header>
+
+      <section class="view is-active" id="view-overview" data-view-panel="overview">
+        <div class="hero-panel">
+          <div>
+            <span class="hero-panel__tag">Tu ecosistema digital</span>
+            <h2>Todos tus proyectos, versiones y tareas en un solo lugar.</h2>
+            <p>Consulta el estado de cada web, abre sus enlaces, registra próximas mejoras y evita perder de vista lo importante.</p>
+          </div>
+          <button class="btn btn--light" id="heroNewProjectBtn" type="button">Registrar proyecto</button>
+        </div>
+
+        <div class="stats-grid" id="statsGrid" aria-label="Resumen de proyectos"></div>
+
+        <div class="dashboard-grid">
+          <section class="panel panel--wide">
+            <div class="panel__head"><div><p class="eyebrow">Actividad</p><h2>Proyectos prioritarios</h2></div><button class="text-btn" type="button" data-go-view="projects">Ver todos</button></div>
+            <div class="priority-list" id="priorityList"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel__head"><div><p class="eyebrow">Pendientes</p><h2>Próximas tareas</h2></div><button class="text-btn" type="button" data-go-view="tasks">Gestionar</button></div>
+            <div class="mini-task-list" id="overviewTasks"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-projects" data-view-panel="projects">
+        <div class="toolbar">
+          <label class="search-field"><span aria-hidden="true">⌕</span><input id="projectSearch" type="search" placeholder="Buscar por nombre, tecnología o categoría" autocomplete="off" /></label>
+          <select id="statusFilter" aria-label="Filtrar por estado"><option value="all">Todos los estados</option><option value="active">Activos</option><option value="paused">Pausados</option><option value="idea">Ideas</option><option value="complete">Terminados</option></select>
+          <select id="sortProjects" aria-label="Ordenar proyectos"><option value="priority">Prioridad</option><option value="name">Nombre</option><option value="updated">Actualización</option></select>
+        </div>
+        <div class="project-grid" id="projectGrid"></div>
+        <div class="empty-state" id="projectEmpty" hidden><div class="empty-state__icon">⌕</div><h2>No hay proyectos que coincidan</h2><p>Prueba con otro texto o cambia el filtro seleccionado.</p></div>
+      </section>
+
+      <section class="view" id="view-tasks" data-view-panel="tasks">
+        <div class="toolbar toolbar--tasks">
+          <label class="search-field"><span aria-hidden="true">⌕</span><input id="taskSearch" type="search" placeholder="Buscar tareas" autocomplete="off" /></label>
+          <select id="taskProjectFilter" aria-label="Filtrar tareas por proyecto"></select>
+          <select id="taskStatusFilter" aria-label="Filtrar tareas por estado"><option value="all">Todas</option><option value="pending">Pendientes</option><option value="done">Completadas</option></select>
+          <button class="btn" id="newTaskBtn" type="button">+ Nueva tarea</button>
+        </div>
+        <div class="task-board">
+          <section class="task-column"><div class="task-column__head"><h2>Pendientes</h2><span id="pendingCount">0</span></div><div class="task-list" id="pendingTasks"></div></section>
+          <section class="task-column"><div class="task-column__head"><h2>Completadas</h2><span id="doneCount">0</span></div><div class="task-list" id="doneTasks"></div></section>
+        </div>
+      </section>
+
+      <section class="view" id="view-settings" data-view-panel="settings">
+        <div class="settings-grid">
+          <section class="panel"><p class="eyebrow">Datos</p><h2>Copia de seguridad</h2><p>Exporta toda la información a JSON o recupera una copia anterior.</p><div class="button-stack"><button class="btn" id="settingsExportBtn" type="button">Exportar datos</button><label class="btn btn--secondary file-btn">Importar datos<input id="importInput" type="file" accept="application/json" hidden /></label></div></section>
+          <section class="panel"><p class="eyebrow">Mantenimiento</p><h2>Restablecer demo</h2><p>Recupera los proyectos iniciales. Esta acción sustituye los cambios guardados en este navegador.</p><button class="btn btn--danger" id="resetBtn" type="button">Restablecer información</button></section>
+          <section class="panel panel--wide"><p class="eyebrow">Próxima fase</p><h2>Preparado para Supabase</h2><p>La primera versión funciona con almacenamiento local. La estructura separa proyectos y tareas para poder conectarla posteriormente a autenticación, base de datos y almacenamiento de documentos.</p><div class="roadmap"><span>Autenticación privada</span><span>Sincronización multidispositivo</span><span>Capturas y documentos</span><span>Versiones automáticas</span></div></section>
+        </div>
+      </section>
+
+      <footer class="footer"><span>© <span id="year"></span> Javier Díaz</span><span>Project Hub · Datos guardados en este dispositivo</span><span class="version-dot">v0.1.0 · 07/08/2026</span></footer>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <dialog class="modal" id="projectModal">
+    <form method="dialog" id="projectForm" novalidate>
+      <div class="modal__head"><div><p class="eyebrow">Proyecto</p><h2 id="projectModalTitle">Nuevo proyecto</h2></div><button class="icon-btn" value="cancel" aria-label="Cerrar">×</button></div>
+      <input type="hidden" id="projectId" />
+      <div class="form-grid">
+        <label class="field field--wide"><span>Nombre</span><input id="projectName" required maxlength="60" placeholder="Ej. Mi nueva aplicación" /></label>
+        <label class="field"><span>Estado</span><select id="projectStatus"><option value="active">Activo</option><option value="paused">Pausado</option><option value="idea">Idea</option><option value="complete">Terminado</option></select></label>
+        <label class="field"><span>Prioridad</span><select id="projectPriority"><option value="high">Alta</option><option value="medium">Media</option><option value="low">Baja</option></select></label>
+        <label class="field"><span>Versión</span><input id="projectVersion" maxlength="20" placeholder="0.1.0" /></label>
+        <label class="field"><span>Categoría</span><input id="projectCategory" maxlength="40" placeholder="Catálogo, herramienta…" /></label>
+        <label class="field field--wide"><span>Descripción</span><textarea id="projectDescription" rows="3" maxlength="220" placeholder="Qué hace el proyecto y para quién sirve"></textarea></label>
+        <label class="field field--wide"><span>Tecnologías</span><input id="projectTech" maxlength="120" placeholder="HTML, CSS, JavaScript, Supabase" /><small>Separadas por comas.</small></label>
+        <label class="field field--wide"><span>URL pública</span><input id="projectLiveUrl" type="url" placeholder="https://…" /></label>
+        <label class="field field--wide"><span>Repositorio</span><input id="projectRepoUrl" type="url" placeholder="https://github.com/…" /></label>
+      </div>
+      <div class="modal__actions"><button class="btn btn--secondary" value="cancel">Cancelar</button><button class="btn" id="saveProjectBtn" value="default">Guardar proyecto</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="modal modal--small" id="taskModal">
+    <form method="dialog" id="taskForm" novalidate>
+      <div class="modal__head"><div><p class="eyebrow">Tarea</p><h2>Nueva tarea</h2></div><button class="icon-btn" value="cancel" aria-label="Cerrar">×</button></div>
+      <div class="form-grid">
+        <label class="field field--wide"><span>Proyecto</span><select id="taskProject" required></select></label>
+        <label class="field field--wide"><span>Tarea</span><input id="taskTitle" required maxlength="120" placeholder="Ej. Preparar conexión con Supabase" /></label>
+        <label class="field"><span>Prioridad</span><select id="taskPriority"><option value="high">Alta</option><option value="medium">Media</option><option value="low">Baja</option></select></label>
+        <label class="field"><span>Fecha objetivo</span><input id="taskDueDate" type="date" /></label>
+      </div>
+      <div class="modal__actions"><button class="btn btn--secondary" value="cancel">Cancelar</button><button class="btn" id="saveTaskBtn" value="default">Guardar tarea</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="modal modal--details" id="detailsModal">
+    <div class="modal__head"><div><p class="eyebrow">Ficha de proyecto</p><h2 id="detailsTitle"></h2></div><button class="icon-btn" id="closeDetailsBtn" aria-label="Cerrar">×</button></div>
+    <div id="detailsContent"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js?v=0.1.0"></script>
+</body>
+</html>
