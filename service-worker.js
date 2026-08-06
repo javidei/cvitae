@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v9-thirty-card`;
+const CACHE_NAME = `${CACHE_PREFIX}v10-thirty-paused`;
 const APP_SHELL = [
   "./",
   "./index.html",

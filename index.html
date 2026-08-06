@@ -393,15 +393,15 @@
 
           <article class="proj proj--thirty"
             style="background-image: url('assets/projects/thirty.svg'); background-size: cover; background-position: center;">
-            <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty"></a>
-            <span class="proj__eyebrow">Red social privada · Nostalgia 2000</span>
+            <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty, proyecto pausado"></a>
+            <span class="proj__eyebrow">Proyecto pausado · Sigue en desarrollo</span>
             <h3>Thirty</h3>
             <p>
-              Una pequeña red social nostálgica para los amigos de siempre.
-              <span class="muted">Perfil, tablón, fotos, mensajes, gente, eventos y chat en una demo local sin conexiones externas.</span>
+              Proyecto pausado temporalmente por las limitaciones de capacidad de almacenamiento necesarias para fotos, música y vídeos.
+              <span class="muted">Se sigue trabajando en su arquitectura, las funciones sociales y una futura conexión con backend.</span>
             </p>
             <div class="chips">
-              <span class="chip">JavaScript</span><span class="chip">LocalStorage</span><span class="chip">Responsive</span>
+              <span class="chip">Pausado</span><span class="chip">En desarrollo</span><span class="chip">Supabase previsto</span>
             </div>
             <div class="links">
               <a href="https://github.com/javidei/colorines">GitHub</a>
@@ -553,7 +553,7 @@
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js?v=thirty-card-20260806-1', {
+      navigator.serviceWorker.register('./service-worker.js?v=thirty-paused-20260806-1', {
           scope: './',
           updateViaCache: 'none'
         }).then(registration => registration.update()).catch(() => {});
