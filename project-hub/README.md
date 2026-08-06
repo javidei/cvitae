@@ -1,21 +1,32 @@
 # Project Hub
 
-Panel personal para controlar proyectos, versiones, estados, enlaces y tareas.
+Panel privado para centralizar proyectos de Javier Díaz.
 
-## Versión actual
+## Versión
 
-**0.1.0 — 07/08/2026**
+**0.2.0 — 07/08/2026**
 
-## Funciones
+## Fuentes de datos
 
-- Resumen general de actividad.
-- Alta, edición y eliminación de proyectos.
-- Estados, prioridades, versiones, tecnologías y enlaces.
-- Gestión de tareas por proyecto.
-- Búsqueda, filtros y ordenación.
-- Exportación e importación JSON.
-- Diseño responsive para escritorio y móvil.
+- **GitHub:** consulta los repositorios públicos del usuario configurado mediante GitHub REST API.
+- **Supabase:** guarda los repositorios sincronizados, los datos personalizados, los proyectos externos y las tareas.
+- **Proyectos externos:** pueden crearse manualmente aunque no tengan repositorio.
 
-## Persistencia
+## Configuración
 
-La primera versión utiliza `localStorage`. La estructura está preparada para migrar proyectos y tareas a Supabase en una fase posterior.
+1. Ejecutar [`supabase.sql`](supabase.sql) en **Supabase > SQL Editor**.
+2. En Supabase, habilitar el proveedor **Email** dentro de Authentication.
+3. Abrir Project Hub y pulsar **Configuración**.
+4. Introducir el usuario de GitHub, la Project URL de Supabase y la clave pública `anon`.
+5. Crear una cuenta o iniciar sesión.
+6. Pulsar **Sincronizar GitHub**.
+
+La URL y la clave pública se guardan en `localStorage` del navegador. Nunca debe introducirse la clave `service_role`.
+
+## Seguridad
+
+Las tablas tienen RLS y cada usuario autenticado solo puede consultar o modificar sus propios registros.
+
+## Limitación de GitHub
+
+La sincronización desde el navegador obtiene repositorios públicos. Los repositorios privados requerirán en otra fase OAuth o una función segura que no exponga un token personal.
