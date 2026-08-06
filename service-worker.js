@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v12-thirty-status-visible`;
+const CACHE_NAME = `${CACHE_PREFIX}v13-learn-card`;
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const APP_SHELL = [
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/projects/book-affinity.svg",
+  "./assets/projects/learn.svg",
   "./assets/projects/thirty.svg",
   "./assets/projects/sam.svg",
   "./assets/projects/entre-amigos.svg",
@@ -63,12 +64,42 @@ function ensureThirtyStatus(html) {
   return html.slice(0, start) + card + html.slice(cardEnd);
 }
 
+function ensureLearnCard(html) {
+  if (html.includes('proj--learn')) return html;
+
+  const marker = '<article class="proj proj--thirty"';
+  const insertAt = html.indexOf(marker);
+  if (insertAt < 0) return html;
+
+  const card = `<article class="proj proj--learn"
+            style="background-image: url('assets/projects/learn.svg'); background-size: cover; background-position: center;">
+            <a class="proj__card-link" href="https://javidei.github.io/learn/" aria-label="Abrir Learn English"></a>
+            <span class="proj__eyebrow">Inglés · Aprendizaje gamificado</span>
+            <h3>Learn English</h3>
+            <p>
+              Aplicación visual para aprender inglés desde cero mediante una ruta progresiva de 90 días.
+              <span class="muted">Lecciones, vocabulario, gramática, pronunciación, conversación, inmersión, XP y logros con progreso guardado en el dispositivo.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">Responsive</span><span class="chip">Gamificación</span><span class="chip">LocalStorage</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/javidei/learn">GitHub</a>
+            </div>
+          </article>
+
+          `;
+
+  return html.slice(0, insertAt) + card + html.slice(insertAt);
+}
+
 async function fetchFresh(request) {
   return fetch(new Request(request, { cache: "reload" }));
 }
 
 async function preparePortfolioResponse(response) {
-  const html = ensureThirtyStatus(await response.text());
+  let html = ensureThirtyStatus(await response.text());
+  html = ensureLearnCard(html);
   const headers = new Headers(response.headers);
   headers.set("content-type", "text/html; charset=utf-8");
   headers.set("cache-control", "no-cache");
