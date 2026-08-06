@@ -1,0 +1,98 @@
+name: Corregir estado visible de Thirty
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-thirty-status.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-thirty-status:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Actualizar tarjeta y control de caché
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          html = re.sub(
+              r'styles\.css\?v=[^"\']+',
+              'styles.css?v=thirty-paused-visible-20260806-2',
+              html,
+              count=1,
+          )
+
+          card_pattern = re.compile(
+              r'(<article class="proj proj--thirty".*?</article>)',
+              re.S,
+          )
+          match = card_pattern.search(html)
+          if not match:
+              raise SystemExit('No se encontró la tarjeta de Thirty')
+
+          new_card = '''<article class="proj proj--thirty"
+            style="background-image: url('assets/projects/thirty.svg'); background-size: cover; background-position: center;">
+            <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty, proyecto pausado"></a>
+            <span class="proj__eyebrow">Pausado temporalmente · Se sigue trabajando</span>
+            <h3>Thirty</h3>
+            <div role="status" style="margin: 4px 0 14px; padding: 10px 12px; border: 1px solid rgba(255, 197, 92, .8); border-radius: 10px; background: rgba(120, 70, 0, .78); color: #fff4d2; font-size: 13px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase;">
+              Estado actual: proyecto pausado por capacidad de almacenamiento
+            </div>
+            <p>
+              Thirty está pausado temporalmente por los límites de almacenamiento necesarios para una red social con fotos, música y vídeos.
+              <span class="muted">El desarrollo continúa mientras se estudia una solución de almacenamiento viable para poder abrirla a los amigos.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">Pausado</span><span class="chip">Se sigue desarrollando</span><span class="chip">Almacenamiento pendiente</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/javidei/colorines">GitHub</a>
+            </div>
+          </article>'''
+
+          html = html[:match.start()] + new_card + html[match.end():]
+
+          html = re.sub(
+              r"service-worker\.js\?v=[^'\"]+",
+              'service-worker.js?v=cvitae-cache-reset-20260806-2',
+              html,
+              count=1,
+          )
+
+          marker = "    if ('serviceWorker' in navigator) {"
+          listener = '''    if ('serviceWorker' in navigator) {
+      let refreshingForUpdate = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshingForUpdate) return;
+        refreshingForUpdate = true;
+        window.location.reload();
+      });'''
+          if marker in html and 'refreshingForUpdate' not in html:
+              html = html.replace(marker, listener, 1)
+
+          path.write_text(html, encoding='utf-8')
+          Path('.github/workflows/fix-thirty-status.yml').unlink()
+          PY
+
+      - name: Subir corrección a main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/fix-thirty-status.yml
+          git commit -m "Hace visible el estado pausado de Thirty"
+          git push origin main
