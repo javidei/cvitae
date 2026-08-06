@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
 
+# Ejecutar una vez para materializar la tarjeta en index.html.
 jobs:
   add-learn-card:
     if: github.actor != 'github-actions[bot]'
