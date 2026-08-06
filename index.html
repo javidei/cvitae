@@ -7,7 +7,7 @@
   <meta name="description" content="Perfil profesional de Javier Díaz, Senior Software Engineer en NTT DATA Europe & Latam, con experiencia en backend Java, liderazgo técnico y coordinación de equipos." />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#0b1020" />
-  <meta name="application-version" content="0.2.1" />
+  <meta name="application-version" content="0.3.0" />
   <script>
     if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
       document.documentElement.classList.add('app-standalone');
@@ -26,322 +26,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </noscript>
-  <link rel="stylesheet" href="styles.css?v=0.2.1" />
+  <link rel="stylesheet" href="styles.css?v=0.3.0" />
   <style>
-    html.app-standalone,
-    html.app-standalone body { background-color: #0b1020; }
-    .app-standalone .app-splash { display: block; background: #0b1020; }
-    .app-standalone .app-splash__content { position: absolute; inset: 0; width: auto; min-height: 0; display: block; }
-    .app-standalone .app-splash__avatar {
-      position: absolute; top: 50%; left: 50%; width: clamp(136px, 38vw, 156px); height: clamp(136px, 38vw, 156px);
-      margin: 0; transform: translate(-50%, -50%); animation: none;
-    }
-    .app-standalone .app-splash__identity {
-      position: absolute; top: calc(50% + 96px); left: 50%; width: min(calc(100% - 40px), 390px);
-      opacity: 0; transform: translate(-50%, 7px); animation: none; transition: opacity .42s ease, transform .42s ease;
-    }
-    .app-standalone .app-splash--ready .app-splash__identity { opacity: 1; transform: translate(-50%, 0); }
-    .app-standalone .app-splash::before { top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity .7s ease; }
-    .app-standalone .app-splash::after { opacity: 0; transition: opacity .7s ease; }
-    .app-standalone .app-splash--ready::before,
-    .app-standalone .app-splash--ready::after { opacity: 1; }
-
-    /* Catálogo compacto de proyectos · v0.2.1 */
-    #proyectos .section__head p { max-width: 520px; }
-    #proyectos .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    #proyectos .proj { min-height: 184px !important; padding: 17px !important; border-radius: 16px; background-position: center; }
-    #proyectos .proj::before { background: linear-gradient(180deg, rgba(5, 8, 13, .16) 0%, rgba(5, 8, 13, .82) 62%, rgba(5, 8, 13, .97) 100%); }
-    #proyectos .proj > *:not(.proj__card-link) { max-width: 100% !important; }
-    #proyectos .proj__eyebrow {
-      max-width: 100%; margin-bottom: 5px; overflow: hidden; color: rgba(255, 255, 255, .72);
-      font-size: 9px; letter-spacing: .08em; text-overflow: ellipsis; white-space: nowrap;
-    }
-    #proyectos .proj h3 { margin: auto 0 5px; font-size: 17px; line-height: 1.2; }
-    #proyectos .proj p {
-      display: -webkit-box; margin: 0; overflow: hidden; color: rgba(255, 255, 255, .78);
-      font-size: 12.5px; line-height: 1.4; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
-    }
-    #proyectos .proj .links { margin-top: 9px; padding-top: 0; gap: 8px; font-size: 11px; }
-    #proyectos .proj .links a {
-      display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px;
-      border: 1px solid rgba(255, 255, 255, .2); border-radius: 999px;
-      background: rgba(0, 0, 0, .3); color: rgba(255, 255, 255, .9);
-    }
-    #proyectos .repo-link i { font-size: 13px; }
-    .footer__version { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; white-space: nowrap; }
-    .footer__version::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-
-    @media (max-width: 900px) {
-      #proyectos .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 560px) {
-      #proyectos .cards { grid-template-columns: minmax(0, 1fr); gap: 11px; }
-      #proyectos .proj { min-height: 150px !important; padding: 15px !important; }
-      #proyectos .proj h3 { font-size: 16px; }
-    }
-    @media (max-height: 650px) {
-      .app-standalone .app-splash__avatar { width: 132px; height: 132px; }
-      .app-standalone .app-splash__identity { top: calc(50% + 80px); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .app-standalone .app-splash__identity,
-      .app-standalone .app-splash::before,
-      .app-standalone .app-splash::after { transition: none; }
-    }
+    html.app-standalone,html.app-standalone body{background-color:#0b1020}.app-standalone .app-splash{display:block;background:#0b1020}.app-standalone .app-splash__content{position:absolute;inset:0;width:auto;min-height:0;display:block}.app-standalone .app-splash__avatar{position:absolute;top:50%;left:50%;width:clamp(136px,38vw,156px);height:clamp(136px,38vw,156px);margin:0;transform:translate(-50%,-50%);animation:none}.app-standalone .app-splash__identity{position:absolute;top:calc(50% + 96px);left:50%;width:min(calc(100% - 40px),390px);opacity:0;transform:translate(-50%,7px);animation:none;transition:opacity .42s ease,transform .42s ease}.app-standalone .app-splash--ready .app-splash__identity{opacity:1;transform:translate(-50%,0)}.app-standalone .app-splash::before{top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .7s ease}.app-standalone .app-splash::after{opacity:0;transition:opacity .7s ease}.app-standalone .app-splash--ready::before,.app-standalone .app-splash--ready::after{opacity:1}
+    #proyectos .section__head p{max-width:520px}#proyectos .cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}#proyectos .proj{min-height:184px!important;padding:17px!important;border-radius:16px;background-position:center}#proyectos .proj::before{background:linear-gradient(180deg,rgba(5,8,13,.16) 0%,rgba(5,8,13,.82) 62%,rgba(5,8,13,.97) 100%)}#proyectos .proj>*:not(.proj__card-link){max-width:100%!important}#proyectos .proj__eyebrow{max-width:100%;margin-bottom:5px;overflow:hidden;color:rgba(255,255,255,.72);font-size:9px;letter-spacing:.08em;text-overflow:ellipsis;white-space:nowrap}#proyectos .proj h3{margin:auto 0 5px;font-size:17px;line-height:1.2}#proyectos .proj p{display:-webkit-box;margin:0;overflow:hidden;color:rgba(255,255,255,.78);font-size:12.5px;line-height:1.4;-webkit-box-orient:vertical;-webkit-line-clamp:2}#proyectos .proj .links{margin-top:9px;padding-top:0;gap:8px;font-size:11px}#proyectos .proj .links a{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(0,0,0,.3);color:rgba(255,255,255,.9)}#proyectos .repo-link i{font-size:13px}.proj--project-hub{border-color:rgba(110,231,216,.55);background-position:center}.proj--project-hub::before{background:linear-gradient(180deg,rgba(4,10,18,.08),rgba(4,10,18,.78) 58%,rgba(4,10,18,.97))}.proj--project-hub a{color:#8cf4e7}.footer__version{display:inline-flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap}.footer__version::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    @media(max-width:900px){#proyectos .cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){#proyectos .cards{grid-template-columns:minmax(0,1fr);gap:11px}#proyectos .proj{min-height:150px!important;padding:15px!important}#proyectos .proj h3{font-size:16px}}@media(max-height:650px){.app-standalone .app-splash__avatar{width:132px;height:132px}.app-standalone .app-splash__identity{top:calc(50% + 80px)}}@media(prefers-reduced-motion:reduce){.app-standalone .app-splash__identity,.app-standalone .app-splash::before,.app-standalone .app-splash::after{transition:none}}
   </style>
 </head>
 <body class="is-splashing">
-  <div class="app-splash" id="app-splash" role="status" aria-label="Abriendo el portfolio de Javier Díaz">
-    <div class="app-splash__content">
-      <img class="app-splash__avatar" src="assets/icons/icon-512.png" alt="" width="160" height="160" />
-      <div class="app-splash__identity">
-        <span class="app-splash__eyebrow">Portfolio personal</span>
-        <p class="app-splash__name">Javier Díaz</p>
-        <p class="app-splash__role">Senior Software Engineer</p>
-      </div>
-    </div>
-  </div>
-  <noscript>
-    <style>.app-splash { display: none; } body.is-splashing { overflow: auto; }</style>
-  </noscript>
-
+  <div class="app-splash" id="app-splash" role="status" aria-label="Abriendo el portfolio de Javier Díaz"><div class="app-splash__content"><img class="app-splash__avatar" src="assets/icons/icon-512.png" alt="" width="160" height="160" /><div class="app-splash__identity"><span class="app-splash__eyebrow">Portfolio personal</span><p class="app-splash__name">Javier Díaz</p><p class="app-splash__role">Senior Software Engineer</p></div></div></div>
+  <noscript><style>.app-splash{display:none}body.is-splashing{overflow:auto}</style></noscript>
   <a class="skip" href="#contenido">Saltar al contenido</a>
-
-  <header class="header">
-    <div class="container header__inner">
-      <div class="brand">
-        <span class="brand__dot" aria-hidden="true"></span>
-        <span class="brand__name">Javier Díaz</span>
-      </div>
-      <nav class="nav" aria-label="Navegación principal">
-        <a href="#perfil">Perfil</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#skills">Skills</a>
-        <a href="#formacion">Formación</a>
-        <a class="nav__projects" href="#proyectos">Proyectos</a>
-        <a class="btn btn--ghost" href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </header>
-
+  <header class="header"><div class="container header__inner"><div class="brand"><span class="brand__dot" aria-hidden="true"></span><span class="brand__name">Javier Díaz</span></div><nav class="nav" aria-label="Navegación principal"><a href="#perfil">Perfil</a><a href="#experiencia">Experiencia</a><a href="#skills">Skills</a><a href="#formacion">Formación</a><a class="nav__projects" href="#proyectos">Proyectos</a><a class="btn btn--ghost" href="#contacto">Contacto</a></nav></div></header>
   <main id="contenido" class="main">
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__text">
-          <p class="kicker">Senior Software Engineer · NTT DATA Europe & Latam</p>
-          <h1>Backend Java, liderazgo técnico y software que avanza.</h1>
-          <p class="lead" id="perfil">Senior Software Engineer con trayectoria en desarrollo backend, revisión de código, seguimiento de proyectos y coordinación de equipos en remoto.</p>
-          <div class="hero__cta">
-            <a class="btn" href="#contacto">Hablemos</a>
-            <a class="btn btn--ghost" href="#experiencia">Ver experiencia</a>
-          </div>
-          <ul class="meta" aria-label="Datos rápidos">
-            <li><span class="meta__k">Ubicación</span><span class="meta__v">Palma del Río (Córdoba) · Sevilla / remoto</span></li>
-            <li><span class="meta__k">Especialidad</span><span class="meta__v">Backend Java y aplicaciones empresariales</span></li>
-            <li><span class="meta__k">Experiencia en NTT DATA</span><span class="meta__v">Oct. 2019–actualidad</span></li>
-          </ul>
-          <div class="card">
-            <h2 class="card__title">Resumen</h2>
-            <p class="card__text">Combino desarrollo backend, liderazgo y organización, acompañando técnicamente al equipo y manteniendo una comunicación clara con responsables y stakeholders.</p>
-            <div class="chips" aria-label="Etiquetas">
-              <span class="chip">Java</span><span class="chip">Backend</span><span class="chip">Liderazgo técnico</span><span class="chip">Code review</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero__card" aria-label="Foto y resumen">
-          <div class="avatar" role="img" aria-label="Foto de Javier Díaz">
-            <img src="assets/icons/icon-512.png" alt="Ilustración de Javier Díaz tomando café" loading="eager" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="experiencia">
-      <div class="container">
-        <div class="section__head"><h2>Experiencia</h2><p>Una trayectoria de crecimiento interno desde octubre de 2019.</p></div>
-        <div class="timeline">
-          <article class="item item--featured">
-            <div class="item__meta item__meta--primary">
-              <span class="item__where">NTT DATA Europe & Latam · Sevilla / remoto</span>
-              <span class="item__when item__duration">Oct. 2019 — Actualidad</span>
-            </div>
-            <h3>Senior Software Engineer</h3>
-            <p class="item__summary">Evolución profesional dentro de NTT DATA desde desarrollo de software hasta el puesto actual de Senior Software Engineer.</p>
-            <div class="role-history" aria-label="Evolución profesional dentro de NTT DATA">
-              <div class="role"><span class="role__status">Inicio</span><h4>Software Developer</h4></div>
-              <div class="role"><span class="role__status">Evolución</span><h4>Centers Senior Developer</h4></div>
-              <div class="role"><span class="role__status">Liderazgo</span><h4>Centers Leader Developer</h4></div>
-              <div class="role role--current"><span class="role__status">Puesto actual</span><h4>Senior Software Engineer</h4></div>
-            </div>
-            <ul class="item__bullets">
-              <li>Desarrollo backend con Java en aplicaciones empresariales.</li>
-              <li>Liderazgo, seguimiento técnico y coordinación de equipos en remoto.</li>
-              <li>Revisión de código, organización del trabajo y buenas prácticas.</li>
-              <li>Comunicación con responsables y stakeholders.</li>
-            </ul>
-          </article>
-          <h3 class="subsection-title">Experiencia previa</h3>
-          <article class="item">
-            <div class="item__meta"><span class="item__where">Proyectos personales / formación</span><span class="item__when">Anterior a 2019</span></div>
-            <h3 class="item__title">Desarrollador Web</h3>
-            <ul class="item__bullets">
-              <li><strong>AICOR Consultores Informáticos</strong> – Estudiante en prácticas (2019)</li>
-              <li><strong>SPAI Innova</strong> – Formación Dual (2018–2019)</li>
-              <li><strong>PuntoJS Studio Creativo</strong> – Estudiante en prácticas (2017)</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="skills">
-      <div class="container">
-        <div class="section__head"><h2>Skills</h2><p>Competencias técnicas y de coordinación adquiridas durante mi trayectoria profesional.</p></div>
-        <div class="grid">
-          <div class="panel"><h3>Backend</h3><ul class="list"><li>Java</li><li>Desarrollo backend</li><li>Aplicaciones empresariales</li><li>Calidad y revisión de código</li></ul></div>
-          <div class="panel"><h3>Liderazgo técnico</h3><ul class="list"><li>Coordinación de equipos en remoto</li><li>Seguimiento y acompañamiento técnico</li><li>Organización y priorización</li><li>Buenas prácticas de desarrollo</li></ul></div>
-          <div class="panel"><h3>Colaboración</h3><ul class="list"><li>Comunicación con responsables</li><li>Revisión de código en equipo</li><li>Documentación y seguimiento</li><li>Foco en calidad y entrega</li></ul></div>
-          <div class="panel"><h3>Desarrollo web</h3><ul class="list"><li>HTML5 y CSS3</li><li>JavaScript</li><li>Diseño responsive</li><li>Titulación DAM finalizada</li></ul></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="formacion">
-      <div class="container">
-        <div class="section__head"><h2>Formación</h2><p>Titulación finalizada en desarrollo de aplicaciones multiplataforma.</p></div>
-        <div class="timeline">
-          <article class="item">
-            <div class="item__meta"><span class="item__where">IES Antonio Gala</span><span class="item__when">Finalizado</span></div>
-            <h3 class="item__title">Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</h3>
-            <p class="card__text">Formación centrada en programación, desarrollo de aplicaciones, bases de datos y sistemas.</p>
-            <div class="chips" aria-label="Áreas de formación"><span class="chip">Programación</span><span class="chip">Aplicaciones multiplataforma</span><span class="chip">Bases de datos</span><span class="chip">Sistemas</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="proyectos">
-      <div class="container">
-        <div class="section__head"><h2>Proyectos</h2><p>Una vista rápida y directa de mis aplicaciones y webs publicadas.</p></div>
-        <div class="cards">
-          <article class="proj proj--sam" style="background-image: url('assets/projects/sam.svg');">
-            <a class="proj__card-link" href="https://javidei.github.io/Sam/" aria-label="Abrir la web de SAM"></a>
-            <span class="proj__eyebrow">Catálogo · Supabase</span><h3>SAM</h3><p>Servicios, catálogo y administración para impresión y personalizados.</p>
-            <div class="links">
-              <a class="repo-link" href="https://github.com/javidei/Sam" aria-label="Abrir el repositorio Sam"><i class="fa-brands fa-github" aria-hidden="true"></i><span>Sam</span></a>
-              <a href="https://javidei.github.io/Sam/admin/">Administrar</a>
-            </div>
-          </article>
-
-          <article class="proj proj--book-affinity" style="background-image: url('assets/projects/book-affinity.svg'); background-size: cover; background-position: center;">
-            <a class="proj__card-link" href="https://javidei.github.io/book-affinity/" aria-label="Abrir Book Affinity"></a>
-            <span class="proj__eyebrow">Libros · Seguimiento</span><h3>Book Affinity</h3><p>Biblioteca personal con estados, fichas y progreso de lectura.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/book-affinity" aria-label="Abrir el repositorio book-affinity"><i class="fa-brands fa-github" aria-hidden="true"></i><span>book-affinity</span></a></div>
-          </article>
-
-          <article class="proj proj--learn" style="background-image: url('assets/projects/learn.svg'); background-size: cover; background-position: center;">
-            <a class="proj__card-link" href="https://javidei.github.io/learn/" aria-label="Abrir Learn English"></a>
-            <span class="proj__eyebrow">Inglés · Gamificación</span><h3>Learn English</h3><p>Ruta progresiva de 90 días para aprender inglés desde cero.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/learn" aria-label="Abrir el repositorio learn"><i class="fa-brands fa-github" aria-hidden="true"></i><span>learn</span></a></div>
-          </article>
-
-          <article class="proj proj--recipes" style="background-image: url('assets/projects/recetas.svg'); background-size: cover; background-position: center;">
-            <a class="proj__card-link" href="https://javidei.github.io/recetas/" aria-label="Abrir Recetario de Javi"></a>
-            <span class="proj__eyebrow">Recetas · Favoritos</span><h3>Recetario de Javi</h3><p>Recetas propias con filtros, notas y fichas detalladas.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/recetas" aria-label="Abrir el repositorio recetas"><i class="fa-brands fa-github" aria-hidden="true"></i><span>recetas</span></a></div>
-          </article>
-
-          <article class="proj proj--thirty" style="background-image: url('assets/projects/thirty.svg'); background-size: cover; background-position: center;">
-            <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty, proyecto pausado"></a>
-            <span class="proj__eyebrow">Pausado · En desarrollo</span><h3>Thirty</h3><p>Red social nostálgica pausada mientras se resuelve el almacenamiento.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/colorines" aria-label="Abrir el repositorio colorines"><i class="fa-brands fa-github" aria-hidden="true"></i><span>colorines</span></a></div>
-          </article>
-
-          <article class="proj proj--kebab" style="background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn3aeyMDX-p7IxaRjQhaWdDEYPdAyvUTlzg0_I8J0-Ng9DrOSJ9ZCrBL8nK9i843VmRvtdPxEyfIe-basSF3DTnQuKK46pq8HDMRLh2GYRahpBS34BRwc-ChJyUsdgjwjUhDHYKJ7Ip2b-r=w1400-h1050-k-no');">
-            <a class="proj__card-link" href="https://javidei.github.io/al-salimi/" aria-label="Abrir Al Salimi Kebab"></a>
-            <span class="proj__eyebrow">Carta digital · Local</span><h3>Al Salimi Kebab</h3><p>Carta buscable, especialidades, contacto y localización.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/al-salimi" aria-label="Abrir el repositorio al-salimi"><i class="fa-brands fa-github" aria-hidden="true"></i><span>al-salimi</span></a></div>
-          </article>
-
-          <article class="proj" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591');">
-            <a class="proj__card-link" href="https://javidei.github.io/pizza-rica/" aria-label="Abrir Pizza Rica"></a>
-            <span class="proj__eyebrow">Pizzería · Pedidos</span><h3>Pizza Rica</h3><p>Carta interactiva, galería, pedidos y contacto directo.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/pizza-rica" aria-label="Abrir el repositorio pizza-rica"><i class="fa-brands fa-github" aria-hidden="true"></i><span>pizza-rica</span></a></div>
-          </article>
-
-          <article class="proj proj--pc" style="background-image: url('assets/projects/mis-pcs.jpg');">
-            <a class="proj__card-link" href="https://javidei.github.io/mis-pcs/" aria-label="Abrir el comparador de PC"></a>
-            <span class="proj__eyebrow">Hardware · Comparador</span><h3>PC de casa</h3><p>Componentes, evolución y comparativa de los equipos de Sue y Javi.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/mis-pcs" aria-label="Abrir el repositorio mis-pcs"><i class="fa-brands fa-github" aria-hidden="true"></i><span>mis-pcs</span></a></div>
-          </article>
-
-          <article class="proj proj--amigos" style="background-image: url('assets/projects/entre-amigos.svg'); background-size: cover; background-position: center 40%; background-repeat: no-repeat;">
-            <a class="proj__card-link" href="https://javidei.github.io/entre-amigos/" aria-label="Abrir Entre Amigos"></a>
-            <span class="proj__eyebrow">Privado · En desarrollo</span><h3>Entre Amigos</h3><p>Espacio privado para compartir notas, ideas y próximos planes.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/entre-amigos" aria-label="Abrir el repositorio entre-amigos"><i class="fa-brands fa-github" aria-hidden="true"></i><span>entre-amigos</span></a></div>
-          </article>
-
-          <article class="proj proj--stilton" style="background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66');">
-            <a class="proj__card-link" href="https://javidei.github.io/stilton/" aria-label="Abrir la librería Stilton"></a>
-            <span class="proj__eyebrow">Google Books · Búsqueda</span><h3>Librería Stilton</h3><p>Buscador de libros con información ampliada y contenidos en vídeo.</p>
-            <div class="links"><a class="repo-link" href="https://github.com/javidei/stilton" aria-label="Abrir el repositorio stilton"><i class="fa-brands fa-github" aria-hidden="true"></i><span>stilton</span></a></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tight" id="contacto">
-      <div class="container">
-        <div class="contact">
-          <div class="contact__box">
-            <h2>Contacto</h2>
-            <div class="contact__icons">
-              <a href="mailto:javyspot@gmail.com" aria-label="Email" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a>
-              <a href="https://www.linkedin.com/in/javier-d%C3%ADaz-a8b126189" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
-              <a href="https://github.com/javidei/cvitae" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer__inner">
-        <span>© <span id="year"></span> Javier Díaz</span>
-        <span class="muted">Hecho con HTML + CSS · GitHub Pages</span>
-        <span class="footer__version" title="Publicada el 7 de agosto de 2026">v0.2.1 · 07/08/2026</span>
-      </div>
-    </footer>
+    <section class="hero"><div class="container hero__grid"><div class="hero__text"><p class="kicker">Senior Software Engineer · NTT DATA Europe & Latam</p><h1>Backend Java, liderazgo técnico y software que avanza.</h1><p class="lead" id="perfil">Senior Software Engineer con trayectoria en desarrollo backend, revisión de código, seguimiento de proyectos y coordinación de equipos en remoto.</p><div class="hero__cta"><a class="btn" href="#contacto">Hablemos</a><a class="btn btn--ghost" href="#experiencia">Ver experiencia</a></div><ul class="meta" aria-label="Datos rápidos"><li><span class="meta__k">Ubicación</span><span class="meta__v">Palma del Río (Córdoba) · Sevilla / remoto</span></li><li><span class="meta__k">Especialidad</span><span class="meta__v">Backend Java y aplicaciones empresariales</span></li><li><span class="meta__k">Experiencia en NTT DATA</span><span class="meta__v">Oct. 2019–actualidad</span></li></ul><div class="card"><h2 class="card__title">Resumen</h2><p class="card__text">Combino desarrollo backend, liderazgo y organización, acompañando técnicamente al equipo y manteniendo una comunicación clara con responsables y stakeholders.</p><div class="chips" aria-label="Etiquetas"><span class="chip">Java</span><span class="chip">Backend</span><span class="chip">Liderazgo técnico</span><span class="chip">Code review</span></div></div></div><div class="hero__card" aria-label="Foto y resumen"><div class="avatar" role="img" aria-label="Foto de Javier Díaz"><img src="assets/icons/icon-512.png" alt="Ilustración de Javier Díaz tomando café" loading="eager" /></div></div></div></section>
+    <section class="section" id="experiencia"><div class="container"><div class="section__head"><h2>Experiencia</h2><p>Una trayectoria de crecimiento interno desde octubre de 2019.</p></div><div class="timeline"><article class="item item--featured"><div class="item__meta item__meta--primary"><span class="item__where">NTT DATA Europe & Latam · Sevilla / remoto</span><span class="item__when item__duration">Oct. 2019 — Actualidad</span></div><h3>Senior Software Engineer</h3><p class="item__summary">Evolución profesional dentro de NTT DATA desde desarrollo de software hasta el puesto actual de Senior Software Engineer.</p><div class="role-history" aria-label="Evolución profesional dentro de NTT DATA"><div class="role"><span class="role__status">Inicio</span><h4>Software Developer</h4></div><div class="role"><span class="role__status">Evolución</span><h4>Centers Senior Developer</h4></div><div class="role"><span class="role__status">Liderazgo</span><h4>Centers Leader Developer</h4></div><div class="role role--current"><span class="role__status">Puesto actual</span><h4>Senior Software Engineer</h4></div></div><ul class="item__bullets"><li>Desarrollo backend con Java en aplicaciones empresariales.</li><li>Liderazgo, seguimiento técnico y coordinación de equipos en remoto.</li><li>Revisión de código, organización del trabajo y buenas prácticas.</li><li>Comunicación con responsables y stakeholders.</li></ul></article><h3 class="subsection-title">Experiencia previa</h3><article class="item"><div class="item__meta"><span class="item__where">Proyectos personales / formación</span><span class="item__when">Anterior a 2019</span></div><h3 class="item__title">Desarrollador Web</h3><ul class="item__bullets"><li><strong>AICOR Consultores Informáticos</strong> – Estudiante en prácticas (2019)</li><li><strong>SPAI Innova</strong> – Formación Dual (2018–2019)</li><li><strong>PuntoJS Studio Creativo</strong> – Estudiante en prácticas (2017)</li></ul></article></div></div></section>
+    <section class="section" id="skills"><div class="container"><div class="section__head"><h2>Skills</h2><p>Competencias técnicas y de coordinación adquiridas durante mi trayectoria profesional.</p></div><div class="grid"><div class="panel"><h3>Backend</h3><ul class="list"><li>Java</li><li>Desarrollo backend</li><li>Aplicaciones empresariales</li><li>Calidad y revisión de código</li></ul></div><div class="panel"><h3>Liderazgo técnico</h3><ul class="list"><li>Coordinación de equipos en remoto</li><li>Seguimiento y acompañamiento técnico</li><li>Organización y priorización</li><li>Buenas prácticas de desarrollo</li></ul></div><div class="panel"><h3>Colaboración</h3><ul class="list"><li>Comunicación con responsables</li><li>Revisión de código en equipo</li><li>Documentación y seguimiento</li><li>Foco en calidad y entrega</li></ul></div><div class="panel"><h3>Desarrollo web</h3><ul class="list"><li>HTML5 y CSS3</li><li>JavaScript</li><li>Diseño responsive</li><li>Titulación DAM finalizada</li></ul></div></div></div></section>
+    <section class="section" id="formacion"><div class="container"><div class="section__head"><h2>Formación</h2><p>Titulación finalizada en desarrollo de aplicaciones multiplataforma.</p></div><div class="timeline"><article class="item"><div class="item__meta"><span class="item__where">IES Antonio Gala</span><span class="item__when">Finalizado</span></div><h3 class="item__title">Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</h3><p class="card__text">Formación centrada en programación, desarrollo de aplicaciones, bases de datos y sistemas.</p><div class="chips" aria-label="Áreas de formación"><span class="chip">Programación</span><span class="chip">Aplicaciones multiplataforma</span><span class="chip">Bases de datos</span><span class="chip">Sistemas</span></div></article></div></div></section>
+    <section class="section" id="proyectos"><div class="container"><div class="section__head"><h2>Proyectos</h2><p>Una vista rápida y directa de mis aplicaciones y webs publicadas.</p></div><div class="cards">
+      <article class="proj proj--project-hub" style="background-image:url('assets/projects/project-hub.svg');background-size:cover;background-position:center;"><a class="proj__card-link" href="project-hub/" aria-label="Abrir Project Hub"></a><span class="proj__eyebrow">Dashboard · Productividad</span><h3>Project Hub</h3><p>Panel central para controlar proyectos, versiones, enlaces y tareas.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/cvitae/tree/main/project-hub" aria-label="Abrir el código de project-hub"><i class="fa-brands fa-github" aria-hidden="true"></i><span>project-hub</span></a></div></article>
+      <article class="proj proj--sam" style="background-image:url('assets/projects/sam.svg');"><a class="proj__card-link" href="https://javidei.github.io/Sam/" aria-label="Abrir la web de SAM"></a><span class="proj__eyebrow">Catálogo · Supabase</span><h3>SAM</h3><p>Servicios, catálogo y administración para impresión y personalizados.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/Sam"><i class="fa-brands fa-github" aria-hidden="true"></i><span>Sam</span></a><a href="https://javidei.github.io/Sam/admin/">Administrar</a></div></article>
+      <article class="proj proj--book-affinity" style="background-image:url('assets/projects/book-affinity.svg');background-size:cover;background-position:center;"><a class="proj__card-link" href="https://javidei.github.io/book-affinity/" aria-label="Abrir Book Affinity"></a><span class="proj__eyebrow">Libros · Seguimiento</span><h3>Book Affinity</h3><p>Biblioteca personal con estados, fichas y progreso de lectura.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/book-affinity"><i class="fa-brands fa-github" aria-hidden="true"></i><span>book-affinity</span></a></div></article>
+      <article class="proj proj--learn" style="background-image:url('assets/projects/learn.svg');background-size:cover;background-position:center;"><a class="proj__card-link" href="https://javidei.github.io/learn/" aria-label="Abrir Learn English"></a><span class="proj__eyebrow">Inglés · Gamificación</span><h3>Learn English</h3><p>Ruta progresiva de 90 días para aprender inglés desde cero.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/learn"><i class="fa-brands fa-github" aria-hidden="true"></i><span>learn</span></a></div></article>
+      <article class="proj proj--recipes" style="background-image:url('assets/projects/recetas.svg');background-size:cover;background-position:center;"><a class="proj__card-link" href="https://javidei.github.io/recetas/" aria-label="Abrir Recetario de Javi"></a><span class="proj__eyebrow">Recetas · Favoritos</span><h3>Recetario de Javi</h3><p>Recetas propias con filtros, notas y fichas detalladas.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/recetas"><i class="fa-brands fa-github" aria-hidden="true"></i><span>recetas</span></a></div></article>
+      <article class="proj proj--thirty" style="background-image:url('assets/projects/thirty.svg');background-size:cover;background-position:center;"><a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty, proyecto pausado"></a><span class="proj__eyebrow">Pausado · En desarrollo</span><h3>Thirty</h3><p>Red social nostálgica pausada mientras se resuelve el almacenamiento.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/colorines"><i class="fa-brands fa-github" aria-hidden="true"></i><span>colorines</span></a></div></article>
+      <article class="proj proj--kebab" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn3aeyMDX-p7IxaRjQhaWdDEYPdAyvUTlzg0_I8J0-Ng9DrOSJ9ZCrBL8nK9i843VmRvtdPxEyfIe-basSF3DTnQuKK46pq8HDMRLh2GYRahpBS34BRwc-ChJyUsdgjwjUhDHYKJ7Ip2b-r=w1400-h1050-k-no');"><a class="proj__card-link" href="https://javidei.github.io/al-salimi/" aria-label="Abrir Al Salimi Kebab"></a><span class="proj__eyebrow">Carta digital · Local</span><h3>Al Salimi Kebab</h3><p>Carta buscable, especialidades, contacto y localización.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/al-salimi"><i class="fa-brands fa-github" aria-hidden="true"></i><span>al-salimi</span></a></div></article>
+      <article class="proj" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591');"><a class="proj__card-link" href="https://javidei.github.io/pizza-rica/" aria-label="Abrir Pizza Rica"></a><span class="proj__eyebrow">Pizzería · Pedidos</span><h3>Pizza Rica</h3><p>Carta interactiva, galería, pedidos y contacto directo.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/pizza-rica"><i class="fa-brands fa-github" aria-hidden="true"></i><span>pizza-rica</span></a></div></article>
+      <article class="proj proj--pc" style="background-image:url('assets/projects/mis-pcs.jpg');"><a class="proj__card-link" href="https://javidei.github.io/mis-pcs/" aria-label="Abrir el comparador de PC"></a><span class="proj__eyebrow">Hardware · Comparador</span><h3>PC de casa</h3><p>Componentes, evolución y comparativa de los equipos de Sue y Javi.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/mis-pcs"><i class="fa-brands fa-github" aria-hidden="true"></i><span>mis-pcs</span></a></div></article>
+      <article class="proj proj--amigos" style="background-image:url('assets/projects/entre-amigos.svg');background-size:cover;background-position:center 40%;background-repeat:no-repeat;"><a class="proj__card-link" href="https://javidei.github.io/entre-amigos/" aria-label="Abrir Entre Amigos"></a><span class="proj__eyebrow">Privado · En desarrollo</span><h3>Entre Amigos</h3><p>Espacio privado para compartir notas, ideas y próximos planes.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/entre-amigos"><i class="fa-brands fa-github" aria-hidden="true"></i><span>entre-amigos</span></a></div></article>
+      <article class="proj proj--stilton" style="background-image:url('https://images.unsplash.com/photo-1507842217343-583bb7270b66');"><a class="proj__card-link" href="https://javidei.github.io/stilton/" aria-label="Abrir la librería Stilton"></a><span class="proj__eyebrow">Google Books · Búsqueda</span><h3>Librería Stilton</h3><p>Buscador de libros con información ampliada y contenidos en vídeo.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/stilton"><i class="fa-brands fa-github" aria-hidden="true"></i><span>stilton</span></a></div></article>
+    </div></div></section>
+    <section class="section section--tight" id="contacto"><div class="container"><div class="contact"><div class="contact__box"><h2>Contacto</h2><div class="contact__icons"><a href="mailto:javyspot@gmail.com" aria-label="Email" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a><a href="https://www.linkedin.com/in/javier-d%C3%ADaz-a8b126189" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a><a href="https://github.com/javidei/cvitae" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a></div></div></div></div></section>
+    <footer class="footer"><div class="container footer__inner"><span>© <span id="year"></span> Javier Díaz</span><span class="muted">Hecho con HTML + CSS · GitHub Pages</span><span class="footer__version" title="Publicada el 7 de agosto de 2026">v0.3.0 · 07/08/2026</span></div></footer>
   </main>
-
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    (() => {
-      const splash = document.getElementById('app-splash');
-      const isStandalone = document.documentElement.classList.contains('app-standalone');
-      if (!splash) return;
-      if (!isStandalone) {
-        document.body.classList.remove('is-splashing');
-        splash.remove();
-        return;
-      }
-      const fadeDuration = 320;
-      const totalSplashDuration = 4000;
-      const elapsedSinceLaunch = Math.max(0, performance.now());
-      const remainingDuration = Math.max(900, totalSplashDuration - elapsedSinceLaunch);
-      window.requestAnimationFrame(() => splash.classList.add('app-splash--ready'));
-      window.setTimeout(() => {
-        splash.classList.add('app-splash--hidden');
-        document.body.classList.remove('is-splashing');
-        window.setTimeout(() => splash.remove(), fadeDuration);
-      }, remainingDuration);
-    })();
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js?v=0.2.1', { scope: './', updateViaCache: 'none' })
-          .then(registration => registration.update()).catch(() => {});
-      });
-    }
+    document.getElementById('year').textContent=new Date().getFullYear();(()=>{const splash=document.getElementById('app-splash');const standalone=document.documentElement.classList.contains('app-standalone');if(!splash)return;if(!standalone){document.body.classList.remove('is-splashing');splash.remove();return}const fade=320;const remaining=Math.max(900,4000-Math.max(0,performance.now()));requestAnimationFrame(()=>splash.classList.add('app-splash--ready'));setTimeout(()=>{splash.classList.add('app-splash--hidden');document.body.classList.remove('is-splashing');setTimeout(()=>splash.remove(),fade)},remaining)})();if('serviceWorker'in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=0.3.0',{scope:'./',updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}))}
   </script>
 </body>
 </html>
