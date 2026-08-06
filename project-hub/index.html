@@ -109,7 +109,7 @@
 
   <dialog class="modal" id="projectModal">
     <form method="dialog" id="projectForm" novalidate>
-      <div class="modal__head"><div><p class="eyebrow">Proyecto</p><h2 id="projectModalTitle">Nuevo proyecto</h2></div><button class="icon-btn" value="cancel" aria-label="Cerrar">×</button></div>
+      <div class="modal__head"><div><p class="eyebrow">Proyecto</p><h2 id="projectModalTitle">Nuevo proyecto</h2></div><button class="icon-btn" type="button" onclick="this.closest('dialog').close()" aria-label="Cerrar">×</button></div>
       <input type="hidden" id="projectId" />
       <div class="form-grid">
         <label class="field field--wide"><span>Nombre</span><input id="projectName" required maxlength="60" placeholder="Ej. Mi nueva aplicación" /></label>
@@ -122,20 +122,20 @@
         <label class="field field--wide"><span>URL pública</span><input id="projectLiveUrl" type="url" placeholder="https://…" /></label>
         <label class="field field--wide"><span>Repositorio</span><input id="projectRepoUrl" type="url" placeholder="https://github.com/…" /></label>
       </div>
-      <div class="modal__actions"><button class="btn btn--secondary" value="cancel">Cancelar</button><button class="btn" id="saveProjectBtn" value="default">Guardar proyecto</button></div>
+      <div class="modal__actions"><button class="btn btn--secondary" type="button" onclick="this.closest('dialog').close()">Cancelar</button><button class="btn" id="saveProjectBtn" value="default">Guardar proyecto</button></div>
     </form>
   </dialog>
 
   <dialog class="modal modal--small" id="taskModal">
     <form method="dialog" id="taskForm" novalidate>
-      <div class="modal__head"><div><p class="eyebrow">Tarea</p><h2>Nueva tarea</h2></div><button class="icon-btn" value="cancel" aria-label="Cerrar">×</button></div>
+      <div class="modal__head"><div><p class="eyebrow">Tarea</p><h2>Nueva tarea</h2></div><button class="icon-btn" type="button" onclick="this.closest('dialog').close()" aria-label="Cerrar">×</button></div>
       <div class="form-grid">
         <label class="field field--wide"><span>Proyecto</span><select id="taskProject" required></select></label>
         <label class="field field--wide"><span>Tarea</span><input id="taskTitle" required maxlength="120" placeholder="Ej. Preparar conexión con Supabase" /></label>
         <label class="field"><span>Prioridad</span><select id="taskPriority"><option value="high">Alta</option><option value="medium">Media</option><option value="low">Baja</option></select></label>
         <label class="field"><span>Fecha objetivo</span><input id="taskDueDate" type="date" /></label>
       </div>
-      <div class="modal__actions"><button class="btn btn--secondary" value="cancel">Cancelar</button><button class="btn" id="saveTaskBtn" value="default">Guardar tarea</button></div>
+      <div class="modal__actions"><button class="btn btn--secondary" type="button" onclick="this.closest('dialog').close()">Cancelar</button><button class="btn" id="saveTaskBtn" value="default">Guardar tarea</button></div>
     </form>
   </dialog>
 
