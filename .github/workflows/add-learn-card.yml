@@ -1,0 +1,97 @@
+name: Añadir tarjeta Learn English
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-learn-card:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Insertar tarjeta y renovar caché
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          index_path = Path('index.html')
+          html = index_path.read_text(encoding='utf-8')
+
+          if 'proj--learn' not in html:
+              marker = '<article class="proj proj--thirty"'
+              pos = html.find(marker)
+              if pos < 0:
+                  raise SystemExit('No se encontró la tarjeta Thirty como punto de inserción')
+
+              card = '''<article class="proj proj--learn"
+            style="background-image: url('assets/projects/learn.svg'); background-size: cover; background-position: center;">
+            <a class="proj__card-link" href="https://javidei.github.io/learn/" aria-label="Abrir Learn English"></a>
+            <span class="proj__eyebrow">Inglés · Aprendizaje gamificado</span>
+            <h3>Learn English</h3>
+            <p>
+              Aplicación visual para aprender inglés desde cero mediante una ruta progresiva de 90 días.
+              <span class="muted">Lecciones, vocabulario, gramática, pronunciación, conversación, inmersión, XP y logros con progreso guardado en el dispositivo.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">Responsive</span><span class="chip">Gamificación</span><span class="chip">LocalStorage</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/javidei/learn">GitHub</a>
+            </div>
+          </article>
+
+          '''
+              html = html[:pos] + card + html[pos:]
+
+          html = re.sub(
+              r'styles\.css\?v=[^"\']+',
+              'styles.css?v=learn-card-visible-20260806-1',
+              html,
+              count=1,
+          )
+          html = re.sub(
+              r"service-worker\.js\?v=[^'\"]+",
+              'service-worker.js?v=learn-card-visible-20260806-1',
+              html,
+              count=1,
+          )
+          index_path.write_text(html, encoding='utf-8')
+
+          sw_path = Path('service-worker.js')
+          sw = sw_path.read_text(encoding='utf-8')
+          sw = re.sub(
+              r'const CACHE_NAME = `\$\{CACHE_PREFIX\}[^`]+`;',
+              'const CACHE_NAME = `${CACHE_PREFIX}v14-learn-card-visible`;',
+              sw,
+              count=1,
+          )
+          if '"./assets/projects/learn.svg"' not in sw:
+              sw = sw.replace(
+                  '"./assets/projects/book-affinity.svg",',
+                  '"./assets/projects/book-affinity.svg",\n  "./assets/projects/learn.svg",',
+                  1,
+              )
+          sw_path.write_text(sw, encoding='utf-8')
+
+          Path('.github/workflows/add-learn-card.yml').unlink()
+          PY
+
+      - name: Subir cambios a main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html service-worker.js .github/workflows/add-learn-card.yml
+          git commit -m "Añade la tarjeta de Learn English al portfolio"
+          git push origin main
