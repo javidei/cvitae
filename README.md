@@ -4,9 +4,13 @@ Portfolio personal publicado con GitHub Pages y desarrollado con HTML, CSS y Jav
 
 ## Versión actual
 
-**0.2.1 — 07/08/2026**
+**0.3.0 — 07/08/2026**
 
 La versión visible de la web se muestra en el footer y también está disponible en [`version.json`](version.json). El historial completo se mantiene en [`CHANGELOG.md`](CHANGELOG.md).
+
+## Project Hub
+
+La carpeta [`project-hub`](project-hub/) contiene el panel central para gestionar proyectos, versiones, enlaces y tareas. Su primera versión utiliza almacenamiento local y está preparada para una futura migración a Supabase.
 
 ## Criterio de versionado
 
