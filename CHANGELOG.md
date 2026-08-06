@@ -4,10 +4,18 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.0 — 07/08/2026
+
+- Añade Project Hub, un panel central responsive para gestionar proyectos y tareas.
+- Incorpora una tarjeta representativa de Project Hub al catálogo de proyectos.
+- Incluye CRUD local, estados, prioridades, versiones, tecnologías, enlaces y tareas.
+- Añade exportación e importación JSON y preparación para una futura conexión con Supabase.
+- Mejora el service worker para almacenar y recuperar correctamente las rutas internas.
+- Actualiza la caché y el versionado general del portfolio.
+
 ## 0.2.1 — 07/08/2026
 
-- Sustituye el texto genérico «GitHub» de cada proyecto por el icono de GitHub y el nombre real del repositorio.
-- Mejora la identificación de los enlaces dentro de las tarjetas compactas.
+- Sustituye el texto genérico de GitHub por el icono y el nombre real de cada repositorio.
 - Corrige el enlace de Librería Stilton para que apunte a `javidei/stilton`.
 - Renueva la caché de la PWA para publicar los cambios inmediatamente.
 
