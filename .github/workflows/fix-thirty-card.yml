@@ -1,0 +1,199 @@
+name: Corregir tarjeta de Thirty
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-thirty-card.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-thirty-card:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Incorporar Thirty de forma permanente
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          index_path = Path('index.html')
+          index = index_path.read_text(encoding='utf-8')
+
+          marker = '          <article class="proj proj--kebab"'
+          card = '''          <article class="proj proj--thirty"
+            style="background-image: url('assets/projects/thirty.svg'); background-size: cover; background-position: center;">
+            <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty"></a>
+            <span class="proj__eyebrow">Red social privada · Nostalgia 2000</span>
+            <h3>Thirty</h3>
+            <p>
+              Una pequeña red social nostálgica para los amigos de siempre.
+              <span class="muted">Perfil, tablón, fotos, mensajes, gente, eventos y chat en una demo local sin conexiones externas.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">JavaScript</span><span class="chip">LocalStorage</span><span class="chip">Responsive</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/javidei/colorines">GitHub</a>
+            </div>
+          </article>
+
+'''
+
+          if '<h3>Thirty</h3>' not in index:
+              if marker not in index:
+                  raise SystemExit('No se encontró el punto de inserción para Thirty')
+              index = index.replace(marker, card + marker, 1)
+
+          index = index.replace('styles.css?v=book-affinity-1', 'styles.css?v=thirty-card-20260806-1')
+          index = index.replace("service-worker.js?v=book-affinity-1", "service-worker.js?v=thirty-card-20260806-1")
+          index_path.write_text(index, encoding='utf-8')
+
+          styles_path = Path('styles.css')
+          styles = styles_path.read_text(encoding='utf-8')
+          if '.proj--thirty {' not in styles:
+              styles += '''
+
+/* Thirty · red social nostálgica */
+.proj--thirty {
+  border-color: rgba(71, 125, 166, .72);
+  background-color: #315f80;
+  background-position: center;
+}
+
+.proj--thirty::before {
+  background: linear-gradient(105deg, rgba(15, 35, 52, .97) 0%, rgba(23, 62, 91, .88) 55%, rgba(32, 82, 116, .35) 100%);
+}
+
+.proj--thirty a {
+  color: #9dddf5;
+}
+
+.proj--thirty .proj__eyebrow {
+  color: #bdeaff;
+}
+
+.proj--thirty p,
+.proj--thirty .chips {
+  max-width: 82%;
+}
+
+@media (max-width: 480px) {
+  .proj--thirty::before {
+    background: linear-gradient(105deg, rgba(15, 35, 52, .98) 0%, rgba(23, 62, 91, .94) 66%, rgba(32, 82, 116, .54) 100%);
+  }
+
+  .proj--thirty p,
+  .proj--thirty .chips {
+    max-width: 94%;
+  }
+}
+'''
+              styles_path.write_text(styles, encoding='utf-8')
+
+          sw = '''const CACHE_PREFIX = "cvitae-shell-";
+const CACHE_NAME = `${CACHE_PREFIX}v9-thirty-card`;
+const APP_SHELL = [
+  "./",
+  "./index.html",
+  "./styles.css?v=thirty-card-20260806-1",
+  "./manifest.webmanifest",
+  "./assets/icons/icon-192.png",
+  "./assets/icons/icon-512.png",
+  "./assets/projects/book-affinity.svg",
+  "./assets/projects/thirty.svg",
+  "./assets/projects/sam.svg",
+  "./assets/projects/entre-amigos.svg",
+  "./assets/projects/mis-pcs.jpg"
+];
+
+const PORTFOLIO_URL = new URL("./", self.registration.scope);
+const PORTFOLIO_INDEX_URL = new URL("./index.html", self.registration.scope);
+const APP_SHELL_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
+
+function isPortfolioNavigation(url) {
+  return url.href === PORTFOLIO_URL.href || url.href === PORTFOLIO_INDEX_URL.href;
+}
+
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(APP_SHELL))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(
+        keys
+          .filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      ))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener("fetch", event => {
+  const request = event.request;
+  const url = new URL(request.url);
+
+  if (request.method !== "GET" || url.origin !== self.location.origin) return;
+
+  if (request.mode === "navigate") {
+    if (!isPortfolioNavigation(url)) return;
+
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(PORTFOLIO_INDEX_URL, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(PORTFOLIO_INDEX_URL))
+    );
+    return;
+  }
+
+  if (!APP_SHELL_URLS.has(url.href)) return;
+
+  event.respondWith(
+    caches.match(request).then(cached => cached || fetch(request).then(response => {
+      if (response.ok) {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+      }
+      return response;
+    }))
+  );
+});
+'''
+          Path('service-worker.js').write_text(sw, encoding='utf-8')
+          Path('.github/workflows/fix-thirty-card.yml').unlink(missing_ok=True)
+          PY
+
+      - name: Comprobar resultado
+        shell: bash
+        run: |
+          grep -q '<h3>Thirty</h3>' index.html
+          grep -q 'v9-thirty-card' service-worker.js
+          grep -q '.proj--thirty' styles.css
+
+      - name: Publicar en main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html styles.css service-worker.js .github/workflows/fix-thirty-card.yml
+          git commit -m "Restaura Thirty en la sección de proyectos"
+          git push origin main
