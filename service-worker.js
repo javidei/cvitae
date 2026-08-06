@@ -1,4 +1,4 @@
-const VERSION = "0.2.0";
+const VERSION = "0.2.1";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${VERSION}`;
 
