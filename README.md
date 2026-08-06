@@ -1,11 +1,23 @@
-# CV Web — Javier Díaz (HTML + CSS)
+# cvitae — Portfolio de Javier Díaz
 
-Web minimalista para currículum, lista para publicar en GitHub Pages. Pruebas de cambio desde VSC -> GitHUB
+Portfolio personal publicado con GitHub Pages y desarrollado con HTML, CSS y JavaScript.
 
-Cada vez que cambien en VSC y quira subir a GITHUB
+## Versión actual
 
-git add .
+**0.2.0 — 07/08/2026**
 
-git commit -m "Descripción del cambio"
+La versión visible de la web se muestra en el footer y también está disponible en [`version.json`](version.json). El historial completo se mantiene en [`CHANGELOG.md`](CHANGELOG.md).
 
-git push
+## Criterio de versionado
+
+El proyecto utiliza versionado semántico `MAJOR.MINOR.PATCH`:
+
+- `MAJOR`: cambios incompatibles o una nueva etapa estable del portfolio.
+- `MINOR`: nuevas secciones, proyectos o cambios visuales importantes.
+- `PATCH`: correcciones y ajustes compatibles.
+
+Mientras la web siga en evolución previa a su versión definitiva, se mantendrá la serie `0.x.x`.
+
+## Publicación
+
+La rama publicada es `main` y GitHub Pages sirve el contenido desde la raíz del repositorio.
