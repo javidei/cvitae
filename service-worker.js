@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v14-learn-card-visible`;
+const CACHE_NAME = `${CACHE_PREFIX}v15-recetas-card-visible`;
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -9,6 +9,7 @@ const APP_SHELL = [
   "./assets/icons/icon-512.png",
   "./assets/projects/book-affinity.svg",
   "./assets/projects/learn.svg",
+  "./assets/projects/recetas.svg",
   "./assets/projects/thirty.svg",
   "./assets/projects/sam.svg",
   "./assets/projects/entre-amigos.svg",
@@ -95,6 +96,35 @@ function ensureLearnCard(html) {
   return html.slice(0, insertAt) + card + html.slice(insertAt);
 }
 
+function ensureRecipesCard(html) {
+  if (html.includes('proj--recipes')) return html;
+
+  const marker = '<article class="proj proj--thirty"';
+  const insertAt = html.indexOf(marker);
+  if (insertAt < 0) return html;
+
+  const card = `<article class="proj proj--recipes"
+            style="background-image: url('assets/projects/recetas.svg'); background-size: cover; background-position: center;">
+            <a class="proj__card-link" href="https://javidei.github.io/recetas/" aria-label="Abrir Recetario de Javi"></a>
+            <span class="proj__eyebrow">Recetas propias · Buscador por ingredientes</span>
+            <h3>Recetario de Javi</h3>
+            <p>
+              Aplicación personal para guardar, puntuar y consultar recetas desde cualquier dispositivo.
+              <span class="muted">Incluye búsqueda por ingredientes, filtros, fichas detalladas, favoritos y estructura preparada para Supabase, fotografías y OCR.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">Responsive</span><span class="chip">LocalStorage</span><span class="chip">Supabase preparado</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/javidei/recetas">GitHub</a>
+            </div>
+          </article>
+
+          `;
+
+  return html.slice(0, insertAt) + card + html.slice(insertAt);
+}
+
 async function fetchFresh(request) {
   return fetch(new Request(request, { cache: "reload" }));
 }
@@ -102,6 +132,7 @@ async function fetchFresh(request) {
 async function preparePortfolioResponse(response) {
   let html = ensureThirtyStatus(await response.text());
   html = ensureLearnCard(html);
+  html = ensureRecipesCard(html);
   const headers = new Headers(response.headers);
   headers.set("content-type", "text/html; charset=utf-8");
   headers.set("cache-control", "no-cache");
