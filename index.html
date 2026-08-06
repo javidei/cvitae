@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </noscript>
-  <link rel="stylesheet" href="styles.css?v=book-affinity-1" />
+  <link rel="stylesheet" href="styles.css?v=thirty-card-20260806-1" />
   <style>
     /* Empalme visual entre la pantalla nativa de Android y la bienvenida web. */
     html.app-standalone,
@@ -391,6 +391,23 @@
           </article>
 
 
+          <article class="proj proj--thirty"
+            style="background-image: url('assets/projects/thirty.svg'); background-size: cover; background-position: center;">
+            <a class="proj__card-link" href="https://javidei.github.io/colorines/" aria-label="Abrir Thirty"></a>
+            <span class="proj__eyebrow">Red social privada · Nostalgia 2000</span>
+            <h3>Thirty</h3>
+            <p>
+              Una pequeña red social nostálgica para los amigos de siempre.
+              <span class="muted">Perfil, tablón, fotos, mensajes, gente, eventos y chat en una demo local sin conexiones externas.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">JavaScript</span><span class="chip">LocalStorage</span><span class="chip">Responsive</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/javidei/colorines">GitHub</a>
+            </div>
+          </article>
+
           <article class="proj proj--kebab"
             style="background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn3aeyMDX-p7IxaRjQhaWdDEYPdAyvUTlzg0_I8J0-Ng9DrOSJ9ZCrBL8nK9i843VmRvtdPxEyfIe-basSF3DTnQuKK46pq8HDMRLh2GYRahpBS34BRwc-ChJyUsdgjwjUhDHYKJ7Ip2b-r=w1400-h1050-k-no');">
             <a class="proj__card-link" href="https://javidei.github.io/al-salimi/" aria-label="Abrir la web de Al Salimi Kebab"></a>
@@ -536,7 +553,7 @@
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js?v=book-affinity-1', {
+      navigator.serviceWorker.register('./service-worker.js?v=thirty-card-20260806-1', {
           scope: './',
           updateViaCache: 'none'
         }).then(registration => registration.update()).catch(() => {});

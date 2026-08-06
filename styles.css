@@ -1324,3 +1324,38 @@ img {
     transform: none;
   }
 }
+
+/* Thirty · red social nostálgica */
+.proj--thirty {
+  border-color: rgba(71, 125, 166, .72);
+  background-color: #315f80;
+  background-position: center;
+}
+
+.proj--thirty::before {
+  background: linear-gradient(105deg, rgba(15, 35, 52, .97) 0%, rgba(23, 62, 91, .88) 55%, rgba(32, 82, 116, .35) 100%);
+}
+
+.proj--thirty a {
+  color: #9dddf5;
+}
+
+.proj--thirty .proj__eyebrow {
+  color: #bdeaff;
+}
+
+.proj--thirty p,
+.proj--thirty .chips {
+  max-width: 82%;
+}
+
+@media (max-width: 480px) {
+  .proj--thirty::before {
+    background: linear-gradient(105deg, rgba(15, 35, 52, .98) 0%, rgba(23, 62, 91, .94) 66%, rgba(32, 82, 116, .54) 100%);
+  }
+
+  .proj--thirty p,
+  .proj--thirty .chips {
+    max-width: 94%;
+  }
+}
