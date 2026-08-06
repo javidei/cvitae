@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v13-learn-card`;
+const CACHE_NAME = `${CACHE_PREFIX}v14-learn-card-visible`;
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -20,7 +20,9 @@ const PORTFOLIO_INDEX_URL = new URL("./index.html", self.registration.scope);
 const APP_SHELL_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 
 function isPortfolioNavigation(url) {
-  return url.href === PORTFOLIO_URL.href || url.href === PORTFOLIO_INDEX_URL.href;
+  const portfolioPath = PORTFOLIO_URL.pathname.replace(/\/$/, "");
+  const requestPath = url.pathname.replace(/\/$/, "");
+  return requestPath === portfolioPath || url.pathname === PORTFOLIO_INDEX_URL.pathname;
 }
 
 function ensureThirtyStatus(html) {
