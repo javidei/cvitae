@@ -54,7 +54,14 @@ self.addEventListener("activate", event => {
     await self.clients.claim();
 
     const clients = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-    clients.forEach(client => client.postMessage({ type: "CVITAE_UPDATED", version: VERSION }));
+    await Promise.all(clients.map(async client => {
+      client.postMessage({ type: "CVITAE_UPDATED", version: VERSION });
+      try {
+        await client.navigate(client.url);
+      } catch {
+        // La siguiente navegación normal servirá la versión nueva.
+      }
+    }));
   })());
 });
 
