@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v15-recetas-card-visible`;
+const CACHE_NAME = `${CACHE_PREFIX}v16-project-cards-compact`;
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -20,6 +20,109 @@ const PORTFOLIO_URL = new URL("./", self.registration.scope);
 const PORTFOLIO_INDEX_URL = new URL("./index.html", self.registration.scope);
 const APP_SHELL_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 
+const COMPACT_PROJECT_STYLES = `
+<style id="compact-project-cards">
+  #proyectos .section__head p {
+    max-width: 520px;
+  }
+
+  #proyectos .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  #proyectos .proj {
+    min-height: 190px !important;
+    padding: 18px !important;
+    border-radius: 16px;
+    background-position: center;
+  }
+
+  #proyectos .proj::before {
+    background: linear-gradient(180deg, rgba(5, 8, 13, .2) 0%, rgba(5, 8, 13, .88) 70%, rgba(5, 8, 13, .97) 100%);
+  }
+
+  #proyectos .proj > *:not(.proj__card-link) {
+    max-width: 100% !important;
+  }
+
+  #proyectos .proj__eyebrow {
+    max-width: 100%;
+    margin-bottom: 6px;
+    overflow: hidden;
+    color: rgba(255, 255, 255, .72);
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #proyectos .proj h3 {
+    margin: auto 0 5px;
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  #proyectos .proj p {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    color: rgba(255, 255, 255, .76);
+    font-size: 12.5px;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  #proyectos .proj p .muted,
+  #proyectos .proj .chips,
+  #proyectos .proj [role="status"] {
+    display: none !important;
+  }
+
+  #proyectos .proj .links {
+    margin-top: 10px;
+    padding-top: 0;
+    gap: 10px;
+    font-size: 11px;
+  }
+
+  #proyectos .proj .links a {
+    padding: 4px 8px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .28);
+    color: rgba(255, 255, 255, .86);
+  }
+
+  #proyectos .proj:hover,
+  #proyectos .proj:focus-within {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    #proyectos .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+  }
+
+  @media (max-width: 560px) {
+    #proyectos .cards {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 12px !important;
+    }
+
+    #proyectos .proj {
+      min-height: 164px !important;
+      padding: 16px !important;
+    }
+
+    #proyectos .proj h3 {
+      font-size: 16px;
+    }
+  }
+</style>`;
+
 function isPortfolioNavigation(url) {
   const portfolioPath = PORTFOLIO_URL.pathname.replace(/\/$/, "");
   const requestPath = url.pathname.replace(/\/$/, "");
@@ -36,32 +139,14 @@ function ensureThirtyStatus(html) {
 
   card = card.replace(
     /<span class="proj__eyebrow">[\s\S]*?<\/span>/,
-    '<span class="proj__eyebrow">Pausado temporalmente · Se sigue trabajando</span>'
+    '<span class="proj__eyebrow">Pausado · En desarrollo</span>'
   );
 
-  if (!card.includes('Estado actual: proyecto pausado por capacidad de almacenamiento')) {
-    card = card.replace(
-      '<h3>Thirty</h3>',
-      `<h3>Thirty</h3>
-            <div role="status" style="margin:4px 0 14px;padding:10px 12px;border:1px solid rgba(255,197,92,.8);border-radius:10px;background:rgba(120,70,0,.82);color:#fff4d2;font-size:13px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;">
-              Estado actual: proyecto pausado por capacidad de almacenamiento
-            </div>`
-    );
-  }
+  card = card.replace(/\s*<div role="status"[\s\S]*?<\/div>/, "");
 
   card = card.replace(
     /<p>[\s\S]*?<\/p>/,
-    `<p>
-              Thirty está pausado temporalmente por los límites de almacenamiento necesarios para una red social con fotos, música y vídeos.
-              <span class="muted">El desarrollo continúa mientras se estudia una solución de almacenamiento viable para poder abrirla a los amigos.</span>
-            </p>`
-  );
-
-  card = card.replace(
-    /<div class="chips">[\s\S]*?<\/div>/,
-    `<div class="chips">
-              <span class="chip">Pausado</span><span class="chip">Se sigue desarrollando</span><span class="chip">Almacenamiento pendiente</span>
-            </div>`
+    `<p>Red social nostálgica pausada mientras se resuelve el almacenamiento.</p>`
   );
 
   return html.slice(0, start) + card + html.slice(cardEnd);
@@ -77,15 +162,9 @@ function ensureLearnCard(html) {
   const card = `<article class="proj proj--learn"
             style="background-image: url('assets/projects/learn.svg'); background-size: cover; background-position: center;">
             <a class="proj__card-link" href="https://javidei.github.io/learn/" aria-label="Abrir Learn English"></a>
-            <span class="proj__eyebrow">Inglés · Aprendizaje gamificado</span>
+            <span class="proj__eyebrow">Inglés · Aprendizaje</span>
             <h3>Learn English</h3>
-            <p>
-              Aplicación visual para aprender inglés desde cero mediante una ruta progresiva de 90 días.
-              <span class="muted">Lecciones, vocabulario, gramática, pronunciación, conversación, inmersión, XP y logros con progreso guardado en el dispositivo.</span>
-            </p>
-            <div class="chips">
-              <span class="chip">Responsive</span><span class="chip">Gamificación</span><span class="chip">LocalStorage</span>
-            </div>
+            <p>Ruta gamificada de 90 días para aprender inglés desde cero.</p>
             <div class="links">
               <a href="https://github.com/javidei/learn">GitHub</a>
             </div>
@@ -106,15 +185,9 @@ function ensureRecipesCard(html) {
   const card = `<article class="proj proj--recipes"
             style="background-image: url('assets/projects/recetas.svg'); background-size: cover; background-position: center;">
             <a class="proj__card-link" href="https://javidei.github.io/recetas/" aria-label="Abrir Recetario de Javi"></a>
-            <span class="proj__eyebrow">Recetas propias · Buscador por ingredientes</span>
+            <span class="proj__eyebrow">Recetas · Buscador</span>
             <h3>Recetario de Javi</h3>
-            <p>
-              Aplicación personal para guardar, puntuar y consultar recetas desde cualquier dispositivo.
-              <span class="muted">Incluye búsqueda por ingredientes, filtros, fichas detalladas, favoritos y estructura preparada para Supabase, fotografías y OCR.</span>
-            </p>
-            <div class="chips">
-              <span class="chip">Responsive</span><span class="chip">LocalStorage</span><span class="chip">Supabase preparado</span>
-            </div>
+            <p>Recetario personal con filtros, favoritos y fichas detalladas.</p>
             <div class="links">
               <a href="https://github.com/javidei/recetas">GitHub</a>
             </div>
@@ -125,6 +198,11 @@ function ensureRecipesCard(html) {
   return html.slice(0, insertAt) + card + html.slice(insertAt);
 }
 
+function ensureCompactProjectCards(html) {
+  if (html.includes('id="compact-project-cards"')) return html;
+  return html.replace('</head>', `${COMPACT_PROJECT_STYLES}\n</head>`);
+}
+
 async function fetchFresh(request) {
   return fetch(new Request(request, { cache: "reload" }));
 }
@@ -133,6 +211,8 @@ async function preparePortfolioResponse(response) {
   let html = ensureThirtyStatus(await response.text());
   html = ensureLearnCard(html);
   html = ensureRecipesCard(html);
+  html = ensureCompactProjectCards(html);
+
   const headers = new Headers(response.headers);
   headers.set("content-type", "text/html; charset=utf-8");
   headers.set("cache-control", "no-cache");
