@@ -1,264 +1,38 @@
 'use strict';
-
-const STORAGE_KEY = 'projectHubDataV1';
-const VERSION = '0.1.0';
-
-const seedData = {
-  projects: [
-    { id: 'cvitae', name: 'cvitae', description: 'Portfolio central con perfil profesional y acceso a todos los proyectos.', status: 'active', priority: 'high', version: '0.3.0', category: 'Portfolio', tech: ['HTML','CSS','JavaScript'], liveUrl: 'https://javidei.github.io/cvitae/', repoUrl: 'https://github.com/javidei/cvitae', updatedAt: '2026-08-07' },
-    { id: 'sam', name: 'SAM', description: 'Catálogo de servicios, productos personalizados y panel de administración.', status: 'active', priority: 'high', version: '—', category: 'Negocio local', tech: ['HTML','CSS','Supabase'], liveUrl: 'https://javidei.github.io/Sam/', repoUrl: 'https://github.com/javidei/Sam', updatedAt: '2026-08-01' },
-    { id: 'book-affinity', name: 'Book Affinity', description: 'Biblioteca personal para registrar lecturas, estados y progreso.', status: 'active', priority: 'high', version: '—', category: 'Productividad', tech: ['JavaScript','Supabase'], liveUrl: 'https://javidei.github.io/book-affinity/', repoUrl: 'https://github.com/javidei/book-affinity', updatedAt: '2026-08-05' },
-    { id: 'learn', name: 'Learn English', description: 'Ruta gamificada de 90 días para aprender inglés desde cero.', status: 'active', priority: 'medium', version: '—', category: 'Educación', tech: ['HTML','CSS','JavaScript'], liveUrl: 'https://javidei.github.io/learn/', repoUrl: 'https://github.com/javidei/learn', updatedAt: '2026-08-06' },
-    { id: 'recetas', name: 'Recetario de Javi', description: 'Recetas propias con notas, filtros y fichas de preparación.', status: 'active', priority: 'medium', version: '—', category: 'Herramienta personal', tech: ['HTML','CSS','JavaScript'], liveUrl: 'https://javidei.github.io/recetas/', repoUrl: 'https://github.com/javidei/recetas', updatedAt: '2026-08-06' },
-    { id: 'thirty', name: 'Thirty', description: 'Proyecto social nostálgico pausado mientras se define el almacenamiento.', status: 'paused', priority: 'low', version: '—', category: 'Red social', tech: ['JavaScript','Supabase'], liveUrl: 'https://javidei.github.io/colorines/', repoUrl: 'https://github.com/javidei/colorines', updatedAt: '2026-08-01' },
-    { id: 'al-salimi', name: 'Al Salimi Kebab', description: 'Carta digital responsive con especialidades, contacto y ubicación.', status: 'complete', priority: 'low', version: '—', category: 'Restauración', tech: ['HTML','CSS','JavaScript'], liveUrl: 'https://javidei.github.io/al-salimi/', repoUrl: 'https://github.com/javidei/al-salimi', updatedAt: '2026-07-31' },
-    { id: 'pizza-rica', name: 'Pizza Rica', description: 'Carta interactiva, posible pedido, galería y contacto directo.', status: 'complete', priority: 'low', version: '—', category: 'Restauración', tech: ['HTML','CSS','JavaScript'], liveUrl: 'https://javidei.github.io/pizza-rica/', repoUrl: 'https://github.com/javidei/pizza-rica', updatedAt: '2026-07-31' },
-    { id: 'mis-pcs', name: 'PC de casa', description: 'Comparador visual de componentes y evolución de varios equipos.', status: 'active', priority: 'medium', version: '—', category: 'Hardware', tech: ['HTML','CSS'], liveUrl: 'https://javidei.github.io/mis-pcs/', repoUrl: 'https://github.com/javidei/mis-pcs', updatedAt: '2026-07-31' },
-    { id: 'entre-amigos', name: 'Entre Amigos', description: 'Espacio privado para ideas, notas y planes compartidos.', status: 'active', priority: 'medium', version: '—', category: 'Privado', tech: ['HTML','CSS','JavaScript'], liveUrl: 'https://javidei.github.io/entre-amigos/', repoUrl: 'https://github.com/javidei/entre-amigos', updatedAt: '2026-07-31' },
-    { id: 'stilton', name: 'Librería Stilton', description: 'Buscador de libros con datos ampliados y contenidos en vídeo.', status: 'complete', priority: 'low', version: '—', category: 'Libros', tech: ['Google Books API','JavaScript'], liveUrl: 'https://javidei.github.io/stilton/', repoUrl: 'https://github.com/javidei/stilton', updatedAt: '2026-08-05' },
-    { id: 'project-hub', name: 'Project Hub', description: 'Panel central para controlar proyectos, versiones, enlaces y tareas.', status: 'active', priority: 'high', version: VERSION, category: 'Productividad', tech: ['HTML','CSS','JavaScript','localStorage'], liveUrl: './', repoUrl: 'https://github.com/javidei/cvitae/tree/main/project-hub', updatedAt: '2026-08-07' }
-  ],
-  tasks: [
-    { id: 'task-1', projectId: 'project-hub', title: 'Conectar el panel con Supabase', priority: 'high', dueDate: '', done: false },
-    { id: 'task-2', projectId: 'sam', title: 'Revisar el CRUD y almacenamiento de imágenes', priority: 'high', dueDate: '', done: false },
-    { id: 'task-3', projectId: 'book-affinity', title: 'Completar los scripts de tablas y políticas', priority: 'medium', dueDate: '', done: false },
-    { id: 'task-4', projectId: 'cvitae', title: 'Mantener las tarjetas y versiones actualizadas', priority: 'medium', dueDate: '', done: true },
-    { id: 'task-5', projectId: 'learn', title: 'Definir las siguientes unidades del curso', priority: 'low', dueDate: '', done: false }
-  ]
-};
-
-const state = loadState();
-const els = {
-  sidebar: document.getElementById('sidebar'), menuToggle: document.getElementById('menuToggle'), overlay: document.getElementById('overlay'), viewTitle: document.getElementById('viewTitle'),
-  statsGrid: document.getElementById('statsGrid'), priorityList: document.getElementById('priorityList'), overviewTasks: document.getElementById('overviewTasks'),
-  projectGrid: document.getElementById('projectGrid'), projectEmpty: document.getElementById('projectEmpty'), projectSearch: document.getElementById('projectSearch'), statusFilter: document.getElementById('statusFilter'), sortProjects: document.getElementById('sortProjects'),
-  taskSearch: document.getElementById('taskSearch'), taskProjectFilter: document.getElementById('taskProjectFilter'), taskStatusFilter: document.getElementById('taskStatusFilter'), pendingTasks: document.getElementById('pendingTasks'), doneTasks: document.getElementById('doneTasks'), pendingCount: document.getElementById('pendingCount'), doneCount: document.getElementById('doneCount'),
-  projectModal: document.getElementById('projectModal'), projectForm: document.getElementById('projectForm'), projectModalTitle: document.getElementById('projectModalTitle'),
-  taskModal: document.getElementById('taskModal'), taskForm: document.getElementById('taskForm'), detailsModal: document.getElementById('detailsModal'), detailsTitle: document.getElementById('detailsTitle'), detailsContent: document.getElementById('detailsContent'), toast: document.getElementById('toast')
-};
-
-const statusLabels = { active: 'Activo', paused: 'Pausado', idea: 'Idea', complete: 'Terminado' };
-const priorityLabels = { high: 'Alta', medium: 'Media', low: 'Baja' };
-const viewLabels = { overview: 'Resumen', projects: 'Proyectos', tasks: 'Tareas', settings: 'Ajustes' };
-
-function clone(value) { return JSON.parse(JSON.stringify(value)); }
-function loadState() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (saved && Array.isArray(saved.projects) && Array.isArray(saved.tasks)) return saved;
-  } catch (_) {}
-  return clone(seedData);
-}
-function saveState(message) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  renderAll();
-  if (message) showToast(message);
-}
-function uid(prefix) { return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2,7)}`; }
-function escapeHtml(value = '') { return String(value).replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char])); }
-function safeUrl(value) { try { const url = new URL(value, location.href); return ['http:','https:'].includes(url.protocol) ? url.href : '#'; } catch (_) { return '#'; } }
-function projectById(id) { return state.projects.find(project => project.id === id); }
-function formatDate(value) { if (!value) return 'Sin fecha'; const date = new Date(`${value}T00:00:00`); return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat('es-ES',{day:'2-digit',month:'short',year:'numeric'}).format(date); }
-function initials(name) { return name.split(/\s+/).filter(Boolean).slice(0,2).map(part => part[0]).join('').toUpperCase(); }
-
-function renderAll() {
-  renderStats(); renderPriority(); renderOverviewTasks(); renderProjects(); fillProjectSelects(); renderTasks();
-}
-function renderStats() {
-  const stats = [
-    ['Proyectos', state.projects.length, '▦', 'Registrados'],
-    ['Activos', state.projects.filter(p => p.status === 'active').length, '↗', 'En evolución'],
-    ['Tareas pendientes', state.tasks.filter(t => !t.done).length, '✓', 'Por completar'],
-    ['Pausados', state.projects.filter(p => p.status === 'paused').length, 'Ⅱ', 'En espera']
-  ];
-  els.statsGrid.innerHTML = stats.map(([label,value,icon,caption]) => `<article class="stat"><div class="stat__top"><span>${label}</span><span class="stat__icon">${icon}</span></div><strong>${value}</strong><small>${caption}</small></article>`).join('');
-}
-function renderPriority() {
-  const order = { high: 0, medium: 1, low: 2 };
-  const projects = [...state.projects].filter(p => p.status === 'active').sort((a,b) => order[a.priority]-order[b.priority]).slice(0,5);
-  els.priorityList.innerHTML = projects.length ? projects.map(project => {
-    const pending = state.tasks.filter(task => task.projectId === project.id && !task.done).length;
-    return `<button class="priority-item" type="button" data-details="${escapeHtml(project.id)}"><span class="project-monogram">${escapeHtml(initials(project.name))}</span><span><h3>${escapeHtml(project.name)}</h3><p>${escapeHtml(project.category || 'Sin categoría')} · ${pending} tarea${pending === 1 ? '' : 's'} pendiente${pending === 1 ? '' : 's'}</p></span><span class="status status--${project.status}">${statusLabels[project.status]}</span></button>`;
-  }).join('') : '<p class="empty-copy">No hay proyectos activos.</p>';
-}
-function renderOverviewTasks() {
-  const tasks = state.tasks.filter(task => !task.done).sort(sortTasks).slice(0,6);
-  els.overviewTasks.innerHTML = tasks.length ? tasks.map(task => `<div class="mini-task"><span class="mini-task__dot"></span><span><strong>${escapeHtml(task.title)}</strong><small>${escapeHtml(projectById(task.projectId)?.name || 'Proyecto eliminado')}</small></span></div>`).join('') : '<p class="empty-copy">No hay tareas pendientes.</p>';
-}
-function sortTasks(a,b) { const order = { high: 0, medium: 1, low: 2 }; return order[a.priority]-order[b.priority]; }
-function filteredProjects() {
-  const query = els.projectSearch.value.trim().toLowerCase();
-  const status = els.statusFilter.value;
-  const sort = els.sortProjects.value;
-  const order = { high: 0, medium: 1, low: 2 };
-  const projects = state.projects.filter(project => {
-    const haystack = [project.name,project.description,project.category,...project.tech].join(' ').toLowerCase();
-    return (!query || haystack.includes(query)) && (status === 'all' || project.status === status);
-  });
-  projects.sort((a,b) => sort === 'name' ? a.name.localeCompare(b.name,'es') : sort === 'updated' ? String(b.updatedAt).localeCompare(String(a.updatedAt)) : order[a.priority]-order[b.priority] || a.name.localeCompare(b.name,'es'));
-  return projects;
-}
-function renderProjects() {
-  const projects = filteredProjects();
-  els.projectEmpty.hidden = projects.length > 0;
-  els.projectGrid.innerHTML = projects.map(project => {
-    const pending = state.tasks.filter(task => task.projectId === project.id && !task.done).length;
-    const tech = project.tech.slice(0,4).map(item => `<span>${escapeHtml(item)}</span>`).join('');
-    const live = project.liveUrl ? `<a class="primary" href="${safeUrl(project.liveUrl)}" target="_blank" rel="noopener">Abrir web</a>` : '';
-    const repo = project.repoUrl ? `<a href="${safeUrl(project.repoUrl)}" target="_blank" rel="noopener">Repositorio</a>` : '';
-    return `<article class="project-card">
-      <div class="project-card__top"><span class="status status--${project.status}">${statusLabels[project.status]}</span><div class="project-card__menu"><button type="button" data-edit="${escapeHtml(project.id)}" title="Editar">✎</button><button type="button" data-delete-project="${escapeHtml(project.id)}" title="Eliminar">×</button></div></div>
-      <h2>${escapeHtml(project.name)}</h2><p class="project-card__desc">${escapeHtml(project.description || 'Sin descripción.')}</p>
-      <div class="tech-list">${tech || '<span>Sin tecnologías</span>'}</div>
-      <div class="project-card__meta"><div><small>Versión</small><strong>${escapeHtml(project.version || '—')}</strong></div><div><small>Pendientes</small><strong>${pending} tarea${pending === 1 ? '' : 's'}</strong></div></div>
-      <div class="project-card__actions"><button type="button" data-details="${escapeHtml(project.id)}">Detalles</button>${repo}${live}</div>
-    </article>`;
-  }).join('');
-}
-function fillProjectSelects() {
-  const options = state.projects.slice().sort((a,b) => a.name.localeCompare(b.name,'es')).map(project => `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`).join('');
-  const filterValue = els.taskProjectFilter.value || 'all';
-  els.taskProjectFilter.innerHTML = `<option value="all">Todos los proyectos</option>${options}`;
-  els.taskProjectFilter.value = state.projects.some(project => project.id === filterValue) ? filterValue : 'all';
-  document.getElementById('taskProject').innerHTML = options;
-}
-function filteredTasks() {
-  const query = els.taskSearch.value.trim().toLowerCase();
-  const project = els.taskProjectFilter.value;
-  const status = els.taskStatusFilter.value;
-  return state.tasks.filter(task => {
-    const name = projectById(task.projectId)?.name || '';
-    return (!query || `${task.title} ${name}`.toLowerCase().includes(query)) && (project === 'all' || task.projectId === project) && (status === 'all' || (status === 'done') === task.done);
-  }).sort(sortTasks);
-}
-function renderTasks() {
-  const tasks = filteredTasks();
-  const pending = tasks.filter(task => !task.done);
-  const done = tasks.filter(task => task.done);
-  els.pendingCount.textContent = pending.length;
-  els.doneCount.textContent = done.length;
-  els.pendingTasks.innerHTML = renderTaskCards(pending) || '<p class="empty-copy">No hay tareas pendientes.</p>';
-  els.doneTasks.innerHTML = renderTaskCards(done) || '<p class="empty-copy">No hay tareas completadas.</p>';
-}
-function renderTaskCards(tasks) {
-  return tasks.map(task => `<article class="task-card ${task.done ? 'is-done' : ''}"><input type="checkbox" data-toggle-task="${escapeHtml(task.id)}" ${task.done ? 'checked' : ''} aria-label="Cambiar estado"><div><h3>${escapeHtml(task.title)}</h3><p><span class="priority-dot priority-dot--${task.priority}"></span>${priorityLabels[task.priority]} · ${escapeHtml(projectById(task.projectId)?.name || 'Proyecto eliminado')} · ${formatDate(task.dueDate)}</p></div><button class="delete-task" type="button" data-delete-task="${escapeHtml(task.id)}" aria-label="Eliminar tarea">×</button></article>`).join('');
-}
-function switchView(view) {
-  document.querySelectorAll('[data-view-panel]').forEach(panel => panel.classList.toggle('is-active', panel.dataset.viewPanel === view));
-  document.querySelectorAll('.nav-item').forEach(item => item.classList.toggle('is-active', item.dataset.view === view));
-  els.viewTitle.textContent = viewLabels[view] || 'Project Hub';
-  closeSidebar();
-}
-function openSidebar() { els.sidebar.classList.add('is-open'); els.overlay.hidden = false; }
-function closeSidebar() { els.sidebar.classList.remove('is-open'); els.overlay.hidden = true; }
-function openProjectModal(project = null) {
-  els.projectForm.reset();
-  document.getElementById('projectId').value = project?.id || '';
-  els.projectModalTitle.textContent = project ? 'Editar proyecto' : 'Nuevo proyecto';
-  if (project) {
-    document.getElementById('projectName').value = project.name;
-    document.getElementById('projectStatus').value = project.status;
-    document.getElementById('projectPriority').value = project.priority;
-    document.getElementById('projectVersion').value = project.version || '';
-    document.getElementById('projectCategory').value = project.category || '';
-    document.getElementById('projectDescription').value = project.description || '';
-    document.getElementById('projectTech').value = project.tech.join(', ');
-    document.getElementById('projectLiveUrl').value = project.liveUrl || '';
-    document.getElementById('projectRepoUrl').value = project.repoUrl || '';
-  }
-  els.projectModal.showModal();
-}
-function submitProject(event) {
-  event.preventDefault();
-  const name = document.getElementById('projectName').value.trim();
-  if (!name) { showToast('Escribe un nombre para el proyecto.'); return; }
-  const existingId = document.getElementById('projectId').value;
-  const project = {
-    id: existingId || uid('project'), name,
-    status: document.getElementById('projectStatus').value,
-    priority: document.getElementById('projectPriority').value,
-    version: document.getElementById('projectVersion').value.trim() || '—',
-    category: document.getElementById('projectCategory').value.trim() || 'Sin categoría',
-    description: document.getElementById('projectDescription').value.trim(),
-    tech: document.getElementById('projectTech').value.split(',').map(item => item.trim()).filter(Boolean),
-    liveUrl: document.getElementById('projectLiveUrl').value.trim(),
-    repoUrl: document.getElementById('projectRepoUrl').value.trim(),
-    updatedAt: new Date().toISOString().slice(0,10)
-  };
-  if (existingId) state.projects[state.projects.findIndex(item => item.id === existingId)] = project; else state.projects.push(project);
-  els.projectModal.close();
-  saveState(existingId ? 'Proyecto actualizado.' : 'Proyecto creado.');
-}
-function deleteProject(id) {
-  const project = projectById(id);
-  if (!project || !confirm(`¿Eliminar "${project.name}" y sus tareas?`)) return;
-  state.projects = state.projects.filter(item => item.id !== id);
-  state.tasks = state.tasks.filter(task => task.projectId !== id);
-  saveState('Proyecto eliminado.');
-}
-function openTaskModal() {
-  if (!state.projects.length) { showToast('Crea primero un proyecto.'); return; }
-  els.taskForm.reset(); fillProjectSelects(); els.taskModal.showModal();
-}
-function submitTask(event) {
-  event.preventDefault();
-  const title = document.getElementById('taskTitle').value.trim();
-  const projectId = document.getElementById('taskProject').value;
-  if (!title || !projectId) { showToast('Completa el proyecto y la tarea.'); return; }
-  state.tasks.push({ id: uid('task'), projectId, title, priority: document.getElementById('taskPriority').value, dueDate: document.getElementById('taskDueDate').value, done: false });
-  els.taskModal.close(); saveState('Tarea creada.');
-}
-function toggleTask(id) { const task = state.tasks.find(item => item.id === id); if (task) { task.done = !task.done; saveState(task.done ? 'Tarea completada.' : 'Tarea reabierta.'); } }
-function deleteTask(id) { if (!confirm('¿Eliminar esta tarea?')) return; state.tasks = state.tasks.filter(task => task.id !== id); saveState('Tarea eliminada.'); }
-function openDetails(id) {
-  const project = projectById(id); if (!project) return;
-  const tasks = state.tasks.filter(task => task.projectId === id);
-  els.detailsTitle.textContent = project.name;
-  els.detailsContent.innerHTML = `<div class="details-grid"><div class="details-stat"><small>Estado</small><strong>${statusLabels[project.status]}</strong></div><div class="details-stat"><small>Versión</small><strong>${escapeHtml(project.version || '—')}</strong></div><div class="details-stat"><small>Prioridad</small><strong>${priorityLabels[project.priority]}</strong></div></div><p class="details-description">${escapeHtml(project.description || 'Sin descripción.')}</p><div class="tech-list">${project.tech.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div><div class="details-stat"><small>Tareas</small><strong>${tasks.filter(task => !task.done).length} pendientes · ${tasks.filter(task => task.done).length} completadas</strong></div><div class="details-links">${project.liveUrl ? `<a class="btn" href="${safeUrl(project.liveUrl)}" target="_blank" rel="noopener">Abrir web</a>` : ''}${project.repoUrl ? `<a class="btn btn--secondary" href="${safeUrl(project.repoUrl)}" target="_blank" rel="noopener">Ver repositorio</a>` : ''}<button class="btn btn--secondary" type="button" data-edit-from-details="${escapeHtml(project.id)}">Editar proyecto</button></div>`;
-  els.detailsModal.showModal();
-}
-function exportData() {
-  const blob = new Blob([JSON.stringify({ ...state, exportedAt: new Date().toISOString(), version: VERSION }, null, 2)], { type: 'application/json' });
-  const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `project-hub-${new Date().toISOString().slice(0,10)}.json`; link.click(); URL.revokeObjectURL(link.href); showToast('Copia exportada.');
-}
-function importData(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      const data = JSON.parse(reader.result);
-      if (!Array.isArray(data.projects) || !Array.isArray(data.tasks)) throw new Error('Formato no válido');
-      state.projects = data.projects; state.tasks = data.tasks; saveState('Datos importados correctamente.');
-    } catch (_) { showToast('No se pudo importar el archivo.'); }
-  };
-  reader.readAsText(file);
-}
-function resetData() { if (!confirm('¿Restablecer todos los datos de demostración?')) return; state.projects = clone(seedData.projects); state.tasks = clone(seedData.tasks); saveState('Información restablecida.'); }
-let toastTimer;
-function showToast(message) { clearTimeout(toastTimer); els.toast.textContent = message; els.toast.classList.add('is-visible'); toastTimer = setTimeout(() => els.toast.classList.remove('is-visible'), 2300); }
-
-function bindEvents() {
-  document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', () => switchView(item.dataset.view)));
-  document.querySelectorAll('[data-go-view]').forEach(item => item.addEventListener('click', () => switchView(item.dataset.goView)));
-  els.menuToggle.addEventListener('click', openSidebar); els.overlay.addEventListener('click', closeSidebar);
-  [document.getElementById('newProjectBtn'), document.getElementById('heroNewProjectBtn')].forEach(button => button.addEventListener('click', () => openProjectModal()));
-  document.getElementById('newTaskBtn').addEventListener('click', openTaskModal);
-  els.projectForm.addEventListener('submit', submitProject); els.taskForm.addEventListener('submit', submitTask);
-  [els.projectSearch, els.statusFilter, els.sortProjects].forEach(input => input.addEventListener('input', renderProjects));
-  [els.taskSearch, els.taskProjectFilter, els.taskStatusFilter].forEach(input => input.addEventListener('input', renderTasks));
-  document.addEventListener('click', event => {
-    const edit = event.target.closest('[data-edit]'); if (edit) openProjectModal(projectById(edit.dataset.edit));
-    const remove = event.target.closest('[data-delete-project]'); if (remove) deleteProject(remove.dataset.deleteProject);
-    const details = event.target.closest('[data-details]'); if (details) openDetails(details.dataset.details);
-    const toggle = event.target.closest('[data-toggle-task]'); if (toggle) toggleTask(toggle.dataset.toggleTask);
-    const deleteButton = event.target.closest('[data-delete-task]'); if (deleteButton) deleteTask(deleteButton.dataset.deleteTask);
-    const editDetails = event.target.closest('[data-edit-from-details]'); if (editDetails) { els.detailsModal.close(); openProjectModal(projectById(editDetails.dataset.editFromDetails)); }
-  });
-  document.getElementById('closeDetailsBtn').addEventListener('click', () => els.detailsModal.close());
-  [document.getElementById('exportBtn'), document.getElementById('settingsExportBtn')].forEach(button => button.addEventListener('click', exportData));
-  document.getElementById('importInput').addEventListener('change', event => importData(event.target.files[0]));
-  document.getElementById('resetBtn').addEventListener('click', resetData);
-}
-
-document.getElementById('year').textContent = new Date().getFullYear();
-bindEvents(); renderAll();
+const V='0.2.0',K='projectHubSupabaseConfigV1',D='javidei',q=s=>document.querySelector(s);
+const S={cfg:JSON.parse(localStorage.getItem(K)||'{}'),db:null,session:null,projects:[],tasks:[],f:{q:'',source:'all',status:'all',sort:'updated-desc'}};
+S.cfg={githubOwner:S.cfg.githubOwner||D,supabaseUrl:S.cfg.supabaseUrl||'',supabaseAnonKey:S.cfg.supabaseAnonKey||''};
+const E={badge:q('#connection-badge'),setup:q('#setup-card'),auth:q('#auth-card'),logout:q('#logout-button'),sync:q('#sync-github'),newP:q('#new-project'),newT:q('#new-task'),grid:q('#project-grid'),tasks:q('#task-list'),emptyP:q('#empty-projects'),emptyT:q('#empty-tasks'),count:q('#project-count'),owner:q('#github-owner-label'),toast:q('#toast'),settings:q('#settings-dialog'),project:q('#project-dialog'),task:q('#task-dialog')};
+let tt;
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const url=v=>{try{const u=new URL(v);return/^https?:$/.test(u.protocol)?u.href:''}catch{return''}};
+const date=v=>{if(!v)return'Sin fecha';const d=new Date(v);return isNaN(d)?'Sin fecha':new Intl.DateTimeFormat('es-ES',{day:'2-digit',month:'short',year:'numeric'}).format(d)};
+const toast=(m,e=false)=>{clearTimeout(tt);E.toast.textContent=m;E.toast.classList.toggle('is-error',e);E.toast.classList.add('is-visible');tt=setTimeout(()=>E.toast.classList.remove('is-visible'),3500)};
+const configured=()=>/^https:\/\/.+\.supabase\.co\/?$/.test(S.cfg.supabaseUrl)&&S.cfg.supabaseAnonKey.length>40;
+const weight=p=>({high:3,medium:2,low:1}[p]||0),sl=s=>({active:'Activo',paused:'Pausado',idea:'Idea',complete:'Terminado'}[s]||'Activo');
+function ui(){const ok=configured(),on=ok&&S.session;E.owner.textContent=S.cfg.githubOwner||D;E.setup.hidden=ok;E.auth.hidden=!ok||on;E.logout.hidden=!on;[E.sync,E.newP,E.newT].forEach(b=>b.disabled=!on);E.badge.classList.toggle('is-connected',on);E.badge.textContent=on?`Conectado · ${S.session.user.email||'Supabase'}`:ok?'Supabase configurado':'Sin configurar'}
+async function init(){S.db=null;S.session=null;S.projects=[];S.tasks=[];ui();render();if(!configured())return;if(!window.supabase?.createClient)return toast('No se pudo cargar Supabase.',true);try{S.db=window.supabase.createClient(S.cfg.supabaseUrl.replace(/\/$/,''),S.cfg.supabaseAnonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});const r=await S.db.auth.getSession();if(r.error)throw r.error;S.session=r.data.session;ui();if(S.session)await load();S.db.auth.onAuthStateChange(async(_,s)=>{S.session=s;ui();if(s)await load();else{S.projects=[];S.tasks=[];render()}})}catch(e){toast(`Error de conexión: ${e.message}`,true)}}
+async function load(){const[p,t]=await Promise.all([S.db.from('project_hub_projects').select('*').order('updated_at',{ascending:false}),S.db.from('project_hub_tasks').select('*').order('created_at',{ascending:false})]);if(p.error||t.error)return toast(`Error de base de datos: ${(p.error||t.error).message}`,true);S.projects=p.data||[];S.tasks=t.data||[];render()}
+async function gh(owner){let all=[];for(let page=1;page<=10;page++){const r=await fetch(`https://api.github.com/users/${encodeURIComponent(owner)}/repos?per_page=100&page=${page}&sort=updated&type=owner`,{headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});if(!r.ok){if(r.status===404)throw Error(`No existe el usuario "${owner}".`);throw Error(r.status===403?'Límite temporal de GitHub alcanzado.':`Error ${r.status} de GitHub.`)}const a=await r.json();all.push(...a);if(a.length<100)break}return all}
+async function sync(){if(!S.session)return toast('Configura Supabase e inicia sesión.',true);E.sync.disabled=true;E.sync.textContent='Sincronizando…';try{const repos=await gh(S.cfg.githubOwner||D),map=new Map(S.projects.filter(x=>x.source==='github').map(x=>[x.source_key,x]));const rows=repos.map(r=>{const x=map.get(r.full_name),lang=r.language||'',tech=x?.tech?.length?x.tech:(lang?[lang]:[]);return{user_id:S.session.user.id,source:'github',source_key:r.full_name,github_id:r.id,github_owner:r.owner?.login||S.cfg.githubOwner,github_name:r.name,github_full_name:r.full_name,github_visibility:r.visibility||(r.private?'private':'public'),github_language:lang,github_default_branch:r.default_branch||'',github_archived:!!r.archived,github_fork:!!r.fork,github_stars:r.stargazers_count||0,github_open_issues:r.open_issues_count||0,github_topics:r.topics||[],github_pushed_at:r.pushed_at,github_synced_at:new Date().toISOString(),name:x?.name||r.name,description:x?.description||r.description||'',status:x?.status||(r.archived?'complete':'active'),priority:x?.priority||'medium',version:x?.version||'',category:x?.category||'GitHub',tech,live_url:x?.live_url||url(r.homepage||''),repo_url:r.html_url,notes:x?.notes||''}});if(rows.length){const z=await S.db.from('project_hub_projects').upsert(rows,{onConflict:'user_id,source,source_key'});if(z.error)throw z.error}await load();toast(`${repos.length} repositorios sincronizados.`)}catch(e){toast(`No se pudo sincronizar: ${e.message}`,true)}finally{E.sync.textContent='Sincronizar GitHub';E.sync.disabled=false;ui()}}
+function list(){const s=S.f.q.toLowerCase().trim();return S.projects.filter(p=>(!s||[p.name,p.description,p.category,p.github_language,...(p.tech||[])].join(' ').toLowerCase().includes(s))&&(S.f.source==='all'||p.source===S.f.source)&&(S.f.status==='all'||p.status===S.f.status)).sort((a,b)=>S.f.sort==='name-asc'?a.name.localeCompare(b.name,'es'):S.f.sort==='priority-desc'?weight(b.priority)-weight(a.priority)||a.name.localeCompare(b.name,'es'):new Date(b.github_pushed_at||b.updated_at||0)-new Date(a.github_pushed_at||a.updated_at||0))}
+function renderProjects(){const a=list();E.count.textContent=`${a.length} ${a.length===1?'proyecto':'proyectos'}`;E.emptyP.hidden=!!a.length;E.grid.innerHTML=a.map(p=>{const ru=url(p.repo_url),lu=url(p.live_url),tech=(p.tech||[]).slice(0,5),lang=p.github_language||tech[0]||'Sin definir';return`<article class="project-card" data-id="${esc(p.id)}"><div class="project-card__top"><div><span class="source-badge source-badge--${p.source}">${p.source==='github'?'GitHub':'Externo'}</span> <span class="status status--${esc(p.status)}">${sl(p.status)}</span></div><div class="project-card__menu"><button data-a="edit" title="Editar">✎</button><button data-a="del" title="Eliminar">×</button></div></div><h3>${esc(p.name)}</h3><p class="project-card__desc">${esc(p.description||'Sin descripción.')}</p><div class="project-card__details"><div><small>Versión</small><strong>${esc(p.version||'—')}</strong></div><div><small>Lenguaje</small><strong>${esc(lang)}</strong></div><div><small>Categoría</small><strong>${esc(p.category||'Sin categoría')}</strong></div><div><small>Actualizado</small><strong>${esc(date(p.github_pushed_at||p.updated_at))}</strong></div></div><div class="tech-list">${tech.map(x=>`<span>${esc(x)}</span>`).join('')}</div><div class="project-card__actions">${lu?`<a class="primary" href="${esc(lu)}" target="_blank" rel="noopener">Abrir web</a>`:''}${ru?`<a href="${esc(ru)}" target="_blank" rel="noopener">Repositorio</a>`:''}${!lu&&!ru?'<button data-a="edit">Completar datos</button>':''}</div></article>`}).join('')}
+function renderTasks(){const a=[...S.tasks].sort((x,y)=>+x.done-+y.done||weight(y.priority)-weight(x.priority));E.emptyT.hidden=!!a.length;E.tasks.innerHTML=a.map(t=>{const p=S.projects.find(x=>x.id===t.project_id);return`<article class="task-card ${t.done?'is-done':''}" data-id="${esc(t.id)}"><input type="checkbox" data-a="toggle" ${t.done?'checked':''}><div><h3>${esc(t.title)}</h3><p>${esc(p?.name||'Proyecto eliminado')} · ${esc(t.priority)}${t.due_date?` · ${esc(date(t.due_date))}`:''}</p></div><button data-a="delTask">×</button></article>`}).join('')}
+function render(){ui();q('#stat-total').textContent=S.projects.length;q('#stat-github').textContent=S.projects.filter(x=>x.source==='github').length;q('#stat-manual').textContent=S.projects.filter(x=>x.source==='manual').length;q('#stat-tasks').textContent=S.tasks.filter(x=>!x.done).length;renderProjects();renderTasks();q('#task-project').innerHTML=[...S.projects].sort((a,b)=>a.name.localeCompare(b.name,'es')).map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('')}
+function settings(){q('#github-owner').value=S.cfg.githubOwner||D;q('#supabase-url').value=S.cfg.supabaseUrl;q('#supabase-anon-key').value=S.cfg.supabaseAnonKey;E.settings.showModal()}
+function openProject(p){if(!S.session)return toast('Inicia sesión para guardar proyectos.',true);q('#project-dialog-title').textContent=p?'Editar proyecto':'Añadir proyecto externo';q('#project-id').value=p?.id||'';q('#project-name').value=p?.name||'';q('#project-version').value=p?.version||'';q('#project-status').value=p?.status||'active';q('#project-priority').value=p?.priority||'medium';q('#project-category').value=p?.category||'';q('#project-tech').value=(p?.tech||[]).join(', ');q('#project-description').value=p?.description||'';q('#project-live-url').value=p?.live_url||'';q('#project-repo-url').value=p?.repo_url||'';E.project.showModal()}
+async function saveProject(e){e.preventDefault();const id=q('#project-id').value,x=S.projects.find(p=>p.id===id),row={user_id:S.session.user.id,source:x?.source||'manual',source_key:x?.source_key||crypto.randomUUID(),name:q('#project-name').value.trim(),description:q('#project-description').value.trim(),status:q('#project-status').value,priority:q('#project-priority').value,version:q('#project-version').value.trim(),category:q('#project-category').value.trim(),tech:q('#project-tech').value.split(',').map(x=>x.trim()).filter(Boolean),live_url:q('#project-live-url').value.trim(),repo_url:q('#project-repo-url').value.trim()};const r=id?await S.db.from('project_hub_projects').update(row).eq('id',id):await S.db.from('project_hub_projects').insert(row);if(r.error)return toast(`No se pudo guardar: ${r.error.message}`,true);E.project.close();q('#project-form').reset();await load();toast(id?'Proyecto actualizado.':'Proyecto externo añadido.')}
+async function delProject(id){const p=S.projects.find(x=>x.id===id);if(!p||!confirm(`¿Eliminar "${p.name}" de Project Hub?`))return;const r=await S.db.from('project_hub_projects').delete().eq('id',id);if(r.error)return toast(r.error.message,true);await load();toast(p.source==='github'?'Se volverá a importar en la próxima sincronización.':'Proyecto eliminado.')}
+async function saveTask(e){e.preventDefault();const r=await S.db.from('project_hub_tasks').insert({user_id:S.session.user.id,project_id:q('#task-project').value,title:q('#task-title').value.trim(),priority:q('#task-priority').value,due_date:q('#task-due-date').value||null});if(r.error)return toast(r.error.message,true);E.task.close();q('#task-form').reset();await load();toast('Tarea añadida.')}
+async function taskAction(id,done,del=false){const r=del?await S.db.from('project_hub_tasks').delete().eq('id',id):await S.db.from('project_hub_tasks').update({done}).eq('id',id);if(r.error)toast(r.error.message,true);else await load()}
+q('#open-settings').onclick=settings;q('#setup-now').onclick=settings;E.sync.onclick=sync;E.newP.onclick=()=>openProject();E.newT.onclick=()=>{if(!S.projects.length)return toast('Necesitas al menos un proyecto.',true);E.task.showModal()};
+q('#settings-form').onsubmit=async e=>{e.preventDefault();S.cfg={githubOwner:q('#github-owner').value.trim()||D,supabaseUrl:q('#supabase-url').value.trim(),supabaseAnonKey:q('#supabase-anon-key').value.trim()};localStorage.setItem(K,JSON.stringify(S.cfg));E.settings.close();await init();toast('Configuración guardada.')};
+q('#project-form').onsubmit=saveProject;q('#task-form').onsubmit=saveTask;
+q('#auth-form').onsubmit=async e=>{e.preventDefault();const r=await S.db.auth.signInWithPassword({email:q('#auth-email').value.trim(),password:q('#auth-password').value});toast(r.error?`No se pudo entrar: ${r.error.message}`:'Sesión iniciada.',!!r.error)};
+q('#signup-button').onclick=async()=>{const email=q('#auth-email').value.trim(),password=q('#auth-password').value;if(!email||password.length<6)return toast('Email y contraseña de al menos 6 caracteres.',true);const r=await S.db.auth.signUp({email,password});toast(r.error?`No se pudo crear: ${r.error.message}`:r.data.session?'Cuenta creada.':'Cuenta creada. Revisa tu correo.',!!r.error)};
+E.logout.onclick=()=>S.db?.auth.signOut();document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>q(`#${b.dataset.close}`).close());
+q('#search-input').oninput=e=>{S.f.q=e.target.value;renderProjects()};q('#source-filter').onchange=e=>{S.f.source=e.target.value;renderProjects()};q('#status-filter').onchange=e=>{S.f.status=e.target.value;renderProjects()};q('#sort-select').onchange=e=>{S.f.sort=e.target.value;renderProjects()};
+E.grid.onclick=e=>{const b=e.target.closest('[data-a]'),c=e.target.closest('.project-card');if(!b||!c)return;const p=S.projects.find(x=>x.id===c.dataset.id);b.dataset.a==='edit'?openProject(p):delProject(c.dataset.id)};
+E.tasks.onchange=e=>{const c=e.target.closest('.task-card');if(c&&e.target.dataset.a==='toggle')taskAction(c.dataset.id,e.target.checked)};
+E.tasks.onclick=e=>{const c=e.target.closest('.task-card');if(c&&e.target.dataset.a==='delTask')taskAction(c.dataset.id,false,true)};
+init();
