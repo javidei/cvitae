@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.2.1 — 07/08/2026
+
+- Sustituye el texto genérico «GitHub» de cada proyecto por el icono de GitHub y el nombre real del repositorio.
+- Mejora la identificación de los enlaces dentro de las tarjetas compactas.
+- Corrige el enlace de Librería Stilton para que apunte a `javidei/stilton`.
+- Renueva la caché de la PWA para publicar los cambios inmediatamente.
+
 ## 0.2.0 — 07/08/2026
 
 - Añade versión y fecha de publicación visibles en el footer.
