@@ -1,4 +1,4 @@
-const VERSION = "0.2.1";
+const VERSION = "0.3.0";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${VERSION}`;
 
@@ -15,7 +15,13 @@ const APP_SHELL = [
   "./assets/projects/thirty.svg",
   "./assets/projects/sam.svg",
   "./assets/projects/entre-amigos.svg",
-  "./assets/projects/mis-pcs.jpg"
+  "./assets/projects/mis-pcs.jpg",
+  "./assets/projects/project-hub.svg",
+  "./project-hub/",
+  "./project-hub/index.html",
+  "./project-hub/styles.css?v=0.1.0",
+  "./project-hub/app.js?v=0.1.0",
+  "./project-hub/version.json"
 ];
 
 const INDEX_URL = new URL("./index.html", self.registration.scope).href;
@@ -27,17 +33,15 @@ async function fetchFresh(request) {
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
-
     await Promise.all(APP_SHELL.map(async path => {
       try {
         const url = new URL(path, self.registration.scope).href;
         const response = await fetchFresh(url);
         if (response.ok) await cache.put(url, response);
       } catch {
-        // La instalación puede continuar aunque un recurso opcional falle.
+        // Los recursos opcionales no bloquean la instalación.
       }
     }));
-
     await self.skipWaiting();
   })());
 });
@@ -45,22 +49,12 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(
-      keys
-        .filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME)
-        .map(key => caches.delete(key))
-    );
-
+    await Promise.all(keys.filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME).map(key => caches.delete(key)));
     await self.clients.claim();
-
     const clients = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
     await Promise.all(clients.map(async client => {
       client.postMessage({ type: "CVITAE_UPDATED", version: VERSION });
-      try {
-        await client.navigate(client.url);
-      } catch {
-        // La siguiente navegación normal servirá la versión nueva.
-      }
+      try { await client.navigate(client.url); } catch { /* La siguiente navegación cargará la versión nueva. */ }
     }));
   })());
 });
@@ -68,20 +62,17 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   const request = event.request;
   const url = new URL(request.url);
-
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
 
   if (request.mode === "navigate") {
     event.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
       try {
         const response = await fetchFresh(request);
-        if (response.ok) {
-          const cache = await caches.open(CACHE_NAME);
-          await cache.put(INDEX_URL, response.clone());
-        }
+        if (response.ok) await cache.put(request, response.clone());
         return response;
       } catch {
-        return (await caches.match(INDEX_URL)) || Response.error();
+        return (await cache.match(request)) || (await cache.match(url.pathname.endsWith('/') ? `${url.href}index.html` : request)) || (await cache.match(INDEX_URL)) || Response.error();
       }
     })());
     return;
@@ -89,7 +80,6 @@ self.addEventListener("fetch", event => {
 
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
-
     try {
       const response = await fetchFresh(request);
       if (response.ok) await cache.put(request, response.clone());
