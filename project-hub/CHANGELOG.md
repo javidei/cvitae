@@ -2,6 +2,14 @@
 
 Project Hub utiliza versionado semántico `MAJOR.MINOR.PATCH`.
 
+## 0.2.2 — 07/08/2026
+
+- Corrige el botón de sincronización para que no quede bloqueado cuando falta una sesión de Supabase.
+- Al pulsar sincronizar sin sesión, lleva directamente al formulario de acceso.
+- Añade una comprobación previa de las tablas de Project Hub antes de importar repositorios.
+- Mejora los mensajes de error para distinguir tablas inexistentes, problemas RLS y errores de GitHub.
+- Amplía el tiempo visible de los avisos para que puedan leerse con claridad.
+
 ## 0.2.1 — 07/08/2026
 
 - Actualiza la configuración para la nueva `Publishable key` de Supabase.
