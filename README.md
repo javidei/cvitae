@@ -4,13 +4,15 @@ Portfolio personal publicado con GitHub Pages y desarrollado con HTML, CSS y Jav
 
 ## Versión actual
 
-**0.3.0 — 07/08/2026**
+**0.3.2 — 07/08/2026**
 
 La versión visible de la web se muestra en el footer y también está disponible en [`version.json`](version.json). El historial completo se mantiene en [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Project Hub
 
-La carpeta [`project-hub`](project-hub/) contiene el panel central para gestionar proyectos, versiones, enlaces y tareas. Su primera versión utiliza almacenamiento local y está preparada para una futura migración a Supabase.
+Project Hub es un proyecto independiente y su código funcional vive en el repositorio [`javidei/panel-central`](https://github.com/javidei/panel-central), publicado en `https://javidei.github.io/panel-central/`.
+
+`cvitae` mantiene únicamente su tarjeta e imagen representativa dentro de la sección de proyectos, igual que con el resto de aplicaciones independientes.
 
 ## Criterio de versionado
 
