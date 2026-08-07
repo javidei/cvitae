@@ -1,7 +1,6 @@
-const PORTFOLIO_VERSION = "0.3.0";
-const PROJECT_HUB_VERSION = "0.2.3";
+const PORTFOLIO_VERSION = "0.3.2";
 const CACHE_PREFIX = "cvitae-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-ph-${PROJECT_HUB_VERSION}`;
+const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
 const APP_SHELL = [
   "./",
@@ -17,13 +16,7 @@ const APP_SHELL = [
   "./assets/projects/sam.svg",
   "./assets/projects/entre-amigos.svg",
   "./assets/projects/mis-pcs.jpg",
-  "./assets/projects/project-hub.svg",
-  "./project-hub/",
-  "./project-hub/index.html",
-  "./project-hub/integration.css?v=0.2.2",
-  "./project-hub/visibility-fix.css?v=0.2.3",
-  "./project-hub/app.js?v=0.2.2",
-  "./project-hub/version.json"
+  "./assets/projects/project-hub.svg"
 ];
 
 const INDEX_URL = new URL("./index.html", self.registration.scope).href;
@@ -55,7 +48,7 @@ self.addEventListener("activate", event => {
     await self.clients.claim();
     const clients = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
     await Promise.all(clients.map(async client => {
-      client.postMessage({ type: "CVITAE_UPDATED", version: PORTFOLIO_VERSION, projectHubVersion: PROJECT_HUB_VERSION });
+      client.postMessage({ type: "CVITAE_UPDATED", version: PORTFOLIO_VERSION });
       try { await client.navigate(client.url); } catch { /* La siguiente navegación cargará la versión nueva. */ }
     }));
   })());
