@@ -2,6 +2,14 @@
 
 Project Hub utiliza versionado semántico `MAJOR.MINOR.PATCH`.
 
+## 0.2.3 — 07/08/2026
+
+- Corrige la visualización simultánea de estados incompatibles de sesión.
+- Hace que el atributo HTML `hidden` tenga prioridad sobre estilos `display:flex` e `inline-flex`.
+- Oculta correctamente `Cerrar sesión` cuando no existe una sesión activa.
+- Oculta correctamente la tarjeta de configuración cuando Supabase ya está configurado.
+- Muestra el formulario de acceso únicamente cuando realmente falta iniciar sesión.
+
 ## 0.2.2 — 07/08/2026
 
 - Corrige el botón de sincronización para que no quede bloqueado cuando falta una sesión de Supabase.
