@@ -1,5 +1,5 @@
 const PORTFOLIO_VERSION = "0.3.0";
-const PROJECT_HUB_VERSION = "0.2.2";
+const PROJECT_HUB_VERSION = "0.2.3";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-ph-${PROJECT_HUB_VERSION}`;
 
@@ -20,8 +20,9 @@ const APP_SHELL = [
   "./assets/projects/project-hub.svg",
   "./project-hub/",
   "./project-hub/index.html",
-  `./project-hub/integration.css?v=${PROJECT_HUB_VERSION}`,
-  `./project-hub/app.js?v=${PROJECT_HUB_VERSION}`,
+  "./project-hub/integration.css?v=0.2.2",
+  "./project-hub/visibility-fix.css?v=0.2.3",
+  "./project-hub/app.js?v=0.2.2",
   "./project-hub/version.json"
 ];
 
