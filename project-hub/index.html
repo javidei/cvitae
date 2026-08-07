@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b1020" />
   <meta name="description" content="Panel central para sincronizar proyectos de GitHub y gestionar proyectos externos en Supabase." />
-  <meta name="application-version" content="0.2.1" />
+  <meta name="application-version" content="0.2.2" />
   <title>Project Hub · GitHub + Supabase</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="integration.css?v=0.2.1" />
+  <link rel="stylesheet" href="integration.css?v=0.2.2" />
 </head>
 <body>
   <header class="topbar">
@@ -50,8 +50,8 @@
     <section class="auth-card" id="auth-card" hidden>
       <div>
         <p class="eyebrow">Acceso privado</p>
-        <h2>Inicia sesión para ver y modificar tus proyectos</h2>
-        <p>GitHub puede consultarse públicamente, pero guardar, editar o importar datos requiere una cuenta de Supabase.</p>
+        <h2>Inicia sesión antes de guardar la sincronización</h2>
+        <p>La conexión puede estar configurada correctamente aunque todavía no exista una sesión. Si pulsas <strong>Sincronizar GitHub</strong> sin sesión, Project Hub te traerá aquí automáticamente.</p>
       </div>
       <form id="auth-form" class="auth-form">
         <label><span>Email</span><input id="auth-email" type="email" autocomplete="email" required /></label>
@@ -91,7 +91,7 @@
     </section>
   </main>
 
-  <footer class="footer"><span>Project Hub · Javier Díaz</span><span>GitHub REST API + Supabase</span><span class="version-dot">v0.2.1 · 07/08/2026</span></footer>
+  <footer class="footer"><span>Project Hub · Javier Díaz</span><span>GitHub REST API + Supabase</span><span class="version-dot">v0.2.2 · 07/08/2026</span></footer>
 
   <dialog class="modal" id="settings-dialog">
     <form method="dialog" id="settings-form">
@@ -135,6 +135,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js?v=0.2.1"></script>
+  <script src="app.js?v=0.2.2"></script>
 </body>
 </html>
