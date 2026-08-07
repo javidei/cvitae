@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.4 — 08/08/2026
+
+- Añade la tarjeta de **Entre líneas**, demo de novela visual/otome publicada en `javidei/juego-otome`.
+- Enlaza la tarjeta con la demo de GitHub Pages y con su repositorio independiente.
+- Utiliza el arte principal del propio juego como imagen representativa.
+- Renueva la caché de la PWA para mostrar la nueva tarjeta.
+
 ## 0.3.3 — 08/08/2026
 
 - Separa completamente Project Hub de `cvitae` y mantiene su código funcional en `javidei/panel-central`.
