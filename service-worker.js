@@ -1,5 +1,5 @@
 const PORTFOLIO_VERSION = "0.3.0";
-const PROJECT_HUB_VERSION = "0.2.0";
+const PROJECT_HUB_VERSION = "0.2.1";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-ph-${PROJECT_HUB_VERSION}`;
 
