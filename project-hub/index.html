@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b1020" />
   <meta name="description" content="Panel central para sincronizar proyectos de GitHub y gestionar proyectos externos en Supabase." />
-  <meta name="application-version" content="0.2.0" />
+  <meta name="application-version" content="0.2.1" />
   <title>Project Hub · GitHub + Supabase</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="integration.css?v=0.2.0" />
+  <link rel="stylesheet" href="integration.css?v=0.2.1" />
 </head>
 <body>
   <header class="topbar">
@@ -42,7 +42,7 @@
       <div>
         <p class="eyebrow">Conexión pendiente</p>
         <h2>Configura Supabase para activar la base de datos</h2>
-        <p>La URL y la clave pública <code>anon</code> se guardan solo en este navegador. La seguridad real la aplican las políticas RLS incluidas en el SQL.</p>
+        <p>Usa la <strong>Project URL</strong> y la <strong>Publishable key</strong> que aparecen en <em>Connect</em>. También se admite la antigua clave <code>anon</code> de proyectos legacy.</p>
       </div>
       <button class="btn" id="setup-now" type="button">Configurar ahora</button>
     </section>
@@ -71,127 +71,70 @@
     </section>
 
     <section class="toolbar">
-      <label class="search-field">
-        <span aria-hidden="true">⌕</span>
-        <input id="search-input" type="search" placeholder="Buscar proyecto, tecnología o categoría" />
-      </label>
-      <select id="source-filter" aria-label="Filtrar por origen">
-        <option value="all">Todos los orígenes</option>
-        <option value="github">GitHub</option>
-        <option value="manual">Externos</option>
-      </select>
-      <select id="status-filter" aria-label="Filtrar por estado">
-        <option value="all">Todos los estados</option>
-        <option value="active">Activo</option>
-        <option value="paused">Pausado</option>
-        <option value="idea">Idea</option>
-        <option value="complete">Terminado</option>
-      </select>
-      <select id="sort-select" aria-label="Ordenar proyectos">
-        <option value="updated-desc">Actualizados recientemente</option>
-        <option value="name-asc">Nombre A–Z</option>
-        <option value="priority-desc">Prioridad</option>
-      </select>
+      <label class="search-field"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Buscar proyecto, tecnología o categoría" /></label>
+      <select id="source-filter" aria-label="Filtrar por origen"><option value="all">Todos los orígenes</option><option value="github">GitHub</option><option value="manual">Externos</option></select>
+      <select id="status-filter" aria-label="Filtrar por estado"><option value="all">Todos los estados</option><option value="active">Activo</option><option value="paused">Pausado</option><option value="idea">Idea</option><option value="complete">Terminado</option></select>
+      <select id="sort-select" aria-label="Ordenar proyectos"><option value="updated-desc">Actualizados recientemente</option><option value="name-asc">Nombre A–Z</option><option value="priority-desc">Prioridad</option></select>
     </section>
 
     <section class="content-grid">
       <div>
-        <div class="section-head">
-          <div><p class="eyebrow">Catálogo</p><h2>Proyectos</h2></div>
-          <span id="project-count">0 proyectos</span>
-        </div>
+        <div class="section-head"><div><p class="eyebrow">Catálogo</p><h2>Proyectos</h2></div><span id="project-count">0 proyectos</span></div>
         <div class="project-grid" id="project-grid"></div>
-        <div class="empty-state" id="empty-projects" hidden>
-          <strong>No hay proyectos que coincidan.</strong>
-          <span>Sincroniza GitHub o crea un proyecto externo.</span>
-        </div>
+        <div class="empty-state" id="empty-projects" hidden><strong>No hay proyectos que coincidan.</strong><span>Sincroniza GitHub o crea un proyecto externo.</span></div>
       </div>
-
       <aside class="tasks-panel">
-        <div class="section-head">
-          <div><p class="eyebrow">Seguimiento</p><h2>Tareas</h2></div>
-          <button class="icon-button" id="new-task" type="button" aria-label="Añadir tarea">+</button>
-        </div>
+        <div class="section-head"><div><p class="eyebrow">Seguimiento</p><h2>Tareas</h2></div><button class="icon-button" id="new-task" type="button" aria-label="Añadir tarea">+</button></div>
         <div id="task-list" class="task-list"></div>
-        <div class="empty-state empty-state--small" id="empty-tasks" hidden>
-          <strong>Sin tareas pendientes.</strong>
-        </div>
+        <div class="empty-state empty-state--small" id="empty-tasks" hidden><strong>Sin tareas pendientes.</strong></div>
       </aside>
     </section>
   </main>
 
-  <footer class="footer">
-    <span>Project Hub · Javier Díaz</span>
-    <span>GitHub REST API + Supabase</span>
-    <span class="version-dot">v0.2.0 · 07/08/2026</span>
-  </footer>
+  <footer class="footer"><span>Project Hub · Javier Díaz</span><span>GitHub REST API + Supabase</span><span class="version-dot">v0.2.1 · 07/08/2026</span></footer>
 
   <dialog class="modal" id="settings-dialog">
     <form method="dialog" id="settings-form">
-      <div class="modal__head">
-        <div><p class="eyebrow">Conexiones</p><h2>Configurar Project Hub</h2></div>
-        <button class="icon-button" type="button" data-close="settings-dialog" aria-label="Cerrar">×</button>
-      </div>
+      <div class="modal__head"><div><p class="eyebrow">Conexiones</p><h2>Configurar Project Hub</h2></div><button class="icon-button" type="button" data-close="settings-dialog" aria-label="Cerrar">×</button></div>
       <div class="form-grid">
         <label class="field field--wide"><span>Usuario de GitHub</span><input id="github-owner" value="javidei" required /></label>
-        <label class="field field--wide"><span>URL de Supabase</span><input id="supabase-url" type="url" placeholder="https://xxxxxxxx.supabase.co" required /></label>
-        <label class="field field--wide"><span>Clave pública anon</span><textarea id="supabase-anon-key" rows="4" placeholder="eyJ..." required></textarea></label>
+        <label class="field field--wide"><span>Project URL de Supabase</span><input id="supabase-url" type="url" placeholder="https://xxxxxxxx.supabase.co" required /></label>
+        <label class="field field--wide"><span>Publishable key de Supabase</span><textarea id="supabase-anon-key" rows="4" placeholder="sb_publishable_..." required></textarea></label>
       </div>
-      <p class="form-note">No introduzcas la clave <strong>service_role</strong>. Solo debe usarse la clave pública <strong>anon</strong>.</p>
-      <div class="modal__actions">
-        <button class="btn btn--secondary" type="button" data-close="settings-dialog">Cancelar</button>
-        <button class="btn" type="submit">Guardar y conectar</button>
-      </div>
+      <p class="form-note">Copia la clave marcada como <strong>Publishable key</strong> en Supabase. También funciona la antigua <strong>anon key</strong>. Nunca introduzcas <strong>Secret key</strong>, <strong>service_role</strong> ni la contraseña de la base de datos.</p>
+      <div class="modal__actions"><button class="btn btn--secondary" type="button" data-close="settings-dialog">Cancelar</button><button class="btn" type="submit">Guardar y conectar</button></div>
     </form>
   </dialog>
 
   <dialog class="modal" id="project-dialog">
     <form id="project-form">
-      <div class="modal__head">
-        <div><p class="eyebrow">Proyecto</p><h2 id="project-dialog-title">Añadir proyecto</h2></div>
-        <button class="icon-button" type="button" data-close="project-dialog" aria-label="Cerrar">×</button>
-      </div>
+      <div class="modal__head"><div><p class="eyebrow">Proyecto</p><h2 id="project-dialog-title">Añadir proyecto</h2></div><button class="icon-button" type="button" data-close="project-dialog" aria-label="Cerrar">×</button></div>
       <input id="project-id" type="hidden" />
       <div class="form-grid">
-        <label class="field"><span>Nombre</span><input id="project-name" required /></label>
-        <label class="field"><span>Versión</span><input id="project-version" placeholder="0.1.0" /></label>
+        <label class="field"><span>Nombre</span><input id="project-name" required /></label><label class="field"><span>Versión</span><input id="project-version" placeholder="0.1.0" /></label>
         <label class="field"><span>Estado</span><select id="project-status"><option value="active">Activo</option><option value="paused">Pausado</option><option value="idea">Idea</option><option value="complete">Terminado</option></select></label>
         <label class="field"><span>Prioridad</span><select id="project-priority"><option value="high">Alta</option><option value="medium">Media</option><option value="low">Baja</option></select></label>
-        <label class="field"><span>Categoría</span><input id="project-category" placeholder="Productividad" /></label>
-        <label class="field"><span>Tecnologías</span><input id="project-tech" placeholder="HTML, CSS, Supabase" /></label>
+        <label class="field"><span>Categoría</span><input id="project-category" placeholder="Productividad" /></label><label class="field"><span>Tecnologías</span><input id="project-tech" placeholder="HTML, CSS, Supabase" /></label>
         <label class="field field--wide"><span>Descripción</span><textarea id="project-description" rows="4"></textarea></label>
-        <label class="field"><span>Web pública</span><input id="project-live-url" type="url" placeholder="https://..." /></label>
-        <label class="field"><span>Repositorio opcional</span><input id="project-repo-url" type="url" placeholder="https://github.com/..." /></label>
+        <label class="field"><span>Web pública</span><input id="project-live-url" type="url" placeholder="https://..." /></label><label class="field"><span>Repositorio opcional</span><input id="project-repo-url" type="url" placeholder="https://github.com/..." /></label>
       </div>
-      <div class="modal__actions">
-        <button class="btn btn--secondary" type="button" data-close="project-dialog">Cancelar</button>
-        <button class="btn" type="submit">Guardar proyecto</button>
-      </div>
+      <div class="modal__actions"><button class="btn btn--secondary" type="button" data-close="project-dialog">Cancelar</button><button class="btn" type="submit">Guardar proyecto</button></div>
     </form>
   </dialog>
 
   <dialog class="modal modal--small" id="task-dialog">
     <form id="task-form">
-      <div class="modal__head">
-        <div><p class="eyebrow">Seguimiento</p><h2>Nueva tarea</h2></div>
-        <button class="icon-button" type="button" data-close="task-dialog" aria-label="Cerrar">×</button>
-      </div>
+      <div class="modal__head"><div><p class="eyebrow">Seguimiento</p><h2>Nueva tarea</h2></div><button class="icon-button" type="button" data-close="task-dialog" aria-label="Cerrar">×</button></div>
       <div class="form-grid">
-        <label class="field field--wide"><span>Proyecto</span><select id="task-project" required></select></label>
-        <label class="field field--wide"><span>Tarea</span><input id="task-title" required /></label>
-        <label class="field"><span>Prioridad</span><select id="task-priority"><option value="high">Alta</option><option value="medium">Media</option><option value="low">Baja</option></select></label>
-        <label class="field"><span>Fecha límite</span><input id="task-due-date" type="date" /></label>
+        <label class="field field--wide"><span>Proyecto</span><select id="task-project" required></select></label><label class="field field--wide"><span>Tarea</span><input id="task-title" required /></label>
+        <label class="field"><span>Prioridad</span><select id="task-priority"><option value="high">Alta</option><option value="medium">Media</option><option value="low">Baja</option></select></label><label class="field"><span>Fecha límite</span><input id="task-due-date" type="date" /></label>
       </div>
-      <div class="modal__actions">
-        <button class="btn btn--secondary" type="button" data-close="task-dialog">Cancelar</button>
-        <button class="btn" type="submit">Guardar tarea</button>
-      </div>
+      <div class="modal__actions"><button class="btn btn--secondary" type="button" data-close="task-dialog">Cancelar</button><button class="btn" type="submit">Guardar tarea</button></div>
     </form>
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js?v=0.2.0"></script>
+  <script src="app.js?v=0.2.1"></script>
 </body>
 </html>
