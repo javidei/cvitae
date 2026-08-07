@@ -2,6 +2,13 @@
 
 Project Hub utiliza versionado semántico `MAJOR.MINOR.PATCH`.
 
+## 0.2.1 — 07/08/2026
+
+- Actualiza la configuración para la nueva `Publishable key` de Supabase.
+- Mantiene compatibilidad con la antigua `anon key`.
+- Mejora la validación y los mensajes de error de la conexión.
+- Aclara que nunca deben introducirse claves `Secret`, `service_role` ni contraseñas de base de datos.
+
 ## 0.2.0 — 07/08/2026
 
 - Conecta el panel con la API pública de GitHub.
