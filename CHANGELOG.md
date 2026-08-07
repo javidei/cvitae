@@ -4,6 +4,14 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.3 — 08/08/2026
+
+- Separa completamente Project Hub de `cvitae` y mantiene su código funcional en `javidei/panel-central`.
+- Conserva en `cvitae` la tarjeta y la imagen representativa de Project Hub.
+- Actualiza la tarjeta para abrir la web y el repositorio independientes.
+- Elimina la carpeta interna `project-hub` de `cvitae`.
+- Desacopla Project Hub de la caché PWA del portfolio y renueva la caché de `cvitae`.
+
 ## 0.3.0 — 07/08/2026
 
 - Añade Project Hub, un panel central responsive para gestionar proyectos y tareas.
