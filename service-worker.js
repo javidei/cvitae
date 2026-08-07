@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.3";
+const PORTFOLIO_VERSION = "0.3.4";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
@@ -7,6 +7,7 @@ const APP_SHELL = [
   "./index.html",
   `./styles.css?v=${PORTFOLIO_VERSION}`,
   "./manifest.webmanifest",
+  "./otome-card.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/projects/book-affinity.svg",
@@ -23,6 +24,35 @@ const INDEX_URL = new URL("./index.html", self.registration.scope).href;
 
 async function fetchFresh(request) {
   return fetch(new Request(request, { cache: "no-store" }));
+}
+
+async function withProjectCards(response) {
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("text/html")) return response;
+
+  const html = await response.text();
+  if (html.includes("otome-card.js")) {
+    return new Response(html, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers
+    });
+  }
+
+  const injected = html.replace(
+    "</body>",
+    `<script src="./otome-card.js?v=${PORTFOLIO_VERSION}"></script>\n</body>`
+  );
+  const headers = new Headers(response.headers);
+  headers.delete("content-length");
+  headers.delete("content-encoding");
+  headers.delete("etag");
+
+  return new Response(injected, {
+    status: response.status,
+    statusText: response.statusText,
+    headers
+  });
 }
 
 self.addEventListener("install", event => {
@@ -63,7 +93,8 @@ self.addEventListener("fetch", event => {
     event.respondWith((async () => {
       const cache = await caches.open(CACHE_NAME);
       try {
-        const response = await fetchFresh(request);
+        const networkResponse = await fetchFresh(request);
+        const response = networkResponse.ok ? await withProjectCards(networkResponse) : networkResponse;
         if (response.ok) await cache.put(request, response.clone());
         return response;
       } catch {
