@@ -1,7 +1,0 @@
-{
-  "name": "project-hub",
-  "version": "0.2.3",
-  "publishedAt": "2026-08-07",
-  "channel": "prestable",
-  "dataSources": ["github", "supabase", "manual"]
-}
