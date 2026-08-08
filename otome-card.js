@@ -1,4 +1,23 @@
 (() => {
+  const heroAvatar = document.querySelector('.hero__card .avatar img');
+  if (heroAvatar) {
+    heroAvatar.src = './assets/hero/javi-crossed-arms.svg?v=0.3.9';
+    heroAvatar.alt = 'Ilustración de Javier Díaz con los brazos cruzados';
+    heroAvatar.style.width = '100%';
+    heroAvatar.style.height = 'clamp(390px, 48vw, 560px)';
+    heroAvatar.style.objectFit = 'contain';
+    heroAvatar.style.objectPosition = 'center top';
+    heroAvatar.style.filter = 'none';
+
+    const heroAvatarFrame = heroAvatar.closest('.avatar');
+    if (heroAvatarFrame) {
+      heroAvatarFrame.style.background = 'transparent';
+      heroAvatarFrame.style.border = '0';
+      heroAvatarFrame.style.boxShadow = 'none';
+      heroAvatarFrame.style.overflow = 'hidden';
+    }
+  }
+
   const cards = document.querySelector('#proyectos .cards');
   if (!cards) return;
 
@@ -71,10 +90,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.8 · 08/08/2026';
-    version.title = 'Publicada el 8 de agosto de 2026';
+    version.textContent = 'v0.3.9 · 09/08/2026';
+    version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.8');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.9');
 })();
