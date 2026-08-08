@@ -29,10 +29,10 @@
     godotCard.style.backgroundSize = 'cover';
     godotCard.style.backgroundPosition = 'center';
     godotCard.innerHTML = `
-      <a class="proj__card-link" href="https://github.com/javidei/Godot" aria-label="Abrir el proyecto Godot en GitHub"></a>
+      <a class="proj__card-link" href="https://javidei.github.io/cvitae/godot/" aria-label="Jugar a Godot Game"></a>
       <span class="proj__eyebrow">En desarrollo · Godot 4</span>
       <h3>Godot Game</h3>
-      <p>Base inicial para un juego en Godot 4, preparada con escena principal y GDScript.</p>
+      <p>Demo narrativa en Godot 4 con diálogos, decisiones, afinidad y animaciones.</p>
       <div class="links">
         <a class="repo-link" href="https://github.com/javidei/Godot" aria-label="Abrir el repositorio de Godot">
           <i class="fa-brands fa-github" aria-hidden="true"></i><span>Godot</span>
@@ -44,10 +44,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.5 · 08/08/2026';
+    version.textContent = 'v0.3.6 · 08/08/2026';
     version.title = 'Publicada el 8 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.5');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.6');
 })();
