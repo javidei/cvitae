@@ -16,15 +16,26 @@
       heroAvatarFrame.style.overflow = 'hidden';
     }
 
-    fetch('./assets/hero/javi-crossed-arms.svg?v=0.3.10', { cache: 'no-store' })
-      .then(response => {
-        if (!response.ok) throw new Error('No se pudo cargar la imagen del hero');
-        return response.text();
-      })
-      .then(svg => {
-        const match = svg.match(/href=["'](data:image\/(?:webp|png);base64,[^"']+)["']/i);
-        if (!match) throw new Error('El recurso del hero no contiene una imagen válida');
-        heroAvatar.src = match[1];
+    const heroParts = [
+      './assets/hero/javi-crossed-arms-0.txt',
+      './assets/hero/javi-crossed-arms-1.txt',
+      './assets/hero/javi-crossed-arms-2.txt',
+      './assets/hero/javi-crossed-arms-3a.txt',
+      './assets/hero/javi-crossed-arms-3b.txt'
+    ];
+
+    Promise.all(heroParts.map(path => fetch(path, { cache: 'no-store' }).then(response => {
+      if (!response.ok) throw new Error(`No se pudo cargar ${path}`);
+      return response.text();
+    })))
+      .then(parts => {
+        const base64 = parts.join('').replace(/[^A-Za-z0-9+/=]/g, '');
+        if (!base64.startsWith('UklGR')) throw new Error('El recurso WebP no es válido');
+        heroAvatar.onerror = () => {
+          heroAvatar.onerror = null;
+          heroAvatar.src = './assets/icons/icon-512.png';
+        };
+        heroAvatar.src = `data:image/webp;base64,${base64}`;
       })
       .catch(() => {
         heroAvatar.src = './assets/icons/icon-512.png';
@@ -103,10 +114,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.10 · 09/08/2026';
+    version.textContent = 'v0.3.11 · 09/08/2026';
     version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.10');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.11');
 })();
