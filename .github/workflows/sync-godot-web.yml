@@ -1,5 +1,7 @@
 name: Sincronizar Godot Web
 
+# Sincronización solicitada desde Godot: 5e1360aa
+
 on:
   push:
     branches: [main]
