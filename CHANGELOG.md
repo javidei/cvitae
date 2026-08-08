@@ -4,6 +4,12 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.9 — 09/08/2026
+
+- Sustituye la ilustración circular del hero por la nueva imagen de Javier con los brazos cruzados.
+- Mantiene intactos los iconos de la PWA y el resto de imágenes del portfolio.
+- Renueva la caché para publicar inmediatamente el nuevo recurso.
+
 ## 0.3.5 — 08/08/2026
 
 - Añade la tarjeta base del proyecto **Godot** y su enlace al repositorio independiente.
