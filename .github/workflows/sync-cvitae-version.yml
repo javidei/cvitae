@@ -1,0 +1,74 @@
+name: Sync cvitae version
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-cvitae-version.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync visible version
+        run: |
+          python - <<'PY'
+          import json, re
+          from pathlib import Path
+          from datetime import datetime
+
+          version_data = json.loads(Path('version.json').read_text(encoding='utf-8'))
+          version = version_data['version']
+          published = version_data['publishedAt']
+          date = datetime.strptime(published, '%Y-%m-%d').strftime('%d/%m/%Y')
+
+          index_path = Path('index.html')
+          index = index_path.read_text(encoding='utf-8')
+          index = re.sub(r'(<meta name="application-version" content=")[^"]+(" />)', rf'\g<1>{version}\g<2>', index)
+          index = re.sub(r'(styles\.css\?v=)[0-9.]+', rf'\g<1>{version}', index)
+          index = re.sub(r'(service-worker\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
+          index = re.sub(r'v[0-9.]+ · \d{2}/\d{2}/\d{4}', f'v{version} · {date}', index)
+          if 'src="./otome-card.js' not in index:
+              index = index.replace('</body>', f'  <script src="./otome-card.js?v={version}"></script>\n</body>')
+          index_path.write_text(index, encoding='utf-8')
+
+          readme_path = Path('README.md')
+          readme = readme_path.read_text(encoding='utf-8')
+          readme = re.sub(r'\*\*[0-9.]+ — \d{2}/\d{2}/\d{4}\*\*', f'**{version} — {date}**', readme, count=1)
+          readme_path.write_text(readme, encoding='utf-8')
+
+          changelog_path = Path('CHANGELOG.md')
+          changelog = changelog_path.read_text(encoding='utf-8')
+          heading = f'## {version} — {date}'
+          if heading not in changelog:
+              anchor = 'Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.\n'
+              entry = (
+                  f'\n{heading}\n\n'
+                  '- Añade la tarjeta base del proyecto **Godot** y su enlace al repositorio independiente.\n'
+                  '- Sincroniza la versión visible del footer, metadatos y recursos PWA con `version.json`.\n'
+                  '- Carga las tarjetas dinámicas directamente desde `index.html` para no depender del service worker en la primera visita.\n'
+              )
+              changelog = changelog.replace(anchor, anchor + entry, 1)
+              changelog_path.write_text(changelog, encoding='utf-8')
+          PY
+
+      - name: Commit synced version
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html README.md CHANGELOG.md
+          if git diff --cached --quiet; then
+            echo 'Version already synced.'
+          else
+            git commit -m 'fix: mostrar cvitae 0.3.5 correctamente'
+            git push origin main
+          fi
