@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.8";
+const PORTFOLIO_VERSION = "0.3.9";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
@@ -10,6 +10,7 @@ const APP_SHELL = [
   "./otome-card.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
+  "./assets/hero/javi-crossed-arms.svg",
   "./assets/projects/book-affinity.svg",
   "./assets/projects/learn.svg",
   "./assets/projects/recetas.svg",
