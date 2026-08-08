@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.10 — 09/08/2026
+
+- Corrige la imagen rota del hero introducida en 0.3.9.
+- Carga directamente la imagen rasterizada incluida en el recurso del personaje en lugar de pedir al navegador que renderice el SVG contenedor.
+- Mantiene transparencia, proporciones y encaje del personaje de brazos cruzados.
+- Renueva la caché de la PWA.
+
 ## 0.3.9 — 09/08/2026
 
 - Sustituye la ilustración circular del hero por la nueva imagen de Javier con los brazos cruzados.
