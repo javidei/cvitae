@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.11 — 09/08/2026
+
+- Corrige definitivamente la imagen del hero cargando el WebP real del personaje desde datos base64 completos y verificados.
+- Elimina la dependencia del SVG contenedor que podía producir una imagen rota en GitHub Pages.
+- Mantiene el personaje de brazos cruzados, transparencia y proporciones originales.
+- Renueva la caché PWA con los nuevos recursos del hero.
+
 ## 0.3.10 — 09/08/2026
 
 - Corrige la imagen rota del hero introducida en 0.3.9.
