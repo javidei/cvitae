@@ -58,6 +58,55 @@
     }
   };
 
+  const getRepositoryName = card => {
+    const repoLink = card.querySelector('.repo-link[href*="github.com/javidei/"]');
+    if (!repoLink) return null;
+
+    try {
+      const url = new URL(repoLink.href);
+      const parts = url.pathname.split('/').filter(Boolean);
+      if (parts.length < 2 || parts[0].toLowerCase() !== 'javidei') return null;
+      return parts[1].replace(/\.git$/i, '').toLowerCase();
+    } catch {
+      return null;
+    }
+  };
+
+  const sortProjectsByLatestPush = async () => {
+    const projectCards = [...cards.querySelectorAll(':scope > .proj')];
+    if (projectCards.length < 2) return;
+
+    const originalOrder = new Map(projectCards.map((card, index) => [card, index]));
+
+    try {
+      const response = await fetch('https://api.github.com/users/javidei/repos?per_page=100&sort=pushed&direction=desc', {
+        cache: 'no-store',
+        headers: { Accept: 'application/vnd.github+json' }
+      });
+      if (!response.ok) return;
+
+      const repos = await response.json();
+      const pushedAt = new Map(repos.map(repo => [
+        String(repo.name || '').toLowerCase(),
+        Date.parse(repo.pushed_at || repo.updated_at || '') || 0
+      ]));
+
+      projectCards.sort((a, b) => {
+        const aRepo = getRepositoryName(a);
+        const bRepo = getRepositoryName(b);
+        const aDate = aRepo ? (pushedAt.get(aRepo) || 0) : 0;
+        const bDate = bRepo ? (pushedAt.get(bRepo) || 0) : 0;
+
+        if (aDate !== bDate) return bDate - aDate;
+        return originalOrder.get(a) - originalOrder.get(b);
+      });
+
+      projectCards.forEach(card => cards.appendChild(card));
+    } catch {
+      // Si GitHub no responde o limita la API, se conserva el orden original.
+    }
+  };
+
   cards.querySelectorAll('.proj--juego-otome').forEach(card => card.remove());
 
   let godotCard = cards.querySelector('.proj--godot');
@@ -89,12 +138,14 @@
     './assets/projects/godot-card-image-3.txt'
   ], 'radial-gradient(circle at 78% 22%, rgba(94, 190, 238, .34), transparent 28%), linear-gradient(135deg, #253a5a 0%, #15253e 50%, #09111f 100%)');
 
+  sortProjectsByLatestPush();
+
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.12 · 09/08/2026';
+    version.textContent = 'v0.3.13 · 09/08/2026';
     version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.12');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.13');
 })();
