@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: cvitae-godot-sync
+  cancel-in-progress: false
+
 env:
   GODOT_VERSION: "4.7.1"
 
@@ -69,5 +73,6 @@ jobs:
             echo "El build de Godot ya está actualizado"
           else
             git commit -m "build: publicar juego Godot en cvitae"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
