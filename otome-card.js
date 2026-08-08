@@ -47,7 +47,7 @@
 
   const loadEmbeddedImage = async (card, parts, fallback) => {
     try {
-      const chunks = await Promise.all(parts.map(path => fetch(path, { cache: 'force-cache' }).then(r => {
+      const chunks = await Promise.all(parts.map(path => fetch(path, { cache: 'no-store' }).then(r => {
         if (!r.ok) throw new Error(`No se pudo cargar ${path}`);
         return r.text();
       })));
@@ -58,39 +58,12 @@
     }
   };
 
-  let otomeCard = cards.querySelector('.proj--juego-otome');
-  if (!otomeCard) {
-    otomeCard = document.createElement('article');
-    otomeCard.className = 'proj proj--juego-otome';
-    otomeCard.style.backgroundSize = 'cover';
-    otomeCard.style.backgroundPosition = 'center 44%';
-    otomeCard.style.backgroundColor = '#1b1110';
-    otomeCard.innerHTML = `
-      <a class="proj__card-link" href="https://javidei.github.io/juego-otome/" aria-label="Abrir Entre líneas"></a>
-      <span class="proj__eyebrow">Juego web · Novela visual</span>
-      <h3>Entre líneas</h3>
-      <p>Demo otome con Javi, Sue y Smokey, decisiones, afinidad, guardado y animaciones.</p>
-      <div class="links">
-        <a class="repo-link" href="https://github.com/javidei/juego-otome" aria-label="Abrir el repositorio de Entre líneas">
-          <i class="fa-brands fa-github" aria-hidden="true"></i><span>juego-otome</span>
-        </a>
-      </div>`;
-    cards.appendChild(otomeCard);
-  }
-
-  loadEmbeddedImage(otomeCard, [
-    './assets/projects/entre-lineas-image-0.txt',
-    './assets/projects/entre-lineas-image-1.txt',
-    './assets/projects/entre-lineas-image-2.txt',
-    './assets/projects/entre-lineas-image-3.txt'
-  ], "url('https://javidei.github.io/juego-otome/assets/key-art.webp')");
+  cards.querySelectorAll('.proj--juego-otome').forEach(card => card.remove());
 
   let godotCard = cards.querySelector('.proj--godot');
   if (!godotCard) {
     godotCard = document.createElement('article');
     godotCard.className = 'proj proj--godot';
-    godotCard.style.backgroundSize = 'cover';
-    godotCard.style.backgroundPosition = 'center';
     godotCard.style.backgroundColor = '#11151f';
     godotCard.innerHTML = `
       <a class="proj__card-link" href="https://javidei.github.io/cvitae/godot/" aria-label="Jugar a Godot Game"></a>
@@ -105,6 +78,10 @@
     cards.appendChild(godotCard);
   }
 
+  godotCard.style.backgroundSize = 'cover';
+  godotCard.style.backgroundPosition = 'center top';
+  godotCard.style.backgroundRepeat = 'no-repeat';
+
   loadEmbeddedImage(godotCard, [
     './assets/projects/godot-card-image-0.txt',
     './assets/projects/godot-card-image-1.txt',
@@ -114,10 +91,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.11 · 09/08/2026';
+    version.textContent = 'v0.3.12 · 09/08/2026';
     version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.11');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.12');
 })();
