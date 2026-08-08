@@ -1,0 +1,62 @@
+name: Sincronizar Godot Web
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/sync-godot-web.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  GODOT_VERSION: "4.7.1"
+
+jobs:
+  sync-godot:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.7.1
+
+    steps:
+      - name: Checkout cvitae
+        uses: actions/checkout@v6
+
+      - name: Checkout Godot
+        uses: actions/checkout@v6
+        with:
+          repository: javidei/Godot
+          ref: main
+          path: _godot_source
+
+      - name: Preparar plantillas de exportación
+        run: |
+          mkdir -p "$HOME/.local/share/godot/export_templates"
+          mkdir -p "$HOME/.config"
+          if [ -d /root/.config/godot ]; then
+            mv /root/.config/godot "$HOME/.config/godot"
+          fi
+          mv "/root/.local/share/godot/export_templates/${GODOT_VERSION}.stable" "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+
+      - name: Exportar juego dentro de cvitae
+        run: |
+          rm -rf godot
+          mkdir -p godot
+          cd _godot_source
+          godot --headless --export-release "Web" ../godot/index.html
+          cd ..
+          touch godot/.nojekyll
+
+      - name: Guardar build web
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f godot
+          if git diff --cached --quiet; then
+            echo "El build de Godot ya está actualizado"
+          else
+            git commit -m "build: publicar juego Godot en cvitae"
+            git push origin HEAD:main
+          fi
