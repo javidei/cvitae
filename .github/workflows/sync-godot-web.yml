@@ -39,13 +39,24 @@ jobs:
           fi
           mv "/root/.local/share/godot/export_templates/${GODOT_VERSION}.stable" "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
 
-      - name: Exportar juego dentro de cvitae
+      - name: Exportar y validar juego dentro de cvitae
         run: |
           rm -rf godot
           mkdir -p godot
           cd _godot_source
-          godot --headless --export-release "Web" ../godot/index.html
+          set +e
+          godot --headless --export-release "Web" ../godot/index.html > ../godot-export.log 2>&1
+          STATUS=$?
+          set -e
           cd ..
+          cat godot-export.log
+          if [ "$STATUS" -ne 0 ] || grep -Eqi "SCRIPT ERROR:|Parse Error:|Failed to load script" godot-export.log; then
+            echo "El proyecto Godot contiene errores y no se publicará en cvitae."
+            exit 1
+          fi
+          test -s godot/index.html
+          test -s godot/index.wasm
+          test -s godot/index.pck
           touch godot/.nojekyll
 
       - name: Guardar build web
