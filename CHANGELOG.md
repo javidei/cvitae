@@ -4,6 +4,12 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.5 — 08/08/2026
+
+- Añade la tarjeta base del proyecto **Godot** y su enlace al repositorio independiente.
+- Sincroniza la versión visible del footer, metadatos y recursos PWA con `version.json`.
+- Carga las tarjetas dinámicas directamente desde `index.html` para no depender del service worker en la primera visita.
+
 ## 0.3.4 — 08/08/2026
 
 - Añade la tarjeta de **Entre líneas**, demo de novela visual/otome publicada en `javidei/juego-otome`.
