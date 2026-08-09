@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.18";
+const PORTFOLIO_VERSION = "0.3.19";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
@@ -41,26 +41,25 @@ async function withProjectCards(response) {
   const contentType = response.headers.get("content-type") || "";
   if (!contentType.includes("text/html")) return response;
 
-  let html = await response.text();
-
-  html = html
-    .replace(/styles\.css\?v=[^"']+/g, `styles.css?v=${PORTFOLIO_VERSION}`)
-    .replace(/otome-card\.js\?v=[^"']+/g, `otome-card.js?v=${PORTFOLIO_VERSION}`)
-    .replace(/service-worker\.js\?v=[^"']+/g, `service-worker.js?v=${PORTFOLIO_VERSION}`);
-
-  if (!html.includes("otome-card.js")) {
-    html = html.replace(
-      "</body>",
-      `<script src="./otome-card.js?v=${PORTFOLIO_VERSION}"></script>\n</body>`
-    );
+  const html = await response.text();
+  if (html.includes("otome-card.js")) {
+    return new Response(html, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers
+    });
   }
 
+  const injected = html.replace(
+    "</body>",
+    `<script src="./otome-card.js?v=${PORTFOLIO_VERSION}"></script>\n</body>`
+  );
   const headers = new Headers(response.headers);
   headers.delete("content-length");
   headers.delete("content-encoding");
   headers.delete("etag");
 
-  return new Response(html, {
+  return new Response(injected, {
     status: response.status,
     statusText: response.statusText,
     headers
