@@ -1,6 +1,6 @@
 name: Sincronizar Godot Web
 
-# Sincronización solicitada desde Godot: 456c9c1a
+# Sincronización solicitada desde Godot: 9c56a05a
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: javidei/Godot
-          ref: 456c9c1ab8552d51727010f547cf87e68d194113
+          ref: 9c56a05ae328735adc3cd50b3d33a52c346841bb
           path: _godot_source
 
       - name: Preparar plantillas de exportación
