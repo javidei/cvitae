@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '253a057d65566dc6c855f271c31131d51677fc7e';
+const CACHE_VERSION = 'a9326a0674f20df5a3e2794e1468acd4ff9a3bbe';
 /** @type {string} */
 const CACHE_PREFIX = 'Entre líneas · G-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
@@ -21,7 +21,7 @@ const CACHEABLE_FILES = ["index.wasm","index.pck"];
 const FULL_CACHE = CACHED_FILES.concat(CACHEABLE_FILES);
 
 self.addEventListener('install', (event) => {
-	event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHED_FILES)));
+	event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHED_FILES.map((file) => new Request(file, { cache: 'reload' })))));
 });
 
 self.addEventListener('activate', (event) => {
@@ -69,10 +69,10 @@ function ensureCrossOriginIsolationHeaders(response) {
 async function fetchAndCache(event, cache, isCacheable) {
 	// Use the preloaded response, if it's there
 	/** @type { Response } */
-	let response = await event.preloadResponse;
+	let response = null;
 	if (response == null) {
 		// Or, go over network.
-		response = await self.fetch(event.request);
+		response = await self.fetch(new Request(event.request, { cache: 'reload' }));
 	}
 
 	if (ENSURE_CROSSORIGIN_ISOLATION_HEADERS) {
