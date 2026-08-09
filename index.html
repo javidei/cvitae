@@ -7,12 +7,7 @@
   <meta name="description" content="Perfil profesional de Javier Díaz, Senior Software Engineer en NTT DATA Europe & Latam, con experiencia en backend Java, liderazgo técnico y coordinación de equipos." />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#0b1020" />
-  <meta name="application-version" content="0.3.5" />
-  <script>
-    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-      document.documentElement.classList.add('app-standalone');
-    }
-  </script>
+  <meta name="application-version" content="0.3.16" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preload" href="assets/icons/icon-512.png" as="image" type="image/png" fetchpriority="high" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
@@ -26,16 +21,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </noscript>
-  <link rel="stylesheet" href="styles.css?v=0.3.5" />
+  <link rel="stylesheet" href="styles.css?v=0.3.16" />
   <style>
-    html.app-standalone,html.app-standalone body{background-color:#0b1020}.app-standalone .app-splash{display:block;background:#0b1020}.app-standalone .app-splash__content{position:absolute;inset:0;width:auto;min-height:0;display:block}.app-standalone .app-splash__avatar{position:absolute;top:50%;left:50%;width:clamp(136px,38vw,156px);height:clamp(136px,38vw,156px);margin:0;transform:translate(-50%,-50%);animation:none}.app-standalone .app-splash__identity{position:absolute;top:calc(50% + 96px);left:50%;width:min(calc(100% - 40px),390px);opacity:0;transform:translate(-50%,7px);animation:none;transition:opacity .42s ease,transform .42s ease}.app-standalone .app-splash--ready .app-splash__identity{opacity:1;transform:translate(-50%,0)}.app-standalone .app-splash::before{top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .7s ease}.app-standalone .app-splash::after{opacity:0;transition:opacity .7s ease}.app-standalone .app-splash--ready::before,.app-standalone .app-splash--ready::after{opacity:1}
     #proyectos .section__head p{max-width:520px}#proyectos .cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}#proyectos .proj{min-height:184px!important;padding:17px!important;border-radius:16px;background-position:center}#proyectos .proj::before{background:linear-gradient(180deg,rgba(5,8,13,.16) 0%,rgba(5,8,13,.82) 62%,rgba(5,8,13,.97) 100%)}#proyectos .proj>*:not(.proj__card-link){max-width:100%!important}#proyectos .proj__eyebrow{max-width:100%;margin-bottom:5px;overflow:hidden;color:rgba(255,255,255,.72);font-size:9px;letter-spacing:.08em;text-overflow:ellipsis;white-space:nowrap}#proyectos .proj h3{margin:auto 0 5px;font-size:17px;line-height:1.2}#proyectos .proj p{display:-webkit-box;margin:0;overflow:hidden;color:rgba(255,255,255,.78);font-size:12.5px;line-height:1.4;-webkit-box-orient:vertical;-webkit-line-clamp:2}#proyectos .proj .links{margin-top:9px;padding-top:0;gap:8px;font-size:11px}#proyectos .proj .links a{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(0,0,0,.3);color:rgba(255,255,255,.9)}#proyectos .repo-link i{font-size:13px}.proj--project-hub{border-color:rgba(110,231,216,.55);background-position:center}.proj--project-hub::before{background:linear-gradient(180deg,rgba(4,10,18,.08),rgba(4,10,18,.78) 58%,rgba(4,10,18,.97))}.proj--project-hub a{color:#8cf4e7}.footer__version{display:inline-flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap}.footer__version::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
-    @media(max-width:900px){#proyectos .cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){#proyectos .cards{grid-template-columns:minmax(0,1fr);gap:11px}#proyectos .proj{min-height:150px!important;padding:15px!important}#proyectos .proj h3{font-size:16px}}@media(max-height:650px){.app-standalone .app-splash__avatar{width:132px;height:132px}.app-standalone .app-splash__identity{top:calc(50% + 80px)}}@media(prefers-reduced-motion:reduce){.app-standalone .app-splash__identity,.app-standalone .app-splash::before,.app-standalone .app-splash::after{transition:none}}
+    @media(max-width:900px){#proyectos .cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){#proyectos .cards{grid-template-columns:minmax(0,1fr);gap:11px}#proyectos .proj{min-height:150px!important;padding:15px!important}#proyectos .proj h3{font-size:16px}}
   </style>
 </head>
-<body class="is-splashing">
-  <div class="app-splash" id="app-splash" role="status" aria-label="Abriendo el portfolio de Javier Díaz"><div class="app-splash__content"><img class="app-splash__avatar" src="assets/icons/icon-512.png" alt="" width="160" height="160" /><div class="app-splash__identity"><span class="app-splash__eyebrow">Portfolio personal</span><p class="app-splash__name">Javier Díaz</p><p class="app-splash__role">Senior Software Engineer</p></div></div></div>
-  <noscript><style>.app-splash{display:none}body.is-splashing{overflow:auto}</style></noscript>
+<body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
   <header class="header"><div class="container header__inner"><div class="brand"><span class="brand__dot" aria-hidden="true"></span><span class="brand__name">Javier Díaz</span></div><nav class="nav" aria-label="Navegación principal"><a href="#perfil">Perfil</a><a href="#experiencia">Experiencia</a><a href="#skills">Skills</a><a href="#formacion">Formación</a><a class="nav__projects" href="#proyectos">Proyectos</a><a class="btn btn--ghost" href="#contacto">Contacto</a></nav></div></header>
   <main id="contenido" class="main">
@@ -58,11 +50,11 @@
       <article class="proj proj--stilton" style="background-image:url('https://images.unsplash.com/photo-1507842217343-583bb7270b66');"><a class="proj__card-link" href="https://javidei.github.io/stilton/" aria-label="Abrir la librería Stilton"></a><span class="proj__eyebrow">Google Books · Búsqueda</span><h3>Librería Stilton</h3><p>Buscador de libros con información ampliada y contenidos en vídeo.</p><div class="links"><a class="repo-link" href="https://github.com/javidei/stilton"><i class="fa-brands fa-github" aria-hidden="true"></i><span>stilton</span></a></div></article>
     </div></div></section>
     <section class="section section--tight" id="contacto"><div class="container"><div class="contact"><div class="contact__box"><h2>Contacto</h2><div class="contact__icons"><a href="mailto:javyspot@gmail.com" aria-label="Email" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a><a href="https://www.linkedin.com/in/javier-d%C3%ADaz-a8b126189" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a><a href="https://github.com/javidei/cvitae" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a></div></div></div></div></section>
-    <footer class="footer"><div class="container footer__inner"><span>© <span id="year"></span> Javier Díaz</span><span class="muted">Hecho con HTML + CSS · GitHub Pages</span><span class="footer__version" title="Publicada el 8 de agosto de 2026">v0.3.5 · 08/08/2026</span></div></footer>
+    <footer class="footer"><div class="container footer__inner"><span>© <span id="year"></span> Javier Díaz</span><span class="muted">Hecho con HTML + CSS · GitHub Pages</span><span class="footer__version" title="Publicada el 9 de agosto de 2026">v0.3.16 · 09/08/2026</span></div></footer>
   </main>
   <script>
-    document.getElementById('year').textContent=new Date().getFullYear();(()=>{const splash=document.getElementById('app-splash');const standalone=document.documentElement.classList.contains('app-standalone');if(!splash)return;if(!standalone){document.body.classList.remove('is-splashing');splash.remove();return}const fade=320;const remaining=Math.max(900,4000-Math.max(0,performance.now()));requestAnimationFrame(()=>splash.classList.add('app-splash--ready'));setTimeout(()=>{splash.classList.add('app-splash--hidden');document.body.classList.remove('is-splashing');setTimeout(()=>splash.remove(),fade)},remaining)})();if('serviceWorker'in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=0.3.5',{scope:'./',updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}))}
+    document.getElementById('year').textContent=new Date().getFullYear();if('serviceWorker'in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=0.3.16',{scope:'./',updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}))}
   </script>
-  <script src="./otome-card.js?v=0.3.5"></script>
+  <script src="./otome-card.js?v=0.3.16"></script>
 </body>
 </html>
