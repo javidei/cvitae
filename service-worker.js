@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.14";
+const PORTFOLIO_VERSION = "0.3.15";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
@@ -23,10 +23,12 @@ const APP_SHELL = [
   "./assets/projects/entre-amigos.svg",
   "./assets/projects/mis-pcs.jpg",
   "./assets/projects/project-hub.svg",
-  "./assets/projects/godot-card-image-0.txt",
-  "./assets/projects/godot-card-image-1.txt",
-  "./assets/projects/godot-card-image-2.txt",
-  "./assets/projects/godot-card-image-3.txt"
+  "./assets/projects/godot-pirate-card-0.txt",
+  "./assets/projects/godot-pirate-card-1.txt",
+  "./assets/projects/godot-pirate-card-2.txt",
+  "./assets/projects/godot-pirate-card-3.txt",
+  "./assets/projects/godot-pirate-card-4.txt",
+  "./assets/projects/godot-pirate-card-5.txt"
 ];
 
 const INDEX_URL = new URL("./index.html", self.registration.scope).href;
