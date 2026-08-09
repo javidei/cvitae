@@ -1,19 +1,166 @@
 (() => {
+  const portraitStyles = document.createElement('style');
+  portraitStyles.textContent = `
+    .hero {
+      padding-bottom: 0 !important;
+    }
+
+    .hero__grid {
+      align-items: stretch !important;
+    }
+
+    .hero__card {
+      min-height: 100%;
+      display: flex !important;
+      align-items: flex-end !important;
+      justify-content: center !important;
+      align-self: stretch;
+      justify-self: stretch;
+    }
+
+    .hero__card .avatar {
+      width: min(100%, 440px) !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      border: 0 !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .hero__card .avatar img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 650px !important;
+      display: block;
+      object-fit: contain !important;
+      object-position: center bottom !important;
+      border-radius: 0 !important;
+      clip-path: none !important;
+      filter: none !important;
+    }
+
+    #experiencia.section {
+      padding-top: 0 !important;
+    }
+
+    .mobile-profile-avatar {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      html {
+        scroll-padding-top: 112px;
+      }
+
+      .header__inner {
+        padding-top: 8px;
+      }
+
+      .brand {
+        min-height: 46px;
+        gap: 9px;
+      }
+
+      .brand__dot {
+        display: none;
+      }
+
+      .mobile-profile-avatar {
+        width: 38px;
+        height: 46px;
+        display: block;
+        flex: 0 0 auto;
+        object-fit: contain;
+        object-position: center bottom;
+        border-radius: 0;
+        opacity: 0;
+        transition: opacity .15s ease;
+      }
+
+      .mobile-profile-avatar.is-ready {
+        opacity: 1;
+      }
+
+      .hero {
+        padding: 28px 0 10px !important;
+      }
+
+      .hero__grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 0 !important;
+      }
+
+      .hero__card {
+        display: none !important;
+      }
+
+      #experiencia.section {
+        padding-top: 32px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header__inner {
+        gap: 3px;
+      }
+
+      .brand {
+        min-height: 42px;
+      }
+
+      .mobile-profile-avatar {
+        width: 34px;
+        height: 42px;
+      }
+
+      .nav {
+        padding-bottom: 7px;
+      }
+
+      .hero {
+        padding-top: 22px !important;
+      }
+    }
+  `;
+  document.head.appendChild(portraitStyles);
+
   const heroAvatar = document.querySelector('.hero__card .avatar img');
+  const brand = document.querySelector('.header .brand');
+  let mobileAvatar = null;
+
+  if (brand) {
+    mobileAvatar = document.createElement('img');
+    mobileAvatar.className = 'mobile-profile-avatar';
+    mobileAvatar.alt = '';
+    mobileAvatar.setAttribute('aria-hidden', 'true');
+    const brandName = brand.querySelector('.brand__name');
+    if (brandName) brand.insertBefore(mobileAvatar, brandName);
+    else brand.appendChild(mobileAvatar);
+  }
+
   if (heroAvatar) {
     heroAvatar.alt = 'Ilustración de Javier Díaz con los brazos cruzados';
     heroAvatar.style.width = '100%';
-    heroAvatar.style.height = 'clamp(390px, 48vw, 560px)';
+    heroAvatar.style.height = 'auto';
+    heroAvatar.style.maxHeight = '650px';
     heroAvatar.style.objectFit = 'contain';
-    heroAvatar.style.objectPosition = 'center top';
+    heroAvatar.style.objectPosition = 'center bottom';
     heroAvatar.style.filter = 'none';
+    heroAvatar.style.borderRadius = '0';
 
     const heroAvatarFrame = heroAvatar.closest('.avatar');
     if (heroAvatarFrame) {
       heroAvatarFrame.style.background = 'transparent';
       heroAvatarFrame.style.border = '0';
+      heroAvatarFrame.style.borderRadius = '0';
       heroAvatarFrame.style.boxShadow = 'none';
-      heroAvatarFrame.style.overflow = 'hidden';
+      heroAvatarFrame.style.overflow = 'visible';
     }
 
     const heroParts = [
@@ -31,14 +178,23 @@
       .then(parts => {
         const base64 = parts.join('').replace(/[^A-Za-z0-9+/=]/g, '');
         if (!base64.startsWith('UklGR')) throw new Error('El recurso WebP no es válido');
+        const src = `data:image/webp;base64,${base64}`;
+
         heroAvatar.onerror = () => {
           heroAvatar.onerror = null;
           heroAvatar.src = './assets/icons/icon-512.png';
         };
-        heroAvatar.src = `data:image/webp;base64,${base64}`;
+        heroAvatar.src = src;
+
+        if (mobileAvatar) {
+          mobileAvatar.onload = () => mobileAvatar.classList.add('is-ready');
+          mobileAvatar.onerror = () => mobileAvatar.remove();
+          mobileAvatar.src = src;
+        }
       })
       .catch(() => {
         heroAvatar.src = './assets/icons/icon-512.png';
+        if (mobileAvatar) mobileAvatar.remove();
       });
   }
 
@@ -153,10 +309,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.16 · 09/08/2026';
+    version.textContent = 'v0.3.17 · 09/08/2026';
     version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.16');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.17');
 })();
