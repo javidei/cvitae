@@ -52,6 +52,7 @@
         return r.text();
       })));
       const base64 = chunks.join('').replace(/[^A-Za-z0-9+/=]/g, '');
+      if (!base64.startsWith('UklGR')) throw new Error('El recurso WebP no es válido');
       card.style.backgroundImage = `url("data:image/webp;base64,${base64}")`;
     } catch {
       card.style.backgroundImage = fallback;
@@ -136,24 +137,26 @@
   }
 
   godotCard.style.backgroundSize = 'cover';
-  godotCard.style.backgroundPosition = 'center top';
+  godotCard.style.backgroundPosition = 'center 42%';
   godotCard.style.backgroundRepeat = 'no-repeat';
 
   loadEmbeddedImage(godotCard, [
-    './assets/projects/godot-card-image-0.txt',
-    './assets/projects/godot-card-image-1.txt',
-    './assets/projects/godot-card-image-2.txt',
-    './assets/projects/godot-card-image-3.txt'
+    './assets/projects/godot-pirate-card-0.txt',
+    './assets/projects/godot-pirate-card-1.txt',
+    './assets/projects/godot-pirate-card-2.txt',
+    './assets/projects/godot-pirate-card-3.txt',
+    './assets/projects/godot-pirate-card-4.txt',
+    './assets/projects/godot-pirate-card-5.txt'
   ], 'radial-gradient(circle at 78% 22%, rgba(94, 190, 238, .34), transparent 28%), linear-gradient(135deg, #253a5a 0%, #15253e 50%, #09111f 100%)');
 
   sortProjectsByLatestPush();
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.14 · 09/08/2026';
+    version.textContent = 'v0.3.15 · 09/08/2026';
     version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.14');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.15');
 })();
