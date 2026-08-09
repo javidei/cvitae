@@ -4,6 +4,11 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.18 — 09/08/2026
+
+- Añade separación entre la tarjeta **Resumen** y la línea horizontal de Experiencia en escritorio.
+- Mantiene el personaje apoyado sobre esa línea y conserva intacta la composición móvil del header.
+
 ## 0.3.17 — 09/08/2026
 
 - Elimina el recorte circular del retrato principal y muestra la ilustración completa.

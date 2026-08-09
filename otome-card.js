@@ -9,6 +9,12 @@
       align-items: stretch !important;
     }
 
+    @media (min-width: 761px) {
+      .hero__text {
+        padding-bottom: 24px;
+      }
+    }
+
     .hero__card {
       min-height: 100%;
       display: flex !important;
@@ -309,10 +315,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.17 · 09/08/2026';
+    version.textContent = 'v0.3.18 · 09/08/2026';
     version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.17');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.18');
 })();
