@@ -55,10 +55,6 @@
       padding-top: 0 !important;
     }
 
-    .mobile-profile-avatar {
-      display: none;
-    }
-
     @media (max-width: 760px) {
       html {
         scroll-padding-top: 112px;
@@ -75,22 +71,6 @@
 
       .brand__dot {
         display: none;
-      }
-
-      .mobile-profile-avatar {
-        width: 38px;
-        height: 46px;
-        display: block;
-        flex: 0 0 auto;
-        object-fit: contain;
-        object-position: center bottom;
-        border-radius: 0;
-        opacity: 0;
-        transition: opacity .15s ease;
-      }
-
-      .mobile-profile-avatar.is-ready {
-        opacity: 1;
       }
 
       .hero {
@@ -120,11 +100,6 @@
         min-height: 42px;
       }
 
-      .mobile-profile-avatar {
-        width: 34px;
-        height: 42px;
-      }
-
       .nav {
         padding-bottom: 7px;
       }
@@ -136,19 +111,9 @@
   `;
   document.head.appendChild(portraitStyles);
 
-  const heroAvatar = document.querySelector('.hero__card .avatar img');
-  const brand = document.querySelector('.header .brand');
-  let mobileAvatar = null;
+  document.querySelectorAll('.mobile-profile-avatar').forEach(node => node.remove());
 
-  if (brand) {
-    mobileAvatar = document.createElement('img');
-    mobileAvatar.className = 'mobile-profile-avatar';
-    mobileAvatar.alt = '';
-    mobileAvatar.setAttribute('aria-hidden', 'true');
-    const brandName = brand.querySelector('.brand__name');
-    if (brandName) brand.insertBefore(mobileAvatar, brandName);
-    else brand.appendChild(mobileAvatar);
-  }
+  const heroAvatar = document.querySelector('.hero__card .avatar img');
 
   if (heroAvatar) {
     heroAvatar.alt = 'Ilustración de Javier Díaz con los brazos cruzados';
@@ -191,16 +156,9 @@
           heroAvatar.src = './assets/icons/icon-512.png';
         };
         heroAvatar.src = src;
-
-        if (mobileAvatar) {
-          mobileAvatar.onload = () => mobileAvatar.classList.add('is-ready');
-          mobileAvatar.onerror = () => mobileAvatar.remove();
-          mobileAvatar.src = src;
-        }
       })
       .catch(() => {
         heroAvatar.src = './assets/icons/icon-512.png';
-        if (mobileAvatar) mobileAvatar.remove();
       });
   }
 
@@ -315,10 +273,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.18 · 09/08/2026';
+    version.textContent = 'v0.3.19 · 09/08/2026';
     version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.18');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.19');
 })();
