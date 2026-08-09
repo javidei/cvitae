@@ -1,6 +1,6 @@
 name: Sincronizar Godot Web
 
-# Sincronización solicitada desde Godot: f1ac0115
+# Sincronización solicitada desde Godot: 371b9e1a
 
 on:
   push:
