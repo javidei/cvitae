@@ -4,6 +4,14 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.17 — 09/08/2026
+
+- Elimina el recorte circular del retrato principal y muestra la ilustración completa.
+- Ajusta el tamaño del personaje al alto disponible del hero y lo apoya visualmente sobre la línea de inicio de Experiencia.
+- En móvil, mueve el retrato a la barra superior junto al nombre y lo elimina del hero.
+- Reduce el espacio vertical del hero móvil para que la sección se adapte mejor a pantallas pequeñas.
+- Renueva la caché PWA para publicar inmediatamente los cambios responsive.
+
 ## 0.3.16 — 09/08/2026
 
 - Elimina la pantalla de carga inicial con foto y nombre al abrir cvitae como PWA en móvil.
