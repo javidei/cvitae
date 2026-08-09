@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.16 — 09/08/2026
+
+- Elimina la pantalla de carga inicial con foto y nombre al abrir cvitae como PWA en móvil.
+- La aplicación entra directamente al contenido sin esperar los 4 segundos del splash anterior.
+- Mantiene intactos el icono de la PWA, el hero y el resto de recursos visuales.
+- Renueva la caché y el versionado para publicar el cambio inmediatamente.
+
 ## 0.3.15 — 09/08/2026
 
 - Sustituye la imagen de fondo de la tarjeta **Godot Game** por el arte de grupo aprobado.
