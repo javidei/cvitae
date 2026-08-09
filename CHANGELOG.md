@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.15 — 09/08/2026
+
+- Sustituye la imagen de fondo de la tarjeta **Godot Game** por el arte de grupo aprobado.
+- Integra el escenario nocturno pirata en pixel art detrás de los personajes.
+- Ajusta el encuadre de la tarjeta para priorizar las caras y el grupo completo.
+- Renueva la caché PWA con los nuevos recursos de Godot.
+
 ## 0.3.11 — 09/08/2026
 
 - Corrige definitivamente la imagen del hero cargando el WebP real del personaje desde datos base64 completos y verificados.
