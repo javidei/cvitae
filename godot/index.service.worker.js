@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1786307699|10688682';
+const CACHE_VERSION = '253a057d65566dc6c855f271c31131d51677fc7e';
 /** @type {string} */
 const CACHE_PREFIX = 'Entre líneas · G-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
@@ -164,3 +164,15 @@ self.addEventListener('message', (event) => {
 	});
 });
 
+
+// ENTRE_LINEAS_AUTO_UPDATE
+self.addEventListener('install', (event) => {
+  event.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(self.clients.claim().then(() => self.clients.matchAll({
+    type: 'window',
+    includeUncontrolled: true,
+})).then((clients) => Promise.all(clients.map((client) => client.navigate(client.url).catch(() => null)))));
+});
