@@ -41,25 +41,26 @@ async function withProjectCards(response) {
   const contentType = response.headers.get("content-type") || "";
   if (!contentType.includes("text/html")) return response;
 
-  const html = await response.text();
-  if (html.includes("otome-card.js")) {
-    return new Response(html, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: response.headers
-    });
+  let html = await response.text();
+
+  html = html
+    .replace(/styles\.css\?v=[^"']+/g, `styles.css?v=${PORTFOLIO_VERSION}`)
+    .replace(/otome-card\.js\?v=[^"']+/g, `otome-card.js?v=${PORTFOLIO_VERSION}`)
+    .replace(/service-worker\.js\?v=[^"']+/g, `service-worker.js?v=${PORTFOLIO_VERSION}`);
+
+  if (!html.includes("otome-card.js")) {
+    html = html.replace(
+      "</body>",
+      `<script src="./otome-card.js?v=${PORTFOLIO_VERSION}"></script>\n</body>`
+    );
   }
 
-  const injected = html.replace(
-    "</body>",
-    `<script src="./otome-card.js?v=${PORTFOLIO_VERSION}"></script>\n</body>`
-  );
   const headers = new Headers(response.headers);
   headers.delete("content-length");
   headers.delete("content-encoding");
   headers.delete("etag");
 
-  return new Response(injected, {
+  return new Response(html, {
     status: response.status,
     statusText: response.statusText,
     headers
