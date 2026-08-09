@@ -109,6 +109,14 @@
 
   cards.querySelectorAll('.proj--juego-otome').forEach(card => card.remove());
 
+  const kebabCard = cards.querySelector('.proj--kebab');
+  if (kebabCard) {
+    kebabCard.style.backgroundImage = "url('https://images.unsplash.com/photo-1773620494884-940e0db95e46?auto=format&fit=crop&w=1200&q=80')";
+    kebabCard.style.backgroundSize = 'cover';
+    kebabCard.style.backgroundPosition = 'center 58%';
+    kebabCard.style.backgroundRepeat = 'no-repeat';
+  }
+
   let godotCard = cards.querySelector('.proj--godot');
   if (!godotCard) {
     godotCard = document.createElement('article');
@@ -142,10 +150,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.13 · 09/08/2026';
+    version.textContent = 'v0.3.14 · 09/08/2026';
     version.title = 'Publicada el 9 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.13');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.14');
 })();
