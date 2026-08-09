@@ -1,6 +1,6 @@
 name: Sincronizar Godot Web
 
-# Sincronización solicitada desde Godot: 2bb3d6a4
+# Sincronización solicitada desde Godot: 253a057d
 
 on:
   push:
@@ -63,6 +63,7 @@ jobs:
           test -s godot/index.html
           test -s godot/index.wasm
           test -s godot/index.pck
+          ./_godot_source/scripts/prepare_web_export.sh godot "$(git -C _godot_source rev-parse HEAD)"
           touch godot/.nojekyll
 
       - name: Guardar build web
