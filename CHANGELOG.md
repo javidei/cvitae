@@ -4,6 +4,18 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.20 — 10/08/2026
+
+- Cambia el enlace de GitHub de la sección **Contacto** para abrir el perfil general `javidei`.
+- Añade un acceso directo a WhatsApp con el número `+34 622 854 155`.
+- El enlace de WhatsApp abre el chat mediante `wa.me`, compatible con la aplicación móvil y WhatsApp Web.
+- Renueva la caché PWA para publicar el cambio inmediatamente.
+
+## 0.3.19 — 09/08/2026
+
+- Elimina la miniatura del personaje de la barra superior en la versión móvil.
+- Mantiene la ilustración completa únicamente en la composición de escritorio.
+
 ## 0.3.18 — 09/08/2026
 
 - Añade separación entre la tarjeta **Resumen** y la línea horizontal de Experiencia en escritorio.
