@@ -4,9 +4,9 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '774a7246eac0929bf578b282b0faeed997ae8612';
+const CACHE_VERSION = 'b99905c5896b8cc9c69816b01d47f080abf8282a';
 /** @type {string} */
-const CACHE_PREFIX = 'Entre líneas · G-sw-cache-';
+const CACHE_PREFIX = 'Entre líneas: La-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 /** @type {string} */
 const OFFLINE_URL = 'index.offline.html';
