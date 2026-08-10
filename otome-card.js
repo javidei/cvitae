@@ -265,11 +265,14 @@
     godotCard.className = 'proj proj--godot';
     godotCard.style.backgroundColor = '#11151f';
     godotCard.innerHTML = `
-      <a class="proj__card-link" href="https://javidei.github.io/cvitae/godot/" aria-label="Jugar a Godot Game"></a>
-      <span class="proj__eyebrow">En desarrollo · Godot 4</span>
-      <h3>Godot Game</h3>
-      <p>Demo narrativa en Godot 4 con diálogos, decisiones, afinidad y animaciones.</p>
+      <a class="proj__card-link" href="https://javidei.github.io/Godot/" aria-label="Jugar a Entre líneas: La octava silla"></a>
+      <span class="proj__eyebrow">Early Access · Godot 4</span>
+      <h3>Entre líneas: La octava silla</h3>
+      <p>Novela visual con diálogos, decisiones y afinidad entre siete personajes.</p>
       <div class="links">
+        <a href="https://javidei.github.io/Godot/" aria-label="Jugar a Entre líneas: La octava silla">
+          <i class="fa-solid fa-gamepad" aria-hidden="true"></i><span>Jugar</span>
+        </a>
         <a class="repo-link" href="https://github.com/javidei/Godot" aria-label="Abrir el repositorio de Godot">
           <i class="fa-brands fa-github" aria-hidden="true"></i><span>Godot</span>
         </a>
@@ -294,10 +297,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.20 · 10/08/2026';
+    version.textContent = 'v0.3.21 · 10/08/2026';
     version.title = 'Publicada el 10 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.20');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.21');
 })();

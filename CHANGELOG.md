@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.21 — 10/08/2026
+
+- Publica **Entre líneas: La octava silla** directamente desde `javidei/Godot` mediante GitHub Pages.
+- Actualiza la tarjeta con accesos independientes para jugar y abrir el repositorio.
+- Elimina de `cvitae` la copia de la build, su manifiesto y el workflow de sincronización.
+- Renueva la caché PWA para servir los nuevos enlaces inmediatamente.
+
 ## 0.3.20 — 10/08/2026
 
 - Cambia el enlace de GitHub de la sección **Contacto** para abrir el perfil general `javidei`.
