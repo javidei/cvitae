@@ -265,12 +265,12 @@
     godotCard.className = 'proj proj--godot';
     godotCard.style.backgroundColor = '#11151f';
     godotCard.innerHTML = `
-      <a class="proj__card-link" href="https://javidei.github.io/Godot/" aria-label="Jugar a Entre líneas: La octava silla"></a>
+      <a class="proj__card-link" href="https://javidei.github.io/Godot/" target="_blank" rel="noopener noreferrer" aria-label="Jugar a Entre líneas: La octava silla"></a>
       <span class="proj__eyebrow">Early Access · Godot 4</span>
       <h3>Entre líneas: La octava silla</h3>
       <p>Novela visual con diálogos, decisiones y afinidad entre siete personajes.</p>
       <div class="links">
-        <a href="https://javidei.github.io/Godot/" aria-label="Jugar a Entre líneas: La octava silla">
+        <a href="https://javidei.github.io/Godot/" target="_blank" rel="noopener noreferrer" aria-label="Jugar a Entre líneas: La octava silla">
           <i class="fa-solid fa-gamepad" aria-hidden="true"></i><span>Jugar</span>
         </a>
         <a class="repo-link" href="https://github.com/javidei/Godot" aria-label="Abrir el repositorio de Godot">
