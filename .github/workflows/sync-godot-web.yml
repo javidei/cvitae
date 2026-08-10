@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: javidei/Godot
-          ref: 4503004a5d674a91647b940335c8668450a58c02
+          ref: main
           path: _godot_source
 
       - name: Preparar plantillas de exportación
