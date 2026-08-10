@@ -162,6 +162,27 @@
       });
   }
 
+  const contactIcons = document.querySelector('#contacto .contact__icons');
+  if (contactIcons) {
+    const githubContact = contactIcons.querySelector('a[aria-label="GitHub"]');
+    if (githubContact) {
+      githubContact.href = 'https://github.com/javidei';
+      githubContact.title = 'GitHub · javidei';
+    }
+
+    let whatsappContact = contactIcons.querySelector('a[aria-label^="WhatsApp"]');
+    if (!whatsappContact) {
+      whatsappContact = document.createElement('a');
+      whatsappContact.href = 'https://wa.me/34622854155';
+      whatsappContact.target = '_blank';
+      whatsappContact.rel = 'noopener noreferrer';
+      whatsappContact.setAttribute('aria-label', 'WhatsApp · +34 622 854 155');
+      whatsappContact.title = 'WhatsApp · +34 622 854 155';
+      whatsappContact.innerHTML = '<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>';
+      contactIcons.appendChild(whatsappContact);
+    }
+  }
+
   const cards = document.querySelector('#proyectos .cards');
   if (!cards) return;
 
@@ -273,10 +294,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.19 · 09/08/2026';
-    version.title = 'Publicada el 9 de agosto de 2026';
+    version.textContent = 'v0.3.20 · 10/08/2026';
+    version.title = 'Publicada el 10 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.19');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.20');
 })();
