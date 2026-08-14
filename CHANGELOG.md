@@ -4,6 +4,12 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.23 — 14/08/2026
+
+- Añade la tarjeta de **Pixel Adventure** a la sección de proyectos.
+- Enlaza la tarjeta con la demo publicada desde `javidei/pixel-adventure` y con su repositorio independiente.
+- Renueva la caché PWA y sincroniza el versionado visible del portfolio.
+
 ## 0.3.21 — 10/08/2026
 
 - Publica **Entre líneas: La octava silla** directamente desde `javidei/Godot` mediante GitHub Pages.
