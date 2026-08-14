@@ -293,14 +293,38 @@
     './assets/projects/godot-pirate-card-5.txt'
   ], 'radial-gradient(circle at 78% 22%, rgba(94, 190, 238, .34), transparent 28%), linear-gradient(135deg, #253a5a 0%, #15253e 50%, #09111f 100%)');
 
+  let pixelAdventureCard = cards.querySelector('.proj--pixel-adventure');
+  if (!pixelAdventureCard) {
+    pixelAdventureCard = document.createElement('article');
+    pixelAdventureCard.className = 'proj proj--pixel-adventure';
+    pixelAdventureCard.style.backgroundColor = '#080b14';
+    pixelAdventureCard.style.backgroundImage = 'repeating-linear-gradient(0deg, rgba(121,217,208,.08) 0 2px, transparent 2px 8px), linear-gradient(135deg, #151b2c 0%, #38283a 54%, #080b14 100%)';
+    pixelAdventureCard.style.backgroundSize = 'cover';
+    pixelAdventureCard.style.backgroundPosition = 'center';
+    pixelAdventureCard.innerHTML = `
+      <a class="proj__card-link" href="https://javidei.github.io/pixel-adventure/" target="_blank" rel="noopener noreferrer" aria-label="Jugar a Pixel Adventure"></a>
+      <span class="proj__eyebrow">Prototipo · Point & Click · Godot 4</span>
+      <h3>Pixel Adventure</h3>
+      <p>Aventura gráfica retro con verbos, inventario, hotspots y puzles al estilo clásico.</p>
+      <div class="links">
+        <a href="https://javidei.github.io/pixel-adventure/" target="_blank" rel="noopener noreferrer" aria-label="Jugar a Pixel Adventure">
+          <i class="fa-solid fa-gamepad" aria-hidden="true"></i><span>Jugar demo</span>
+        </a>
+        <a class="repo-link" href="https://github.com/javidei/pixel-adventure" aria-label="Abrir el repositorio de Pixel Adventure">
+          <i class="fa-brands fa-github" aria-hidden="true"></i><span>pixel-adventure</span>
+        </a>
+      </div>`;
+    cards.appendChild(pixelAdventureCard);
+  }
+
   sortProjectsByLatestPush();
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.21 · 10/08/2026';
-    version.title = 'Publicada el 10 de agosto de 2026';
+    version.textContent = 'v0.3.23 · 14/08/2026';
+    version.title = 'Publicada el 14 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.21');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.23');
 })();
