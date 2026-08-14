@@ -42,9 +42,12 @@ jobs:
           index = re.sub(r'(styles\.css\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'(service-worker\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'(otome-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
+          index = re.sub(r'(pixel-adventure-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'v[0-9.]+ · \d{2}/\d{2}/\d{4}', f'v{version} · {date}', index)
           if 'src="./otome-card.js' not in index:
               index = index.replace('</body>', f'  <script src="./otome-card.js?v={version}"></script>\n</body>')
+          if 'src="./pixel-adventure-card.js' not in index:
+              index = index.replace('</body>', f'  <script src="./pixel-adventure-card.js?v={version}"></script>\n</body>')
           index_path.write_text(index, encoding='utf-8')
 
           readme_path = Path('README.md')
