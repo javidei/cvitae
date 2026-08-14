@@ -4,6 +4,12 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.24 — 14/08/2026
+
+- Usa la ilustración **The Secret of Naranjal del Río** como fondo real de la tarjeta de Pixel Adventure.
+- Añade el cargador de portada optimizada y sus recursos a la caché PWA.
+- Sincroniza el nuevo recurso dinámico con el versionado visible del portfolio.
+
 ## 0.3.23 — 14/08/2026
 
 - Añade la tarjeta de **Pixel Adventure** a la sección de proyectos.
