@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.24";
+const PORTFOLIO_VERSION = "0.3.25";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
@@ -9,6 +9,7 @@ const APP_SHELL = [
   "./manifest.webmanifest",
   "./otome-card.js",
   "./pixel-adventure-card.js",
+  "./survival-card.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/hero/javi-crossed-arms-0.txt",
@@ -32,7 +33,8 @@ const APP_SHELL = [
   "./assets/projects/godot-pirate-card-5.txt",
   "./assets/projects/pixel-adventure-card-0.txt",
   "./assets/projects/pixel-adventure-card-1.txt",
-  "./assets/projects/pixel-adventure-card-2.txt"
+  "./assets/projects/pixel-adventure-card-2.txt",
+  "./assets/projects/naranjal-survival.webp"
 ];
 
 const INDEX_URL = new URL("./index.html", self.registration.scope).href;
