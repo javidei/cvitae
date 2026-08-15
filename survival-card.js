@@ -34,6 +34,9 @@
     card.style.backgroundPosition = 'center 48%';
     card.style.backgroundRepeat = 'no-repeat';
 
+    const playLink = card.querySelector('.proj__card-link');
+    if (playLink) playLink.href = PLAY_URL;
+
     const version = document.querySelector('.footer__version');
     if (version) {
       version.textContent = `v${VERSION} · ${DATE}`;
