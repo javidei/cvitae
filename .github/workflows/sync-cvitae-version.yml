@@ -34,7 +34,13 @@ jobs:
           version_data = json.loads(Path('version.json').read_text(encoding='utf-8'))
           version = version_data['version']
           published = version_data['publishedAt']
-          date = datetime.strptime(published, '%Y-%m-%d').strftime('%d/%m/%Y')
+          parsed_date = datetime.strptime(published, '%Y-%m-%d')
+          date = parsed_date.strftime('%d/%m/%Y')
+          months = {
+              1: 'enero', 2: 'febrero', 3: 'marzo', 4: 'abril', 5: 'mayo', 6: 'junio',
+              7: 'julio', 8: 'agosto', 9: 'septiembre', 10: 'octubre', 11: 'noviembre', 12: 'diciembre'
+          }
+          date_text = f"{parsed_date.day} de {months[parsed_date.month]} de {parsed_date.year}"
 
           index_path = Path('index.html')
           index = index_path.read_text(encoding='utf-8')
@@ -44,11 +50,30 @@ jobs:
           index = re.sub(r'(otome-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'(pixel-adventure-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'v[0-9.]+ · \d{2}/\d{2}/\d{4}', f'v{version} · {date}', index)
+          index = re.sub(r'title="Publicada el [^"]+"', f'title="Publicada el {date_text}"', index)
           if 'src="./otome-card.js' not in index:
               index = index.replace('</body>', f'  <script src="./otome-card.js?v={version}"></script>\n</body>')
           if 'src="./pixel-adventure-card.js' not in index:
               index = index.replace('</body>', f'  <script src="./pixel-adventure-card.js?v={version}"></script>\n</body>')
           index_path.write_text(index, encoding='utf-8')
+
+          sw_path = Path('service-worker.js')
+          sw = sw_path.read_text(encoding='utf-8')
+          sw = re.sub(r'const PORTFOLIO_VERSION = "[^"]+";', f'const PORTFOLIO_VERSION = "{version}";', sw, count=1)
+          sw_path.write_text(sw, encoding='utf-8')
+
+          otome_path = Path('otome-card.js')
+          otome = otome_path.read_text(encoding='utf-8')
+          otome = re.sub(r"version\.textContent = 'v[0-9.]+ · \d{2}/\d{2}/\d{4}';", f"version.textContent = 'v{version} · {date}';", otome)
+          otome = re.sub(r"version\.title = 'Publicada el [^']+';", f"version.title = 'Publicada el {date_text}';", otome)
+          otome = re.sub(r"versionMeta\.setAttribute\('content', '[0-9.]+'\)", f"versionMeta.setAttribute('content', '{version}')", otome)
+          otome_path.write_text(otome, encoding='utf-8')
+
+          pixel_path = Path('pixel-adventure-card.js')
+          pixel = pixel_path.read_text(encoding='utf-8')
+          pixel = re.sub(r"const VERSION = '[0-9.]+';", f"const VERSION = '{version}';", pixel, count=1)
+          pixel = re.sub(r"const DATE = '\d{2}/\d{2}/\d{4}';", f"const DATE = '{date}';", pixel, count=1)
+          pixel_path.write_text(pixel, encoding='utf-8')
 
           readme_path = Path('README.md')
           readme = readme_path.read_text(encoding='utf-8')
@@ -61,7 +86,7 @@ jobs:
           VERSION=$(python -c "import json; print(json.load(open('version.json'))['version'])")
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html README.md
+          git add index.html README.md service-worker.js otome-card.js pixel-adventure-card.js
           if git diff --cached --quiet; then
             echo 'Version already synced.'
           else
