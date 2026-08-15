@@ -13,9 +13,9 @@
       card.style.backgroundColor = '#0b1516';
       card.innerHTML = `
         <a class="proj__card-link" href="https://github.com/javidei/survival" target="_blank" rel="noopener noreferrer" aria-label="Abrir Naranjal Survival en GitHub"></a>
-        <span class="proj__eyebrow">Survival 3D · Godot 4 · Alpha</span>
+        <span class="proj__eyebrow">Survival 3D · Godot 4 · Alpha 0.2.0</span>
         <h3>Naranjal Survival</h3>
-        <p>Survival 3D en un bosque abierto con exploración, recursos y progresión.</p>
+        <p>Survival 3D con crafting, construcción, fauna y ciclo día/noche en un bosque abierto.</p>
         <div class="links">
           <a class="repo-link" href="https://github.com/javidei/survival" target="_blank" rel="noopener noreferrer" aria-label="Abrir el repositorio de Naranjal Survival">
             <i class="fa-brands fa-github" aria-hidden="true"></i><span>survival</span>
