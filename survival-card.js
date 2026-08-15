@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = '0.3.26';
+  const VERSION = '0.3.27';
   const DATE = '15/08/2026';
   const PLAY_URL = 'https://javidei.github.io/survival/';
   const REPO_URL = 'https://github.com/javidei/survival';
