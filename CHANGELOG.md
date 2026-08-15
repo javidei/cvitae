@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.27 — 15/08/2026
+
+- Hace mucho más visible la imagen de **Naranjal Survival** en su tarjeta del portfolio.
+- Reduce el oscurecimiento del fondo para enseñar mejor la portada y mantiene el texto legible con un degradado inferior.
+- Versiona la URL de la imagen para evitar que una caché antigua deje la tarjeta sin actualizar.
+- Actualiza la etiqueta de la tarjeta a **Alpha 0.2.1**.
+
 ## 0.3.26 — 15/08/2026
 
 - Añade la tarjeta pública de **Naranjal Survival** con la portada nocturna aprobada.
