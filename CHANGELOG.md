@@ -4,6 +4,12 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.25 — 15/08/2026
+
+- Añade la tarjeta de **Naranjal Survival** enlazada al repositorio independiente `javidei/survival`.
+- Integra como portada la imagen nocturna de la casa encantada aprobada para el proyecto.
+- Añade el nuevo recurso WebP a la caché PWA y sincroniza el versionado del portfolio.
+
 ## 0.3.24 — 14/08/2026
 
 - Usa la ilustración **The Secret of Naranjal del Río** como fondo real de la tarjeta de Pixel Adventure.
