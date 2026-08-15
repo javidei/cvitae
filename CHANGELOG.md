@@ -4,6 +4,14 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.26 — 15/08/2026
+
+- Añade la tarjeta pública de **Naranjal Survival** con la portada nocturna aprobada.
+- Enlaza la tarjeta completa y el botón **Jugar** con la demo publicada en `javidei.github.io/survival/`.
+- Mantiene un acceso independiente al repositorio `javidei/survival`.
+- Añade `survival-card.js` y la portada del proyecto a la caché PWA.
+- Amplía la sincronización automática de versiones para incluir Naranjal Survival en futuras publicaciones.
+
 ## 0.3.25 — 15/08/2026
 
 - Corrige el versionado actual de `cvitae` para continuar desde `0.3.24`.

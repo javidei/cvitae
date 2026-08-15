@@ -49,12 +49,15 @@ jobs:
           index = re.sub(r'(service-worker\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'(otome-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'(pixel-adventure-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
+          index = re.sub(r'(survival-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'v[0-9.]+ · \d{2}/\d{2}/\d{4}', f'v{version} · {date}', index)
           index = re.sub(r'title="Publicada el [^"]+"', f'title="Publicada el {date_text}"', index)
           if 'src="./otome-card.js' not in index:
               index = index.replace('</body>', f'  <script src="./otome-card.js?v={version}"></script>\n</body>')
           if 'src="./pixel-adventure-card.js' not in index:
               index = index.replace('</body>', f'  <script src="./pixel-adventure-card.js?v={version}"></script>\n</body>')
+          if 'src="./survival-card.js' not in index:
+              index = index.replace('</body>', f'  <script src="./survival-card.js?v={version}"></script>\n</body>')
           index_path.write_text(index, encoding='utf-8')
 
           sw_path = Path('service-worker.js')
@@ -75,6 +78,14 @@ jobs:
           pixel = re.sub(r"const DATE = '\d{2}/\d{2}/\d{4}';", f"const DATE = '{date}';", pixel, count=1)
           pixel_path.write_text(pixel, encoding='utf-8')
 
+          survival_path = Path('survival-card.js')
+          if survival_path.exists():
+              survival = survival_path.read_text(encoding='utf-8')
+              survival = re.sub(r"const VERSION = '[0-9.]+';", f"const VERSION = '{version}';", survival, count=1)
+              survival = re.sub(r"const DATE = '\d{2}/\d{2}/\d{4}';", f"const DATE = '{date}';", survival, count=1)
+              survival = re.sub(r"version\.title = 'Publicada el [^']+';", f"version.title = 'Publicada el {date_text}';", survival)
+              survival_path.write_text(survival, encoding='utf-8')
+
           readme_path = Path('README.md')
           readme = readme_path.read_text(encoding='utf-8')
           readme = re.sub(r'\*\*[0-9.]+ — \d{2}/\d{2}/\d{4}\*\*', f'**{version} — {date}**', readme, count=1)
@@ -86,7 +97,7 @@ jobs:
           VERSION=$(python -c "import json; print(json.load(open('version.json'))['version'])")
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html README.md service-worker.js otome-card.js pixel-adventure-card.js
+          git add index.html README.md service-worker.js otome-card.js pixel-adventure-card.js survival-card.js
           if git diff --cached --quiet; then
             echo 'Version already synced.'
           else
