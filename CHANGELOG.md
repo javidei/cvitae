@@ -4,6 +4,13 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.25 — 15/08/2026
+
+- Corrige el versionado actual de `cvitae` para continuar desde `0.3.24`.
+- Sincroniza automáticamente la versión visible del footer, metadatos, scripts dinámicos y service worker.
+- Mantiene los últimos cambios de la sección Contacto, incluido el perfil general de GitHub y el acceso directo a WhatsApp.
+- Renueva la caché PWA para que la versión publicada y la instalada permanezcan alineadas.
+
 ## 0.3.24 — 14/08/2026
 
 - Usa la ilustración **The Secret of Naranjal del Río** como fondo real de la tarjeta de Pixel Adventure.
