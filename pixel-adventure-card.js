@@ -1,6 +1,6 @@
 (() => {
-  const VERSION = '0.3.24';
-  const DATE = '14/08/2026';
+  const VERSION = '0.3.25';
+  const DATE = '15/08/2026';
 
   const applyPixelAdventureCard = async () => {
     const card = document.querySelector('#proyectos .proj--pixel-adventure');
