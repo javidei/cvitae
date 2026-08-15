@@ -1,6 +1,15 @@
 (() => {
-  const VERSION = '0.3.24';
-  const DATE = '14/08/2026';
+  const VERSION = '0.3.25';
+  const DATE = '15/08/2026';
+
+  const ensureSurvivalCard = () => {
+    if (document.querySelector('script[data-naranjal-survival]')) return;
+    const script = document.createElement('script');
+    script.src = `./survival-card.js?v=${VERSION}`;
+    script.async = true;
+    script.dataset.naranjalSurvival = 'true';
+    document.head.appendChild(script);
+  };
 
   const applyPixelAdventureCard = async () => {
     const card = document.querySelector('#proyectos .proj--pixel-adventure');
@@ -30,14 +39,16 @@
     const version = document.querySelector('.footer__version');
     if (version) {
       version.textContent = `v${VERSION} · ${DATE}`;
-      version.title = `Publicada el ${DATE.replaceAll('/', ' de ')}`;
+      version.title = 'Publicada el 15 de agosto de 2026';
     }
     const versionMeta = document.querySelector('meta[name="application-version"]');
     if (versionMeta) versionMeta.setAttribute('content', VERSION);
+    ensureSurvivalCard();
     return true;
   };
 
   const start = () => {
+    ensureSurvivalCard();
     let attempts = 0;
     const tryApply = async () => {
       attempts += 1;
