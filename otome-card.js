@@ -321,10 +321,10 @@
 
   const version = document.querySelector('.footer__version');
   if (version) {
-    version.textContent = 'v0.3.23 · 14/08/2026';
+    version.textContent = 'v0.3.24 · 14/08/2026';
     version.title = 'Publicada el 14 de agosto de 2026';
   }
 
   const versionMeta = document.querySelector('meta[name="application-version"]');
-  if (versionMeta) versionMeta.setAttribute('content', '0.3.23');
+  if (versionMeta) versionMeta.setAttribute('content', '0.3.24');
 })();
