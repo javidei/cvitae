@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = '0.3.27';
+  const VERSION = '0.3.28';
   const DATE = '15/08/2026';
   const PLAY_URL = 'https://javidei.github.io/survival/';
   const REPO_URL = 'https://github.com/javidei/survival';
@@ -52,7 +52,7 @@
       card.className = 'proj proj--naranjal-survival';
       card.innerHTML = `
         <a class="proj__card-link" href="${PLAY_URL}" target="_blank" rel="noopener noreferrer" aria-label="Jugar a Naranjal Survival"></a>
-        <span class="proj__eyebrow">Survival 3D · Godot 4 · Alpha 0.2.1</span>
+        <span class="proj__eyebrow">Survival 3D · Godot 4 · Alpha 0.2.3</span>
         <h3>Naranjal Survival</h3>
         <p>Survival 3D con crafting, construcción, fauna y ciclo día/noche en un bosque abierto.</p>
         <div class="links">
@@ -72,7 +72,7 @@
     card.style.backgroundRepeat = 'no-repeat';
 
     const eyebrow = card.querySelector('.proj__eyebrow');
-    if (eyebrow) eyebrow.textContent = 'Survival 3D · Godot 4 · Alpha 0.2.1';
+    if (eyebrow) eyebrow.textContent = 'Survival 3D · Godot 4 · Alpha 0.2.3';
 
     const playLink = card.querySelector('.proj__card-link');
     if (playLink) playLink.href = PLAY_URL;
