@@ -80,7 +80,7 @@
     const version = document.querySelector('.footer__version');
     if (version) {
       version.textContent = `v${VERSION} · ${DATE}`;
-      version.title = 'Publicada el 15 de agosto de 2026';
+      version.title = 'Publicada el 31 de agosto de 2026';
     }
     const versionMeta = document.querySelector('meta[name="application-version"]');
     if (versionMeta) versionMeta.setAttribute('content', VERSION);
