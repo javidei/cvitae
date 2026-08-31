@@ -1,6 +1,6 @@
 (() => {
-  const VERSION = '0.3.28';
-  const DATE = '15/08/2026';
+  const VERSION = '0.3.29';
+  const DATE = '31/08/2026';
   const PLAY_URL = 'https://javidei.github.io/survival/';
   const REPO_URL = 'https://github.com/javidei/survival';
   const COVER_URL = `./assets/projects/naranjal-survival.webp?v=${VERSION}`;

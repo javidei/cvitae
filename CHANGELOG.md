@@ -4,6 +4,12 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.29 — 31/08/2026
+
+- Añade la tarjeta de **Ferretería Naranjal** con acceso a la web y al panel de administración.
+- Enlaza el repositorio independiente `javidei/Ferreteria`.
+- Incluye la portada del local en la caché PWA.
+
 ## 0.3.27 — 15/08/2026
 
 - Hace mucho más visible la imagen de **Naranjal Survival** en su tarjeta del portfolio.

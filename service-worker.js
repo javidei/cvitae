@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.28";
+const PORTFOLIO_VERSION = "0.3.29";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
@@ -22,6 +22,7 @@ const APP_SHELL = [
   "./assets/projects/recetas.svg",
   "./assets/projects/thirty.svg",
   "./assets/projects/sam.svg",
+  "./assets/projects/ferreteria.webp",
   "./assets/projects/entre-amigos.svg",
   "./assets/projects/mis-pcs.jpg",
   "./assets/projects/project-hub.svg",
