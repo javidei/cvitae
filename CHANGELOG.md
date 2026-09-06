@@ -4,6 +4,12 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.31 — 06/09/2026
+
+- Publica el hub jugable de **Señor Jueguitos** en `cvitae/senor-jueguitos/` (GitHub Pages).
+- Actualiza la tarjeta para apuntar a `https://javidei.github.io/cvitae/senor-jueguitos/`.
+- Renueva la caché PWA y el versionado visible a `0.3.31`.
+
 ## 0.3.30 — 06/09/2026
 
 - Añade la tarjeta de **Señor Jueguitos**, hub de minijuegos HTML5 con Sudoku, Memoria y Serpiente.
