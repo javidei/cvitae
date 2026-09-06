@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.29";
+const PORTFOLIO_VERSION = "0.3.30";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
@@ -10,6 +10,7 @@ const APP_SHELL = [
   "./otome-card.js",
   "./pixel-adventure-card.js",
   "./survival-card.js",
+  "./senor-jueguitos-card.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/hero/javi-crossed-arms-0.txt",
@@ -52,19 +53,25 @@ async function withProjectCards(response) {
   if (!html.includes("otome-card.js")) {
     html = html.replace(
       "</body>",
-      `<script src="./otome-card.js?v=${PORTFOLIO_VERSION}"></script>\n</body>`
+      `<script src="./otome-card.js?v=${PORTFOLIO_VERSION}"><\/script>\n</body>`
     );
   }
   if (!html.includes("pixel-adventure-card.js")) {
     html = html.replace(
       "</body>",
-      `<script src="./pixel-adventure-card.js?v=${PORTFOLIO_VERSION}"></script>\n</body>`
+      `<script src="./pixel-adventure-card.js?v=${PORTFOLIO_VERSION}"><\/script>\n</body>`
     );
   }
   if (!html.includes("survival-card.js")) {
     html = html.replace(
       "</body>",
-      `<script src="./survival-card.js?v=${PORTFOLIO_VERSION}"></script>\n</body>`
+      `<script src="./survival-card.js?v=${PORTFOLIO_VERSION}"><\/script>\n</body>`
+    );
+  }
+  if (!html.includes("senor-jueguitos-card.js")) {
+    html = html.replace(
+      "</body>",
+      `<script src="./senor-jueguitos-card.js?v=${PORTFOLIO_VERSION}"><\/script>\n</body>`
     );
   }
 
