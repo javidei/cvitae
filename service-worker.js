@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.31";
+const PORTFOLIO_VERSION = "0.3.32";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
@@ -41,6 +41,10 @@ const APP_SHELL = [
 
 const INDEX_URL = new URL("./index.html", self.registration.scope).href;
 
+function isStandaloneAppPath(pathname) {
+  return pathname.includes("/senor-jueguitos");
+}
+
 async function fetchFresh(request) {
   return fetch(new Request(request, { cache: "no-store" }));
 }
@@ -50,6 +54,20 @@ async function withProjectCards(response) {
   if (!contentType.includes("text/html")) return response;
 
   let html = await response.text();
+
+  // Never inject portfolio cards into standalone apps (e.g. Señor Jueguitos hub).
+  if (!html.includes('id="proyectos"') || html.includes("Señor Jueguitos — hub")) {
+    const headers = new Headers(response.headers);
+    headers.delete("content-length");
+    headers.delete("content-encoding");
+    headers.delete("etag");
+    return new Response(html, {
+      status: response.status,
+      statusText: response.statusText,
+      headers
+    });
+  }
+
   if (!html.includes("otome-card.js")) {
     html = html.replace(
       "</body>",
@@ -120,6 +138,18 @@ self.addEventListener("fetch", event => {
   const request = event.request;
   const url = new URL(request.url);
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
+
+  // Standalone apps under this site must not use the portfolio SW rewrite/fallback.
+  if (isStandaloneAppPath(url.pathname)) {
+    event.respondWith((async () => {
+      try {
+        return await fetchFresh(request);
+      } catch {
+        return Response.error();
+      }
+    })());
+    return;
+  }
 
   if (request.mode === "navigate") {
     event.respondWith((async () => {
