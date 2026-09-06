@@ -4,6 +4,10 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.32 — 06/09/2026
+
+- Corrige la pantalla negra de **Señor Jueguitos**: el service worker ya no reescribe el hub standalone.
+
 ## 0.3.31 — 06/09/2026
 
 - Publica el hub jugable de **Señor Jueguitos** en `cvitae/senor-jueguitos/` (GitHub Pages).
