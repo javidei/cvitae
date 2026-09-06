@@ -4,7 +4,7 @@ Portfolio personal publicado con GitHub Pages y desarrollado con HTML, CSS y Jav
 
 ## Versión actual
 
-**0.3.29 — 31/08/2026**
+**0.3.31 — 06/09/2026**
 
 La versión visible de la web se muestra en el footer y también está disponible en [`version.json`](version.json). El historial completo se mantiene en [`CHANGELOG.md`](CHANGELOG.md).
 
