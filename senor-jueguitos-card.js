@@ -1,7 +1,7 @@
 (() => {
-  const VERSION = '0.3.30';
+  const VERSION = '0.3.31';
   const DATE = '06/09/2026';
-  const PLAY_URL = 'https://javidei.github.io/senor-jueguitos/';
+  const PLAY_URL = 'https://javidei.github.io/cvitae/senor-jueguitos/';
   const REPO_URL = 'https://github.com/javidei/senor-jueguitos';
 
   const ensureSenorJueguitosStyles = () => {
