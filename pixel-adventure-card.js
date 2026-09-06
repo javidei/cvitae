@@ -1,6 +1,6 @@
 (() => {
-  const VERSION = '0.3.29';
-  const DATE = '31/08/2026';
+  const VERSION = '0.3.30';
+  const DATE = '06/09/2026';
 
   const applyPixelAdventureCard = async () => {
     const card = document.querySelector('#proyectos .proj--pixel-adventure');
@@ -30,7 +30,7 @@
     const version = document.querySelector('.footer__version');
     if (version) {
       version.textContent = `v${VERSION} · ${DATE}`;
-      version.title = `Publicada el ${DATE.replaceAll('/', ' de ')}`;
+      version.title = 'Publicada el 6 de septiembre de 2026';
     }
     const versionMeta = document.querySelector('meta[name="application-version"]');
     if (versionMeta) versionMeta.setAttribute('content', VERSION);

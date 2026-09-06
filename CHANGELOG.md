@@ -4,6 +4,12 @@
 
 Mientras el portfolio siga evolucionando antes de considerarse una versión estable, el número principal se mantiene en `0`. Los cambios funcionales o visuales importantes incrementan `MINOR` y las correcciones compatibles incrementan `PATCH`.
 
+## 0.3.30 — 06/09/2026
+
+- Añade la tarjeta de **Señor Jueguitos**, hub de minijuegos HTML5 con Sudoku, Memoria y Serpiente.
+- Enlaza la demo publicada en `javidei.github.io/senor-jueguitos/` y el repositorio `javidei/senor-jueguitos`.
+- Incluye `senor-jueguitos-card.js` en la carga dinámica y en la caché PWA.
+
 ## 0.3.29 — 31/08/2026
 
 - Añade la tarjeta de **Ferretería Naranjal** con acceso a la web y al panel de administración.
