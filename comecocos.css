@@ -96,7 +96,6 @@
     flex-direction: column;
   }
 
-  /* Serpiente: maximize square board */
   body.sj-game-serpiente .snake-layout {
     gap: 0.45rem;
     width: 100%;
@@ -130,7 +129,6 @@
     min-height: 1.2em;
   }
 
-  /* Comecocos: tall board fills width */
   body.sj-game-comecocos .cc-layout {
     gap: 0.45rem;
     width: 100%;
