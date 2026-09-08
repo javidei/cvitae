@@ -1,7 +1,5 @@
 (() => {
-  const VERSION = '0.3.31';
-  const DATE = '06/09/2026';
-  const PLAY_URL = 'https://javidei.github.io/cvitae/senor-jueguitos/';
+  const PLAY_URL = 'https://javidei.github.io/senor-jueguitos/';
   const REPO_URL = 'https://github.com/javidei/senor-jueguitos';
 
   const ensureSenorJueguitosStyles = () => {
@@ -57,7 +55,7 @@
         <a class="proj__card-link" href="${PLAY_URL}" target="_blank" rel="noopener noreferrer" aria-label="Jugar a Señor Jueguitos"></a>
         <span class="proj__eyebrow">Hub de minijuegos · HTML5</span>
         <h3>Señor Jueguitos</h3>
-        <p>Menú hub con Sudoku, Memoria y Serpiente en el navegador, y más minijuegos por llegar.</p>
+        <p>Menú hub con Sudoku, Memoria, Serpiente, Comecocos, Buscaminas y Tetris en el navegador.</p>
         <div class="links">
           <a href="${PLAY_URL}" target="_blank" rel="noopener noreferrer" aria-label="Jugar a Señor Jueguitos">
             <i class="fa-solid fa-gamepad" aria-hidden="true"></i><span>Jugar</span>
@@ -75,13 +73,9 @@
     const playLink = card.querySelector('.proj__card-link');
     if (playLink) playLink.href = PLAY_URL;
 
-    const version = document.querySelector('.footer__version');
-    if (version) {
-      version.textContent = `v${VERSION} · ${DATE}`;
-      version.title = 'Publicada el 6 de septiembre de 2026';
-    }
-    const versionMeta = document.querySelector('meta[name="application-version"]');
-    if (versionMeta) versionMeta.setAttribute('content', VERSION);
+    card.querySelectorAll('a[href*="/cvitae/senor-jueguitos/"]').forEach(link => {
+      link.href = PLAY_URL;
+    });
 
     return true;
   };
