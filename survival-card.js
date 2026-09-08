@@ -1,6 +1,6 @@
 (() => {
-  const VERSION = '0.3.31';
-  const DATE = '06/09/2026';
+  const VERSION = '0.3.33';
+  const DATE = '08/09/2026';
   const PLAY_URL = 'https://javidei.github.io/survival/';
   const REPO_URL = 'https://github.com/javidei/survival';
   const COVER_URL = `./assets/projects/naranjal-survival.webp?v=${VERSION}`;
@@ -80,7 +80,7 @@
     const version = document.querySelector('.footer__version');
     if (version) {
       version.textContent = `v${VERSION} · ${DATE}`;
-      version.title = 'Publicada el 6 de septiembre de 2026';
+      version.title = 'Publicada el 8 de septiembre de 2026';
     }
     const versionMeta = document.querySelector('meta[name="application-version"]');
     if (versionMeta) versionMeta.setAttribute('content', VERSION);

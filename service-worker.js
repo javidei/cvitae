@@ -1,4 +1,4 @@
-const PORTFOLIO_VERSION = "0.3.31";
+const PORTFOLIO_VERSION = "0.3.33";
 const CACHE_PREFIX = "cvitae-shell-";
 const CACHE_NAME = `${CACHE_PREFIX}${PORTFOLIO_VERSION}-standalone-projects`;
 
