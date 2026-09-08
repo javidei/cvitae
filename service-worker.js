@@ -41,10 +41,6 @@ const APP_SHELL = [
 
 const INDEX_URL = new URL("./index.html", self.registration.scope).href;
 
-function isStandaloneAppPath(pathname) {
-  return pathname.includes("/senor-jueguitos");
-}
-
 async function fetchFresh(request) {
   return fetch(new Request(request, { cache: "no-store" }));
 }
@@ -55,8 +51,7 @@ async function withProjectCards(response) {
 
   let html = await response.text();
 
-  // Never inject portfolio cards into standalone apps (e.g. Señor Jueguitos hub).
-  if (!html.includes('id="proyectos"') || html.includes("Señor Jueguitos — hub")) {
+  if (!html.includes('id="proyectos"')) {
     const headers = new Headers(response.headers);
     headers.delete("content-length");
     headers.delete("content-encoding");
@@ -138,18 +133,6 @@ self.addEventListener("fetch", event => {
   const request = event.request;
   const url = new URL(request.url);
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
-
-  // Standalone apps under this site must not use the portfolio SW rewrite/fallback.
-  if (isStandaloneAppPath(url.pathname)) {
-    event.respondWith((async () => {
-      try {
-        return await fetchFresh(request);
-      } catch {
-        return Response.error();
-      }
-    })());
-    return;
-  }
 
   if (request.mode === "navigate") {
     event.respondWith((async () => {
