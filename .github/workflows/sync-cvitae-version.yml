@@ -24,6 +24,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Move to latest main
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
       - name: Sync visible version
         run: |
           python - <<'PY'
@@ -105,6 +111,5 @@ jobs:
             echo 'Version already synced.'
           else
             git commit -m "chore: sincronizar cvitae ${VERSION}"
-            git pull --rebase origin main
-            git push origin main
+            git push origin HEAD:main
           fi
