@@ -50,6 +50,7 @@ jobs:
           index = re.sub(r'(otome-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'(pixel-adventure-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'(survival-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
+          index = re.sub(r'(senor-jueguitos-card\.js\?v=)[0-9.]+', rf'\g<1>{version}', index)
           index = re.sub(r'v[0-9.]+ · \d{2}/\d{2}/\d{4}', f'v{version} · {date}', index)
           index = re.sub(r'title="Publicada el [^"]+"', f'title="Publicada el {date_text}"', index)
           if 'src="./otome-card.js' not in index:
@@ -58,6 +59,8 @@ jobs:
               index = index.replace('</body>', f'  <script src="./pixel-adventure-card.js?v={version}"></script>\n</body>')
           if 'src="./survival-card.js' not in index:
               index = index.replace('</body>', f'  <script src="./survival-card.js?v={version}"></script>\n</body>')
+          if 'src="./senor-jueguitos-card.js' not in index:
+              index = index.replace('</body>', f'  <script src="./senor-jueguitos-card.js?v={version}"></script>\n</body>')
           index_path.write_text(index, encoding='utf-8')
 
           sw_path = Path('service-worker.js')
