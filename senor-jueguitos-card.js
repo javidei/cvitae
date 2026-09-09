@@ -1,5 +1,5 @@
 (() => {
-  const PLAY_URL = 'https://javidei.github.io/senor-jueguitos/';
+  const PLAY_URL = 'https://javidei.github.io/senor-jueguitos/?from=cvitae&v=0.3.2';
   const REPO_URL = 'https://github.com/javidei/senor-jueguitos';
 
   const ensureSenorJueguitosStyles = () => {
@@ -73,8 +73,8 @@
     const playLink = card.querySelector('.proj__card-link');
     if (playLink) playLink.href = PLAY_URL;
 
-    card.querySelectorAll('a[href*="/cvitae/senor-jueguitos/"]').forEach(link => {
-      link.href = PLAY_URL;
+    card.querySelectorAll('a[href*="/cvitae/senor-jueguitos/"], a[href*="/senor-jueguitos/"]').forEach(link => {
+      if (!link.classList.contains('repo-link')) link.href = PLAY_URL;
     });
 
     return true;
