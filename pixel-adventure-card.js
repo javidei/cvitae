@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = '0.3.34';
+  const VERSION = '0.3.35';
   const DATE = '09/09/2026';
 
   const applyPixelAdventureCard = async () => {
