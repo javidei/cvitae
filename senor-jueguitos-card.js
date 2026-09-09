@@ -1,5 +1,5 @@
 (() => {
-  const PLAY_URL = 'https://javidei.github.io/senor-jueguitos/?from=cvitae&v=0.3.2';
+  const PLAY_URL = 'https://javidei.github.io/senor-jueguitos/?from=cvitae&v=0.3.3';
   const REPO_URL = 'https://github.com/javidei/senor-jueguitos';
 
   const ensureSenorJueguitosStyles = () => {
